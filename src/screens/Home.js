@@ -2,7 +2,11 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
-import AllItens from "../../assets/icons/all.png";
+import AllIcon from "../../assets/icons/all.png";
+import AnyIcon from "../../assets/icons/any3.png";
+import CostcoIcon from "../../assets/icons/costco3.png";
+import DollaramaIcon from "../../assets/icons/dollarama3.png";
+import PharmacyIcon from "../../assets/icons/pharmacy.png";
 
 export default function Home() {
 
@@ -13,8 +17,64 @@ export default function Home() {
         <Text>view1</Text>
       </View>
 
+
+
+{/* this is a view of the Middle part where have Store Icons to show the product */}
       <View style={styles.viewMiddle}>
-        <Text>view2</Text>
+       
+        <View style={styles.storeContainer} >
+          
+          <TouchableOpacity
+            style={styles.storeIcons} 
+            //onPress={() => setModalVisible(true)}
+             
+          >
+            <Image
+              source={AnyIcon}
+              alt="anymarket"
+              style={{ width: 70 , height: 70 }}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.storeIcons} 
+            //onPress={() => setModalVisible(true)}
+             
+          >
+            <Image
+              source={CostcoIcon}
+              alt="costco"
+              style={{ width: 70 , height: 70 }}
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.storeIcons} 
+            //onPress={() => setModalVisible(true)}
+             
+          >
+            <Image
+              source={DollaramaIcon}
+              alt="dollarama"
+              style={{ width: 70 , height: 70 }}
+            />
+          </TouchableOpacity>
+
+            <TouchableOpacity
+            style={styles.storeIcons} 
+            //onPress={() => setModalVisible(true)}
+             
+          >
+            <Image
+              source={PharmacyIcon}
+              alt="pharmacy"
+              style={{ width: 70 , height: 70 }}
+            />
+          </TouchableOpacity>
+
+
+        </View>
+
       </View>
 
 
@@ -22,6 +82,10 @@ export default function Home() {
 
 
 
+
+
+
+{/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
       <View style={styles.viewBottom}>
        
 
@@ -47,7 +111,7 @@ export default function Home() {
              
           >
             <Image
-              source={AllItens}
+              source={AllIcon}
               alt="allitens"
               style={{ width: 60, height: 60 }}
             />
@@ -88,12 +152,22 @@ const styles = StyleSheet.create({
     backgroundColor: "red",
     flex: 5,
   },
+
+
+// view with Store Icons  
   viewMiddle: {
     backgroundColor: "darkorange",
-    flex: 1.5,
+    flex: 1.2,
   },
-  
-  
+
+  storeContainer:{
+    flex:1,
+    flexDirection:"row",
+    gap: 15,
+    alignItems: "center",
+    justifyContent: "center",
+    
+  },
   
 // view with PhotoIcon - AllItens - CartIcon  
   viewBottom: {
@@ -108,14 +182,12 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 60,
     padding: 15,
   },
-
   photo: {
     backgroundColor: "#F6792B",
     borderTopRightRadius: 60,
     borderBottomRightRadius: 60,
     padding: 15,
   },
-  
   allItens: {
     borderWidth: 3, 
     borderColor: "#F6792B",
