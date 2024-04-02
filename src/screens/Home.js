@@ -1,4 +1,11 @@
-import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+
+import All from "../components/All";
+import Any from "../components/Any";
+import Costco from "../components/Costco";
+import Dollarama from "../components/Dollarama";
+import Pharmacy from "../components/Pharmacy";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
@@ -10,13 +17,26 @@ import PharmacyIcon from "../../assets/icons/pharmacy.png";
 
 export default function Home() {
 
+  const [showAll, setShowAll] = useState(true);
+  const [showAny, setShowAny] = useState(false);
+  const [showDollarama, setShowDollarama] = useState(false);
+  const [showCostco, setShowCostco] = useState(false);
+  const [showPharmacy, setShowPharmacy] = useState(false);
+
   return (
     <View style={styles.container}>
      
 
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
-        <Text>view1</Text>
+        <View >
+          {showAll && <All />}
+          {showAny && <Any/>}
+          {showCostco && <Costco/>}  
+          {showDollarama && <Dollarama/>}
+          {showPharmacy && <Pharmacy/>}
+           
+        </View>
       </View>
 
 
@@ -28,8 +48,7 @@ export default function Home() {
           
           <TouchableOpacity
             style={styles.storeIcons} 
-            //onPress={() => setModalVisible(true)}
-             
+            onPress={() => {setShowAll(false); setShowAny(true); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}            
           >
             <Image
               source={AnyIcon}
@@ -40,8 +59,7 @@ export default function Home() {
 
           <TouchableOpacity
             style={styles.storeIcons} 
-            //onPress={() => setModalVisible(true)}
-             
+            onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(true); setShowPharmacy(false)}}  
           >
             <Image
               source={CostcoIcon}
@@ -52,8 +70,7 @@ export default function Home() {
 
           <TouchableOpacity
             style={styles.storeIcons} 
-            //onPress={() => setModalVisible(true)}
-             
+             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(true); setShowCostco(false); setShowPharmacy(false)}}
           >
             <Image
               source={DollaramaIcon}
@@ -64,8 +81,7 @@ export default function Home() {
 
             <TouchableOpacity
             style={styles.storeIcons} 
-            //onPress={() => setModalVisible(true)}
-             
+             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(true)}}
           >
             <Image
               source={PharmacyIcon}
@@ -95,7 +111,7 @@ export default function Home() {
        <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.photo}
-            //onPress={() => setModalVisible(true)}
+            //onPress={() =>     }
           >
             <Image
               source={PhotoIcon}
@@ -109,7 +125,7 @@ export default function Home() {
         <View >
           <TouchableOpacity
             style={styles.allItens} 
-            //onPress={() => setModalVisible(true)}
+            onPress={() => {setShowAll(true); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}
              
           >
             <Image
@@ -124,7 +140,7 @@ export default function Home() {
         <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.cart}
-            //onPress={() => setModalVisible(true)}
+            //onPress={() =>     }
           >
             <Image
               source={CartIcon}
@@ -150,8 +166,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+
+// viem Top part where show the list of products  
   viewTop: {
-   
     flex: 5,
   },
 
