@@ -13,6 +13,8 @@ export default function Home() {
   return (
     <View style={styles.container}>
      
+
+{/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
         <Text>view1</Text>
       </View>
@@ -149,14 +151,14 @@ const styles = StyleSheet.create({
   },
 
   viewTop: {
-    backgroundColor: "red",
+   
     flex: 5,
   },
 
 
 // view with Store Icons  
   viewMiddle: {
-    backgroundColor: "darkorange",
+    backgroundColor: "#ff8c00",
     flex: 1.2,
   },
 
@@ -176,14 +178,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
-  cart: {
-    backgroundColor: "#F6792B",
-    borderTopLeftRadius: 60,
-    borderBottomLeftRadius: 60,
-    padding: 15,
-  },
   photo: {
-    backgroundColor: "#F6792B",
+    backgroundColor: "#ff8c00",
     borderTopRightRadius: 60,
     borderBottomRightRadius: 60,
     padding: 15,
@@ -192,6 +188,12 @@ const styles = StyleSheet.create({
     borderWidth: 3, 
     borderColor: "#F6792B",
     borderRadius: 5, 
+  },
+  cart: {
+    backgroundColor: "#ff8c00",
+    borderTopLeftRadius: 60,
+    borderBottomLeftRadius: 60,
+    padding: 15,
   },
 
 });
