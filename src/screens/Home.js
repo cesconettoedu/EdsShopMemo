@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text } from "react-native";
 
 import All from "../components/All";
 import Any from "../components/Any";
@@ -26,6 +26,65 @@ export default function Home() {
   return (
     <View style={styles.container}>
      
+    
+ {/* this is a view of the HEADER free place to put something */}   
+    <View style={styles.viewTopPlus}>
+      <Text> free space, still work on </Text>
+    </View>
+
+{/* this is a view of the Middle part where have Store Icons to show the product */}
+      <View style={styles.viewMiddle}>
+       
+        <View style={styles.storeContainer} >
+          
+          <TouchableOpacity
+            onPress={() => {setShowAll(false); setShowAny(true); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}            
+            >
+            <Image
+              source={AnyIcon}
+              alt="anymarket"
+              style={styles.storeIcons} 
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(true); setShowPharmacy(false)}}  
+            >
+            <Image
+              source={CostcoIcon}
+              alt="costco"
+              style={styles.storeIcons} 
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(true); setShowCostco(false); setShowPharmacy(false)}}
+             >
+            <Image
+              source={DollaramaIcon}
+              alt="dollarama"
+              style={styles.storeIcons} 
+            />
+          </TouchableOpacity>
+
+            <TouchableOpacity
+             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(true)}}
+             >
+            <Image
+              source={PharmacyIcon}
+              alt="pharmacy"
+              style={styles.storeIcons} 
+            />
+          </TouchableOpacity>
+
+
+        </View>
+
+      </View>
+
+
+
+
 
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
@@ -39,61 +98,6 @@ export default function Home() {
         </View>
       </View>
 
-
-
-{/* this is a view of the Middle part where have Store Icons to show the product */}
-      <View style={styles.viewMiddle}>
-       
-        <View style={styles.storeContainer} >
-          
-          <TouchableOpacity
-            style={styles.storeIcons} 
-            onPress={() => {setShowAll(false); setShowAny(true); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}            
-          >
-            <Image
-              source={AnyIcon}
-              alt="anymarket"
-              style={{ width: 70 , height: 70 }}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.storeIcons} 
-            onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(true); setShowPharmacy(false)}}  
-          >
-            <Image
-              source={CostcoIcon}
-              alt="costco"
-              style={{ width: 70 , height: 70 }}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.storeIcons} 
-             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(true); setShowCostco(false); setShowPharmacy(false)}}
-          >
-            <Image
-              source={DollaramaIcon}
-              alt="dollarama"
-              style={{ width: 70 , height: 70 }}
-            />
-          </TouchableOpacity>
-
-            <TouchableOpacity
-            style={styles.storeIcons} 
-             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(true)}}
-          >
-            <Image
-              source={PharmacyIcon}
-              alt="pharmacy"
-              style={{ width: 70 , height: 70 }}
-            />
-          </TouchableOpacity>
-
-
-        </View>
-
-      </View>
 
 
 
@@ -165,6 +169,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  
+  
+  viewTopPlus:{
+    backgroundColor: "#ff8c00",
+    flex: 1, 
+  },
+
 
 
 // viem Top part where show the list of products  
@@ -176,16 +187,19 @@ const styles = StyleSheet.create({
 // view with Store Icons  
   viewMiddle: {
     backgroundColor: "#ff8c00",
-    flex: 1.2,
+    flex: 0.8,
   },
-
   storeContainer:{
     flex:1,
     flexDirection:"row",
     gap: 15,
     alignItems: "center",
     justifyContent: "center",
-    
+    gap: 25,
+  },
+  storeIcons: {
+    width: 60, 
+    height: 60
   },
   
 // view with PhotoIcon - AllItens - CartIcon  
@@ -202,7 +216,7 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   allItens: {
-    borderWidth: 3, 
+    borderWidth: 2, 
     borderColor: "#F6792B",
     borderRadius: 5, 
   },
