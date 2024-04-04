@@ -1,10 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
-
+import Items from "../services/sqlite/Items";
 
 const ProductField = ({data}) => {
 
+
+   //delete
+  const deleteItem = (id) => { 
+    Items.remove(id)
+      .then( updated => console.log('product deleted') )
+      .catch( err => console.log(err) )
+  }
   
+  
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <View style={styles.item}>
       <TouchableOpacity
@@ -21,7 +33,7 @@ const ProductField = ({data}) => {
           </Text>
 
           <TouchableOpacity
-          //onPress={() => {deleteItem(data.id)}}
+            onPress={() => {deleteItem(data.id)}}
           >
             <View style={styles.trash}>
               <Text>🗑️</Text>
