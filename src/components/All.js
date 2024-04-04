@@ -1,36 +1,38 @@
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, FlatList} from "react-native";
-import Task from "./Task";
+import ProductField from "./ProductField";
+import Items from "../services/sqlite/Items";
 
-//import Task from './Task';
 
 function All() {
+  const [allItems, setAllItems] = useState()
 
+  const allProduct = () => {   
+    const all = [];
+      Items.all()
+      .then( 
+        items => items.forEach( c => all.push(c) )
+      )
+      setAllItems(all);
+  };
+
+
+  useEffect(() => {
+    allProduct()
+  }, [])
+  
 
   return (
 
     <View style={styles.allContainer} >
-      <Text style={styles.title}> 19  items to buy in total</Text>
-      
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-      <Task/>
-            
-     
-
-      
-      {/* <FlatList
+      <Text style={styles.title}> 19  items to buy in total</Text>      
+      <FlatList
         style={styles.flatList}
-        data={allList}
+        data={allItems}
         renderItem={({ item }) => (
-          <Task data={item}/> 
+          <ProductField data={item}/> 
         )} 
-      />  */}
+      />
     </View>
   )
 }

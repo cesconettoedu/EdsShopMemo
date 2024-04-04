@@ -2,7 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
 
 
-const Task = () => {
+const ProductField = ({data}) => {
+
+  
   return (
     <View style={styles.item}>
       <TouchableOpacity
@@ -11,11 +13,11 @@ const Task = () => {
         <View style={styles.itemLeft}>
             
           <View style={styles.costcoColor}>
-            <Text>Costco</Text>
+            <Text>{data.memoid}</Text>
           </View>
 
           <Text style={styles.product} numberOfLines={1}>
-            Garbage plastic bag
+           {data.product} 
           </Text>
 
           <TouchableOpacity
@@ -82,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Task;
+export default ProductField;

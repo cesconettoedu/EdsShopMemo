@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Text } from "react-native";
+import React, { useState, useMemo } from "react";
+import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pressable } from "react-native";
+import RadioGroup from 'react-native-radio-buttons-group';
+import Items from "../services/sqlite/Items";
 
 import All from "../components/All";
 import Any from "../components/Any";
@@ -22,6 +24,56 @@ export default function Home() {
   const [showDollarama, setShowDollarama] = useState(false);
   const [showCostco, setShowCostco] = useState(false);
   const [showPharmacy, setShowPharmacy] = useState(false);
+
+  const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
+  const [productName, setProductName] = useState("");
+  const [selectedIdMemo, setSelectedIdMemo] = useState("Any");
+
+
+  const radioButtons = useMemo(
+    () => [
+      {
+        id: "Any",
+        label: "Any",
+        value: "Any Market",
+      },
+      {
+        id: "Dollarama",
+        label: "Dollarama",
+        value: "Dollarama",
+      },
+      {
+        id: "Costco",
+        label: "Costco",
+        value: "Costco",
+      },
+    ],
+    []
+  );
+
+  //------------------------------just to see the whole DB
+  // const printItems = (item) => {
+  //   console.log(`id:${item.id}, product:${item.product}, model:${item.memoid}`)
+  // }
+
+  const handleAddProduct = () => {
+    Items.create( {product:productName, memoid:selectedIdMemo} )
+      .then( console.log('Item created'))
+      .catch( err => console.log(err) )    
+      
+  // showAllProduct();
+  };
+
+  // const showAllProduct = () => {   
+  //   Items.all()
+  //     .then( 
+  //       items => items.forEach( c => printItems(c) )
+  //     )
+  // };
+
+
+
+
 
   return (
     <View style={styles.container}>
@@ -144,7 +196,7 @@ export default function Home() {
         <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.cart}
-            //onPress={() =>     }
+            onPress={() => setModalVisibleAdd(true) }
           >
             <Image
               source={CartIcon}
@@ -154,7 +206,57 @@ export default function Home() {
           </TouchableOpacity>
         </View>
       
+        {/*--------- Modal ----------------- to open a text input */}
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisibleAdd}
+            onRequestClose={() => {
+              setModalVisibleAdd(!modalVisibleAdd);
+            }}>
 
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>             
+          
+                <TextInput 
+                  style={styles.input} 
+                  placeholder={" What do you need buy?"} 
+                  autoCapitalize='sentences'
+                  maxLength={70}
+                  value={productName}
+                  onChangeText={text => setProductName(text)} 
+                />
+
+                <View style={styles.radioAdd}>
+                  <RadioGroup 
+                    radioButtons={radioButtons} 
+                    onPress={setSelectedIdMemo}
+                    selectedId={selectedIdMemo}
+                    layout='row'
+                  />       
+                </View>
+                       
+                <View style={styles.addClosCont}>
+                  <Pressable
+                    style={[styles.button ]}
+                    onPress={() => {
+                      setModalVisibleAdd(!modalVisibleAdd); 
+                      handleAddProduct()
+                    }}
+                  >
+                    <Text style={styles.textStyle}>Add in Cart</Text>
+                  </Pressable>
+                  <Pressable
+                    style={[styles.button, styles.closeModal]}
+                    onPress={() => setModalVisibleAdd(!modalVisibleAdd)}
+                  >
+                    <Text>X</Text>
+                  </Pressable>
+                </View>
+              </View>
+            </View>
+
+          </Modal>   
 
 
 
@@ -227,4 +329,70 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 
+  // Modal Cart Add
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    height: 400,
+    width: '100%',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(58, 55, 49, 0.95)'
+  },
+  modalView: {
+    width: '90%',
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  input:{
+    width: 280,
+    height: 50,
+    borderRadius: 10,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginBottom: 30,
+    paddingHorizontal: 10
+  },
+  radioAdd: {
+    marginBottom: 50
+  },
+  addClosCont: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: "#F6792B",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    left: 25,
+
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    fontSize: 20
+  },
+  closeModal:{
+    backgroundColor: 'white',
+    borderColor: 'black',
+    borderWidth: 1,
+    left: 80,
+    top: 30,
+    height: 30,
+    paddingTop: 3,
+  },
 });
