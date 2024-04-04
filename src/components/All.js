@@ -5,27 +5,33 @@ import Items from "../services/sqlite/Items";
 
 
 function All() {
-  const [allItems, setAllItems] = useState()
+  const [allItems, setAllItems] = useState();
+  const [count, setCount] = useState();
 
   const allProduct = () => {   
     const all = [];
+    
       Items.all()
       .then( 
         items => items.forEach( c => all.push(c) )
       )
-      setAllItems(all);
+      .then(
+        setAllItems(all),
+      )
   };
 
-
+  
   useEffect(() => {
-    allProduct()
+    allProduct();
+    
   }, [])
+
   
 
   return (
 
     <View style={styles.allContainer} >
-      <Text style={styles.title}> 19  items to buy in total</Text>      
+      <Text style={styles.title}> {count}  items to buy in total</Text>      
       <FlatList
         style={styles.flatList}
         data={allItems}

@@ -60,22 +60,12 @@ export default function Home() {
     Items.create( {product:productName, memoid:selectedIdMemo} )
       .then( console.log('Item created'))
       .catch( err => console.log(err) )    
-      
-  // showAllProduct();
   };
 
-  // const showAllProduct = () => {   
-  //   Items.all()
-  //     .then( 
-  //       items => items.forEach( c => printItems(c) )
-  //     )
-  // };
-
-
-
-
+  
 
   return (
+    
     <View style={styles.container}>
      
     
