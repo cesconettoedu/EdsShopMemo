@@ -43,13 +43,12 @@ const create = (obj) => {
 
 
 
-
-const all = () => {
+const bringAll = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "SELECT * FROM items ORDER BY memoid ASC, product ASC;",
+        "SELECT * FROM items ORDER BY product ASC;",
         [],
         //-----------------------
         (_, { rows }) => resolve(rows._array),
@@ -59,7 +58,8 @@ const all = () => {
   });
 };
 
-const single = (memoid) => {
+
+const bring = (memoid) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
@@ -73,6 +73,7 @@ const single = (memoid) => {
     });
   });
 };
+
 
 
 
@@ -98,7 +99,7 @@ const remove = (id) => {
 
 export default {
   create,
-  all,
-  single,
+  bringAll,
+  bring,
   remove
 };

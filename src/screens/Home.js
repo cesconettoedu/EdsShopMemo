@@ -3,11 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pres
 import RadioGroup from 'react-native-radio-buttons-group';
 import Items from "../services/sqlite/Items";
 
-import All from "../components/All";
-import Any from "../components/Any";
-import Costco from "../components/Costco";
-import Dollarama from "../components/Dollarama";
-import Pharmacy from "../components/Pharmacy";
+import List from "../components/List";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
@@ -19,11 +15,7 @@ import PharmacyIcon from "../../assets/icons/pharmacy.png";
 
 export default function Home() {
 
-  const [showAll, setShowAll] = useState(true);
-  const [showAny, setShowAny] = useState(false);
-  const [showDollarama, setShowDollarama] = useState(false);
-  const [showCostco, setShowCostco] = useState(false);
-  const [showPharmacy, setShowPharmacy] = useState(false);
+  const [showList, setShowList] = useState("*");
 
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
   const [productName, setProductName] = useState();
@@ -97,7 +89,7 @@ export default function Home() {
         <View style={styles.storeContainer} >
           
           <TouchableOpacity
-            onPress={() => {setShowAll(false); setShowAny(true); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}            
+            onPress={() => {setShowList("Any")}}            
             >
             <Image
               source={AnyIcon}
@@ -107,7 +99,7 @@ export default function Home() {
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(true); setShowPharmacy(false)}}  
+            onPress={() => {setShowList("Costco")}}  
             >
             <Image
               source={CostcoIcon}
@@ -117,7 +109,7 @@ export default function Home() {
           </TouchableOpacity>
 
           <TouchableOpacity
-             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(true); setShowCostco(false); setShowPharmacy(false)}}
+             onPress={() => {setShowList("Dollarama")}}
              >
             <Image
               source={DollaramaIcon}
@@ -127,7 +119,7 @@ export default function Home() {
           </TouchableOpacity>
 
             <TouchableOpacity
-             onPress={() => {setShowAll(false); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(true)}}
+             onPress={() => {setShowList("Pharmacy")}}
              >
             <Image
               source={PharmacyIcon}
@@ -148,12 +140,7 @@ export default function Home() {
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
         <View >
-          {showAll && <All />}
-          {showAny && <Any/>}
-          {showCostco && <Costco/>}  
-          {showDollarama && <Dollarama/>}
-          {showPharmacy && <Pharmacy/>}
-           
+          <List data={showList}/>           
         </View>
       </View>
 
@@ -188,7 +175,7 @@ export default function Home() {
         <View >
           <TouchableOpacity
             style={styles.allItens} 
-            onPress={() => {setShowAll(true); setShowAny(false); setShowDollarama(false); setShowCostco(false); setShowPharmacy(false)}}
+            onPress={() => {setShowList("*")}}
              
           >
             <Image

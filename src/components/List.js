@@ -3,39 +3,51 @@ import { StyleSheet, Text, View, FlatList, RefreshControl } from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
 
-function All() {
-  const [allItems, setAllItems] = useState();
-  const [count, setCount] = useState();
-
+function List(data) {
   const [refreshing, setRefreshing] = React.useState(false);
+  const [bringItems, setBringItems] = useState();
+  
 
-  const allProduct = () => {
+
+  const fetchProduct = () => {
     const all = [];
 
-    Items.all()
+    if (data.data === "*") {
+      Items.bringAll()
       .then((items) => items.forEach((c) => all.push(c)))
-      .then(setAllItems(all))
+      .then(setBringItems(all))
       .then();
+    } else {
+
+      
+      Items.bring(data.data)
+      .then((items) => items.forEach((c) => all.push(c)))
+      .then(setBringItems(all))
+      .then();
+    }
   };
+
+  
+
 
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
-      allProduct();
+      fetchProduct();
       setRefreshing(false);
     }, 2000);
   };
 
   useEffect(() => {
-    allProduct();
-  }, []);
+    fetchProduct();
+  }, [data]);
 
   return (
     <View style={styles.allContainer}>
-      <Text style={styles.title}> {count} items to buy in total</Text>
+      <Text style={styles.title}> X items to buy in total</Text>
       <FlatList
         style={styles.flatList}
-        data={allItems}
+        data={bringItems}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
@@ -47,7 +59,7 @@ function All() {
   );
 }
 
-export default All;
+export default List;
 
 const styles = StyleSheet.create({
   allContainer: {
