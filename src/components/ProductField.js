@@ -24,7 +24,7 @@ const ProductField = ({data}) => {
       >
         <View style={styles.itemLeft}>
             
-          <View style={ data.memoid === 'Costco'  ? styles.costcoColor :  data.memoid === 'Dollarama'  ? styles.dollaramaColor: styles.any}>
+          <View style={ data.memoid === 'Costco'  ? styles.costcoColor :  data.memoid === 'Dollarama'  ? styles.dollaramaColor : data.memoid === 'Pharmacy'  ? styles.pharmacyColor : styles.any}>
             <Text>{data.memoid}</Text>
           </View>
 
@@ -76,10 +76,19 @@ const styles = StyleSheet.create({
     left: Platform.OS === "ios" ? "180%" : "100%",
   },
 
+  any: {
+    width: 80,
+    height: 24,
+    backgroundColor: 'gray',
+    opacity: 0.4,
+    borderRadius: 5,
+    marginRight: 15,
+    alignItems: 'center',   
+  },
   costcoColor: {
     width: 80,
     height: 24,
-    backgroundColor: "red",
+    backgroundColor: "#55BCF6",
     opacity: 0.4,
     borderRadius: 3,
     marginRight: 15,
@@ -94,10 +103,10 @@ const styles = StyleSheet.create({
     marginRight: 15,
     alignItems: "center",
   },
-  any: {
+  pharmacyColor: {
     width: 80,
     height: 24,
-    backgroundColor: '#55BCF6',
+    backgroundColor: 'red',
     opacity: 0.4,
     borderRadius: 5,
     marginRight: 15,

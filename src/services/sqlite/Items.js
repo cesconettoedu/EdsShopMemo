@@ -59,6 +59,21 @@ const all = () => {
   });
 };
 
+const single = (memoid) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      //comando SQL modificável
+      tx.executeSql(
+        "SELECT * FROM items WHERE memoid=? ORDER BY product ASC;",
+        [memoid],
+        //-----------------------
+        (_, { rows }) => resolve(rows._array),
+        (_, error) => reject(error) // erro interno em tx.executeSql
+      );
+    });
+  });
+};
+
 
 
 const remove = (id) => {
@@ -84,5 +99,6 @@ const remove = (id) => {
 export default {
   create,
   all,
+  single,
   remove
 };

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pressable } from "react-native";
 import RadioGroup from 'react-native-radio-buttons-group';
 import Items from "../services/sqlite/Items";
@@ -26,7 +26,7 @@ export default function Home() {
   const [showPharmacy, setShowPharmacy] = useState(false);
 
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
-  const [productName, setProductName] = useState("");
+  const [productName, setProductName] = useState();
   const [selectedIdMemo, setSelectedIdMemo] = useState("Any");
 
 
@@ -47,6 +47,11 @@ export default function Home() {
         label: "Costco",
         value: "Costco",
       },
+      {
+        id: "Pharmacy",
+        label: "Pharmacy",
+        value: "Pharmacy",
+      },
     ],
     []
   );
@@ -61,6 +66,18 @@ export default function Home() {
       .then( console.log('Item created'))
       .catch( err => console.log(err) )    
   };
+  const handleAddProd = () => {
+    handleAddProduct();
+    setProductName(null);
+  }
+
+
+
+
+  
+  useEffect(() => {
+
+  }, [])
 
   
 
@@ -222,7 +239,7 @@ export default function Home() {
                     radioButtons={radioButtons} 
                     onPress={setSelectedIdMemo}
                     selectedId={selectedIdMemo}
-                    layout='row'
+                    layout='collum'
                   />       
                 </View>
                        
@@ -231,7 +248,7 @@ export default function Home() {
                     style={[styles.button ]}
                     onPress={() => {
                       setModalVisibleAdd(!modalVisibleAdd); 
-                      handleAddProduct()
+                      handleAddProd()
                     }}
                   >
                     <Text style={styles.textStyle}>Add in Cart</Text>
@@ -356,7 +373,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   radioAdd: {
-    marginBottom: 50
+    marginBottom: 50,
   },
   addClosCont: {
     flexDirection: 'row',
