@@ -65,14 +65,6 @@ export default function Home() {
 
 
 
-
-  
-  useEffect(() => {
-
-  }, [])
-
-  
-
   return (
     
     <View style={styles.container}>

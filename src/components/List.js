@@ -9,16 +9,14 @@ function List(data) {
   
 
 
-  const fetchProduct = () => {
+  const fetchProduct = () => { 
     const all = [];
-
     if (data.data === "*") {
       Items.bringAll()
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
       .then();
     } else {
-
       
       Items.bring(data.data)
       .then((items) => items.forEach((c) => all.push(c)))
