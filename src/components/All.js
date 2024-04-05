@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, FlatList} from "react-native";
+import { StyleSheet, Text, View, FlatList, RefreshControl} from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
 
@@ -7,6 +7,10 @@ import Items from "../services/sqlite/Items";
 function All() {
   const [allItems, setAllItems] = useState();
   const [count, setCount] = useState();
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+
 
   const allProduct = () => {   
     const all = [];
@@ -16,10 +20,21 @@ function All() {
         items => items.forEach( c => all.push(c) )
       )
       .then(
-        setAllItems(all),
+        setAllItems(all)
+      )
+      .then(
+        
       )
   };
-
+      
+  const onRefresh = () => { 
+    setRefreshing(true); 
+    setTimeout(() => { 
+      allProduct(); 
+      setRefreshing(false); 
+    }, 2000); 
+  }; 
+      
   
   useEffect(() => {
     allProduct();
@@ -35,6 +50,12 @@ function All() {
       <FlatList
         style={styles.flatList}
         data={allItems}
+           refreshControl={ 
+              <RefreshControl 
+                refreshing={refreshing}  
+                onRefresh={onRefresh} 
+              /> 
+            }
         renderItem={({ item }) => (
           <ProductField data={item}/> 
         )} 

@@ -49,7 +49,7 @@ const all = () => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "SELECT * FROM items;",
+        "SELECT * FROM items ORDER BY memoid ASC, product ASC;",
         [],
         //-----------------------
         (_, { rows }) => resolve(rows._array),

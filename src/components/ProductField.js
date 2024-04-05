@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
 import Items from "../services/sqlite/Items";
 
@@ -24,7 +24,7 @@ const ProductField = ({data}) => {
       >
         <View style={styles.itemLeft}>
             
-          <View style={styles.costcoColor}>
+          <View style={ data.memoid === 'Costco'  ? styles.costcoColor :  data.memoid === 'Dollarama'  ? styles.dollaramaColor: styles.any}>
             <Text>{data.memoid}</Text>
           </View>
 
@@ -93,6 +93,15 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     marginRight: 15,
     alignItems: "center",
+  },
+  any: {
+    width: 80,
+    height: 24,
+    backgroundColor: '#55BCF6',
+    opacity: 0.4,
+    borderRadius: 5,
+    marginRight: 15,
+    alignItems: 'center',   
   },
 });
 
