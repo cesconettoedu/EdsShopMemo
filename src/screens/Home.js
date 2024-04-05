@@ -132,7 +132,7 @@ export default function Home() {
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
         <View >
-          <List data={showList}/>           
+          <List data={{showList, productName}}/>           
         </View>
       </View>
 

@@ -3,22 +3,23 @@ import { StyleSheet, Text, View, FlatList, RefreshControl } from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
 
-function List(data) {
+function List({data}) {
+  // data = (showList, productName) props from Home.js, List component
+
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState();
   
-
-
+ 
   const fetchProduct = () => { 
     const all = [];
-    if (data.data === "*") {
+    if (data.showList === "*") {
       Items.bringAll()
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
       .then();
     } else {
       
-      Items.bring(data.data)
+      Items.bring(data.showList)
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
       .then();
