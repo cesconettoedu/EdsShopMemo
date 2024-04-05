@@ -128,7 +128,6 @@ export default function Home() {
 
 
 
-
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
         <View >
@@ -140,15 +139,9 @@ export default function Home() {
 
 
 
-
-
-
-
-
 {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
       <View style={styles.viewBottom}>
        
-
 
        <View style={{ flex: 0.3 }}>
           <TouchableOpacity
@@ -245,8 +238,6 @@ export default function Home() {
           </Modal>   
 
 
-
-
       </View>
 
     </View>
@@ -256,8 +247,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  
+  }, 
   
   viewTopPlus:{
     backgroundColor: "#ff8c00",
@@ -270,7 +260,6 @@ const styles = StyleSheet.create({
   viewTop: {
     flex: 5,
   },
-
 
 // view with Store Icons  
   viewMiddle: {

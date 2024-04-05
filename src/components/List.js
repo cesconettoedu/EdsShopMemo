@@ -28,13 +28,24 @@ function List({data}) {
 
   
 
+//delete
+  const deleteItem = (id) => { 
+    Items.remove(id)
+      .then( onRefresh() )
+      .catch( err => console.log(err) )
+  }
+  
+
+
+
 
   const onRefresh = () => {
+    console.log('handler');
     setRefreshing(true);
     setTimeout(() => {
       fetchProduct();
       setRefreshing(false);
-    }, 2000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -51,7 +62,7 @@ function List({data}) {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         renderItem={({ item }) => 
-          <ProductField data={item} />
+          <ProductField data={item} delet={() => deleteItem(item.id)}/>
         }
       />
     </View>
