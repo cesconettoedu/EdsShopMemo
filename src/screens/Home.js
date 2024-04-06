@@ -86,7 +86,7 @@ export default function Home() {
             <Image
               source={AnyIcon}
               alt="anymarket"
-              style={styles.storeIcons} 
+              style={showList === "Any" ?  styles.storeIconsActive : styles.storeIcons} 
             />
           </TouchableOpacity>
 
@@ -96,7 +96,7 @@ export default function Home() {
             <Image
               source={CostcoIcon}
               alt="costco"
-              style={styles.storeIcons} 
+              style={showList === "Costco" ?  styles.storeIconsActive : styles.storeIcons}
             />
           </TouchableOpacity>
 
@@ -106,7 +106,7 @@ export default function Home() {
             <Image
               source={DollaramaIcon}
               alt="dollarama"
-              style={styles.storeIcons} 
+              style={showList === "Dollarama" ?  styles.storeIconsActive : styles.storeIcons} 
             />
           </TouchableOpacity>
 
@@ -116,7 +116,7 @@ export default function Home() {
             <Image
               source={PharmacyIcon}
               alt="pharmacy"
-              style={styles.storeIcons} 
+              style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
             />
           </TouchableOpacity>
 
@@ -159,7 +159,7 @@ export default function Home() {
 
         <View >
           <TouchableOpacity
-            style={styles.allItens} 
+            style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
             onPress={() => {setShowList("*")}}
              
           >
@@ -276,7 +276,14 @@ const styles = StyleSheet.create({
   },
   storeIcons: {
     width: 60, 
-    height: 60
+    height: 60,
+  },
+  storeIconsActive: {
+    width: 60, 
+    height: 60,
+    borderRadius: 8,
+    borderWidth: 4,
+    borderColor: "#fd7014",
   },
   
 // view with PhotoIcon - AllItens - CartIcon  
@@ -293,9 +300,14 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   allItens: {
-    borderWidth: 2, 
-    borderColor: "#F6792B",
+    borderWidth: 1, 
+    borderColor: "lightgrey",
     borderRadius: 5, 
+  },
+  allItensaActive: {
+    borderWidth: 3, 
+    borderColor: "#fd7014",
+    borderRadius: 8, 
   },
   cart: {
     backgroundColor: "#ff8c00",
