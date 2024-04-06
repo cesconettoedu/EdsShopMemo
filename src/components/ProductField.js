@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     margin: 2,
     marginBottom: 5,
-    height: 35
+    height: 40,
   },
   itemLeft: {
     flexDirection: "row",  
@@ -54,17 +54,19 @@ const styles = StyleSheet.create({
 
   product: {
     //limit size of product description field
-     
+    fontSize: 18, 
     width: Platform.OS === "ios" ? 220 : 190,
   },
 
   trash: {
     justifyContent: "flex-end",
-    width: 20,
-    height: 20,
+    width: 25,
+    height: 25,
     left: Platform.OS === "ios" ? "180%" : "100%",
   },
 
+
+  //refactore this part, only background changes
   any: {
     width: 80,
     height: 24,

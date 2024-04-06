@@ -212,6 +212,7 @@ export default function Home() {
                     onPress={setSelectedIdMemo}
                     selectedId={selectedIdMemo}
                     layout='collum'
+                    borderColor='blue'
                   />       
                 </View>
                        

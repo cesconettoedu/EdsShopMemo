@@ -4,10 +4,11 @@ import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
 
 function List({data}) {
-  // data = (showList, productName) props from Home.js, List component
+            // data = (showList, productName) props from Home.js, List component
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState();
+  //const [count, setCount] = useState();
   
  
   const fetchProduct = () => { 
@@ -16,13 +17,11 @@ function List({data}) {
       Items.bringAll()
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
-      .then();
     } else {
       
       Items.bring(data.showList)
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
-      .then();
     }
   };
 
