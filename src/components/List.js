@@ -55,7 +55,6 @@ function List({data}) {
     <View style={styles.allContainer}>
       <Text style={styles.title}> X items to buy in total</Text>
       <FlatList
-        style={styles.flatList}
         data={bringItems}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

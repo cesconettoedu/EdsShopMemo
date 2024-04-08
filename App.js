@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from "./src/screens/Home";
-import PhotoCam from "./src/screens/PhotoCam";
+import PhotoList from "./src/screens/PhotoList";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,8 +21,8 @@ export default function App() {
           />
         
           <Stack.Screen 
-            name="PhotoCam" 
-            component={PhotoCam} 
+            name="PhotoList" 
+            component={PhotoList} 
             options={{headerTitle: "Back"}}
           />
 

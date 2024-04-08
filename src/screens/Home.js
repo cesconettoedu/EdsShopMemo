@@ -143,7 +143,7 @@ export default function Home({navigation}) {
        <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.photo}
-            onPress={() => navigation.navigate('PhotoCam')}
+            onPress={() => navigation.navigate('PhotoList')}
           >
             <Image
               source={PhotoIcon}
