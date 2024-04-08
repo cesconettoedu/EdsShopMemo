@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pressable } from "react-native";
 import RadioGroup from 'react-native-radio-buttons-group';
 
@@ -48,10 +48,7 @@ export default function Home({navigation}) {
     []
   );
 
-  //------------------------------just to see the whole DB
-  // const printItems = (item) => {
-  //   console.log(`id:${item.id}, product:${item.product}, model:${item.memoid}`)
-  // }
+
 
   const handleAddProduct = () => {
     Items.create( {product:productName, memoid:selectedIdMemo} )
