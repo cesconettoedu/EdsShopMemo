@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pressable } from "react-native";
 import RadioGroup from 'react-native-radio-buttons-group';
-import Items from "../services/sqlite/Items";
 
+import Items from "../services/sqlite/Items";
 import List from "../components/List";
 
 import CartIcon from "../../assets/icons/cart4.png";
@@ -13,7 +13,7 @@ import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 
-export default function Home() {
+export default function Home({navigation}) {
 
   const [showList, setShowList] = useState("*");
 
@@ -146,7 +146,7 @@ export default function Home() {
        <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.photo}
-            //onPress={() =>     }
+            onPress={() => navigation.navigate('PhotoCam')}
           >
             <Image
               source={PhotoIcon}
@@ -184,7 +184,9 @@ export default function Home() {
             />
           </TouchableOpacity>
         </View>
-      
+
+
+
         {/*--------- Modal ----------------- to open a text input */}
           <Modal
             animationType="slide"
@@ -212,7 +214,7 @@ export default function Home() {
                     onPress={setSelectedIdMemo}
                     selectedId={selectedIdMemo}
                     layout='collum'
-                    borderColor='blue'
+                   
                   />       
                 </View>
                        
@@ -355,6 +357,7 @@ const styles = StyleSheet.create({
   },
   radioAdd: {
     marginBottom: 50,
+
   },
   addClosCont: {
     flexDirection: 'row',
