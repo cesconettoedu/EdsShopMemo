@@ -12,7 +12,8 @@ import {
 } from "react-native";
 
 import ImgTest from "../../assets/imageTest.jpg";
-import PhotoIcon from "../../assets/icons/photoIcon3.png";
+import Cam from "../../assets/icons/cam.png";
+import Gallery from "../../assets/icons/galler.png";
 
 
 export default function PhotoList() {
@@ -174,8 +175,8 @@ export default function PhotoList() {
                       }}
                     >
                       <Image
-                        source={PhotoIcon}
-                        alt="photoicon"
+                        source={Cam}
+                        alt="camera"
                         style={{ width: 65, height: 65 }}
                       />
                       <Text>Camera</Text>
@@ -188,8 +189,8 @@ export default function PhotoList() {
                       }}
                     >
                       <Image
-                        source={PhotoIcon}
-                        alt="photoicon"
+                        source={Gallery}
+                        alt="gallery"
                         style={{ width: 65, height: 65 }}
                       />
                       <Text>Gallery</Text>
