@@ -9,61 +9,27 @@ import {
   RefreshControl,
   Modal,
 } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import Photos from "../services/sqlite/Photos";
 
 
-import ImgTest from "../../assets/imageTest.jpg";
 import Cam from "../../assets/icons/cam.png";
 import Gallery from "../../assets/icons/galler.png";
+import PhotoModalToSave from "../components/PhotoModalToSave";
 
 
 export default function PhotoList() {
   const [refreshing, setRefreshing] = React.useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
   
-  const [inputDescription, setinputDescription] = useState('um teste de description');
-  const [inputName, setinputName] = useState ('teste title');
-  const [image, setImage] = useState('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FbestTodo-d6cd21a9-f53c-4e42-bd9c-7d149e2cca42/ImagePicker/a89e1996-58ce-48fc-9a81-b1e85ef2c591.jpeg');
 
   const [bringPhotos, setBringPhotos] = useState();
+  const [openSavePhotoComp, setOpenSavePhotoComp] = useState(false);
 
-
-
-  //to get image from device ////////////////////////////////////////
-  const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [12, 16],
-      quality: 0.5,
-    });
-
-   // console.log(result.assets[0].uri);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri); 
-    }
-  };
-
-
-  //to add device image uri to a database ////////////////////////////////////////
-  const handleAddProduct = () => {
-    Photos.create( {productName:inputName, description:inputDescription, imageAddress:image} )
-      .then( console.log('Item created'))
-      .catch( err => console.log(err) )    
-  };
-  const savehandleAddProduct =() => {
-    pickImage();
-    handleAddProduct();
-    setModalAddVisible(!modalAddVisible);
-  }
+  const [choiseCamGal, setChoiseCamGal] = useState();
 
 
 
 //to bring all images to the database ////////////////////////////////////////
-const fetchPhoto = () => { 
+  const fetchPhoto = () => { 
     const allP = [];
     
     Photos.bringAllPhotos()
@@ -73,98 +39,20 @@ const fetchPhoto = () => {
   
   
 
-  const dataTest = [
-    {
-      id: 1,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 2,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 3,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 4,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 5,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 6,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 7,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 8,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 9,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 10,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 11,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 12,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 13,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 14,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-    {
-      id: 15,
-      image: "../../assets/imageTest.jpg",
-      textT: "123456789012",
-      textD: "details",
-    },
-  ];
+// got to open component to get photos from Device
+  const getFromDevice = (o) =>{
+    setChoiseCamGal(o);
+    setOpenSavePhotoComp(true);
+    setModalAddVisible(!modalAddVisible);
+  }
+  
+// got to open component to get photos from Camera
+  const getFromCamera = (o) =>{
+    setChoiseCamGal(o);
+    setOpenSavePhotoComp(true);
+    setModalAddVisible(!modalAddVisible);
+  }  
+
 
 
 
@@ -180,6 +68,7 @@ const fetchPhoto = () => {
 
   return (
     <>
+    {!openSavePhotoComp && 
       <View style={styles.container}>
         <FlatList
           data={bringPhotos}
@@ -224,11 +113,12 @@ const fetchPhoto = () => {
                  
                   <View style={styles.addChoiseCont}>
                    
+                   
+                   
+                   
                     <TouchableOpacity
                       style={[styles.button ]}
-                      onPress={() => {setModalAddVisible(!modalAddVisible) 
-                      //;handleAddProd()
-                      }}
+                      onPress={() => getFromCamera('camera') }
                     >
                       <Image
                         source={Cam}
@@ -238,13 +128,12 @@ const fetchPhoto = () => {
                       <Text>Camera</Text>
                     </TouchableOpacity>
                     
+                 
+                 
+                 
                     <TouchableOpacity
                       style={[styles.button ]}
-                      onPress={savehandleAddProduct 
-                       //  setModalAddVisible(!modalAddVisible)
-                   
-                        
-                      }
+                      onPress={() => getFromDevice('gallery') }
                     >
                       <Image
                         source={Gallery}
@@ -264,8 +153,10 @@ const fetchPhoto = () => {
           </Modal>
         
       </View>
-
-
+    }
+    { openSavePhotoComp && 
+      <PhotoModalToSave options={choiseCamGal}/>
+    }
 
 
 

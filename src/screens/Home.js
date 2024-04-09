@@ -217,7 +217,7 @@ export default function Home({navigation}) {
                        
                 <View style={styles.addClosCont}>
                   <Pressable
-                    style={[styles.button ]}
+                    style={styles.button }
                     onPress={() => {
                       setModalVisibleAdd(!modalVisibleAdd); 
                       handleAddProd()

@@ -6,7 +6,7 @@ import db from "./SQLiteDatabase";
  */
 db.transaction((tx) => {
   //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
-tx.executeSql("DROP TABLE photos;");
+// tx.executeSql("DROP TABLE photos;");
   //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
   tx.executeSql(
     "CREATE TABLE IF NOT EXISTS photos (id INTEGER PRIMARY KEY AUTOINCREMENT, productName TEXT, description TEXT, imageAddress TEXT);"
