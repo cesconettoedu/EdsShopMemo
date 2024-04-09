@@ -15,6 +15,7 @@ import Photos from "../services/sqlite/Photos";
 import Cam from "../../assets/icons/cam.png";
 import Gallery from "../../assets/icons/galler.png";
 import PhotoModalToSave from "../components/PhotoModalToSave";
+import Btn from "../components/Btn";
 
 
 export default function PhotoList({navigation}) {
@@ -110,26 +111,45 @@ export default function PhotoList({navigation}) {
                 }}
               >
                 <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
-                <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 12)}...`}</Text>
+                <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
               </TouchableOpacity>
             </View>
           )}
         />
 
         <View style={{flexDirection: 'row'}}>
+         
+          {/* 
           <TouchableOpacity
             style={styles.back}
             onPress={() => navigation.navigate('Home')}
             >
             <Text style={{ color: "white" }}>Close</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
+          */}
+          <View style={{ justifyContent: 'flex-end', top: 25, right: 330 }}>
+            <Btn 
+              title={'Close'}
+              onPress={() => navigation.navigate('Home')}
+            />
+          </View>
             
+
+          {/* 
           <TouchableOpacity
             style={styles.add}
             onPress={() => setModalAddVisible(true)}
             >
             <Text style={{ color: "white" }}>Add +</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> 
+          */}
+           <View style={{ justifyContent: 'flex-end', top: 25, right: 80 }}>
+            <Btn 
+              title={'Add +'}
+              onPress={() => setModalAddVisible(true)}
+            />
+          </View>
+
         </View>
         
   {/*---------------------------- Modal to open a Camera or Gallery Choice ----------------------- */}
@@ -201,16 +221,21 @@ export default function PhotoList({navigation}) {
                    <Text>X</Text>
                 </TouchableOpacity>     
              
-             
+
               <Image
                 src={singleImageUri}
                 alt="image"
-                style={{width: '100%', height: '70%'}}
+                style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
               />
-              <Text>{singleTitle}</Text>
-              <Text>{singleDescript}</Text>
+              <Text style={{marginBottom: 10, fontSize: 30, }}>{singleTitle}</Text>
+              <Text style={{fontSize: 15, }}>{singleDescript}</Text>
 
-
+              <View style={{top: 10, left: 50}}>
+                <Btn 
+                  title={'Close'}
+                  onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                />
+              </View>
 
               </View>
             </View>
@@ -244,6 +269,7 @@ const styles = StyleSheet.create({
   imageCont: {
     margin: 5,
     marginBottom: 20,
+    
   },
   imageSize: {
     width: 100,
@@ -252,35 +278,39 @@ const styles = StyleSheet.create({
   },
   prodTitle: {
     fontWeight: "bold",
-    width: "100%",
+    width: "95%",
+    alignSelf: "center",
   },
 
-  add: {
-    borderWidth: 5,
-    borderColor: "#f7f5f4",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 70,
-    position: "absolute",
-    top: "93%",
-    right: 20,
-    height: 70,
-    backgroundColor: "#ff8c00",
-    borderRadius: 100,
-  },
-  back: {
-    borderWidth: 5,
-    borderColor: "#f7f5f4",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 70,
-    position: "absolute",
-    top: "93%",
-    right: 250,
-    height: 70,
-    backgroundColor: "#ff8c00",
-    borderRadius: 100,
-  },
+
+
+  // use Btn component to display
+  // add: {
+  //   borderWidth: 5,
+  //   borderColor: "#f7f5f4",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   width: 70,
+  //   position: "absolute",
+  //   top: "93%",
+  //   right: 20,
+  //   height: 70,
+  //   backgroundColor: "#ff8c00",
+  //   borderRadius: 100,
+  // },
+  // back: {
+  //   borderWidth: 5,
+  //   borderColor: "#f7f5f4",
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  //   width: 70,
+  //   position: "absolute",
+  //   top: "93%",
+  //   right: 250,
+  //   height: 70,
+  //   backgroundColor: "#ff8c00",
+  //   borderRadius: 100,
+  // },
 
 
 //  Modal
