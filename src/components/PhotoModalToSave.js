@@ -4,15 +4,13 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "reac
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
 
-import Click from "../../assets/clicktoimage.png";
-
 
 function PhotoModalToSave({options}) {
+
 
   
   const [inputDescription, setinputDescription] = useState('');
   const [inputName, setinputName] = useState ('');
-  //const [image, setImage] = useState('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FbestTodo-d6cd21a9-f53c-4e42-bd9c-7d149e2cca42/ImagePicker/a89e1996-58ce-48fc-9a81-b1e85ef2c591.jpeg');
   const [image, setImage] = useState('');
 
 
@@ -40,21 +38,23 @@ function PhotoModalToSave({options}) {
   const handleAddProduct = () => {
     Photos.create( {productName:inputName, description:inputDescription, imageAddress:image} )
       .then( console.log('Item created'))
+      .then(options.backToList)
       .catch( err => console.log(err) )    
   };
  
-  const savehandleAddProduct =() => {
-    pickImage();
-    handleAddProduct();
-    setModalAddVisible(!modalAddVisible);
-  }
 
 
+  // const savehandleAddProduct =() => {
+  //   pickImage();
+  //   handleAddProduct();
+  //   setModalAddVisible(!modalAddVisible);
+  // }
 
   
 
   return (
     <View style={styles.container}>
+      
         <TouchableOpacity
           style={{width: '77%',height: '60%', marginBottom: 20, borderWidth: 1, borderRadius: 8 }}
           onPress={pickImage}
@@ -70,7 +70,7 @@ function PhotoModalToSave({options}) {
           style={styles.input} 
           placeholder={"Name of product"} 
           autoCapitalize='sentences'
-          maxLength={12}
+          maxLength={20}
           value={inputName}
           onChangeText={text => setinputName(text)} 
         />
@@ -84,12 +84,22 @@ function PhotoModalToSave({options}) {
           onChangeText={text => setinputDescription(text)} 
         />
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleAddProduct()}
-        >
-          <Text style={styles.textStyle}>Save</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between'}}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={options.backToList}
+          >
+            <Text style={styles.textStyle}>Close</Text>
+          </TouchableOpacity>
+
+
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => handleAddProduct()}
+          >
+            <Text style={styles.textStyle}>Save</Text>
+          </TouchableOpacity>
+        </View>
     </View>
   );
 }
@@ -123,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    width: '50%'
+    width: '40%'
   },
   textStyle: {
     color: 'white',

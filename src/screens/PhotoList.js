@@ -17,7 +17,7 @@ import Gallery from "../../assets/icons/galler.png";
 import PhotoModalToSave from "../components/PhotoModalToSave";
 
 
-export default function PhotoList() {
+export default function PhotoList({navigation}) {
   const [refreshing, setRefreshing] = React.useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
   
@@ -56,6 +56,10 @@ export default function PhotoList() {
 
 
 
+  const backToList = () => {
+    setOpenSavePhotoComp(false)
+  }
+
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -73,6 +77,10 @@ export default function PhotoList() {
   return (
     <>
     {!openSavePhotoComp && 
+    <>
+      <View style={{backgroundColor: '#ff8c00', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
+      </View>
       <View style={styles.container}>
         <FlatList
           data={bringPhotos}
@@ -87,18 +95,26 @@ export default function PhotoList() {
               //  onPress={() => {}}
               >
                 <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
-                <Text style={styles.prodTitle}>{item.productName}</Text>
+                <Text ellipsizeMode='tail' style={styles.prodTitle}>{item.productName}</Text>
               </TouchableOpacity>
             </View>
           )}
         />
-
-        <TouchableOpacity
-          style={styles.add}
-          onPress={() => setModalAddVisible(true)}
-        >
-          <Text style={{ color: "white" }}>Add +</Text>
-        </TouchableOpacity>
+        <View style={{flexDirection: 'row'}}>
+          <TouchableOpacity
+            style={styles.back}
+            onPress={() => navigation.navigate('Home')}
+            >
+            <Text style={{ color: "white" }}>Close</Text>
+          </TouchableOpacity>
+            
+          <TouchableOpacity
+            style={styles.add}
+            onPress={() => setModalAddVisible(true)}
+            >
+            <Text style={{ color: "white" }}>Add +</Text>
+          </TouchableOpacity>
+        </View>
         
   {/*---------------------------- Modal to open a text input ----------------------- */}
           <Modal
@@ -158,9 +174,13 @@ export default function PhotoList() {
           </Modal>
         
       </View>
+      </>
     }
     { openSavePhotoComp && 
-      <PhotoModalToSave options={choiseCamGal}/>
+      <PhotoModalToSave 
+        options={{choiseCamGal, backToList}}
+        
+      />
     }
 
 
@@ -202,6 +222,7 @@ const styles = StyleSheet.create({
   },
   prodTitle: {
     fontWeight: "bold",
+    width: "100%",
   },
 
   add: {
@@ -211,8 +232,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 70,
     position: "absolute",
-    top: "95%",
+    top: "93%",
     right: 20,
+    height: 70,
+    backgroundColor: "#ff8c00",
+    borderRadius: 100,
+  },
+  back: {
+    borderWidth: 5,
+    borderColor: "#f7f5f4",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 70,
+    position: "absolute",
+    top: "93%",
+    right: 250,
     height: 70,
     backgroundColor: "#ff8c00",
     borderRadius: 100,

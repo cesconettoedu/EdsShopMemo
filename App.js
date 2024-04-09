@@ -12,18 +12,16 @@ export default function App() {
   return (
     <SafeAreaView style={styles.root}>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}}>
 
           <Stack.Screen 
             name="Home" 
             component={HomeScreen}
-            options={{headerShown: false}} 
           />
         
           <Stack.Screen 
             name="PhotoList" 
             component={PhotoList} 
-            options={{headerTitle: "Back"}}
           />
 
         </Stack.Navigator>
