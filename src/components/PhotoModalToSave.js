@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "reac
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
+import Btn from "./Btn";
 
 
 function PhotoModalToSave({options}) {
@@ -80,21 +81,39 @@ function PhotoModalToSave({options}) {
           onChangeText={text => setinputDescription(text)} 
         />
 
-        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between'}}>
-          <TouchableOpacity
+        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 50,}}>
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={options.backToList}
           >
             <Text style={styles.textStyle}>Close</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <View 
+            style={{ justifyContent: 'flex-end', top: 15,  }}
+            >
+            <Btn 
+              title={'Close'}
+              onPress={options.backToList}
+            />
+          </View>
 
-
-          <TouchableOpacity
+         
+         
+          {/* <TouchableOpacity
             style={styles.button}
             onPress={() => handleAddProduct()}
           >
             <Text style={styles.textStyle}>Save</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <View 
+            style={{ justifyContent: 'flex-end', top: 15, right: 65 }}
+            >
+            <Btn 
+              title={'Save'}
+              onPress={() => handleAddProduct()}
+            />
+          </View>
+
         </View>
     </View>
   );
@@ -124,13 +143,13 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingHorizontal: 10
   },
-  button: {
-    backgroundColor: "#F6792B",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    width: '40%'
-  },
+  // button: {
+  //   backgroundColor: "#F6792B",
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2,
+  //   width: '40%'
+  // },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',
