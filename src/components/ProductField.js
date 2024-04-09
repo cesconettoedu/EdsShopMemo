@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
-import Items from "../services/sqlite/Items";
 
 const ProductField = ({data, delet}) => {
   

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
@@ -36,21 +36,17 @@ function PhotoModalToSave({options}) {
 
   //to add device image uri to a database ////////////////////////////////////////
   const handleAddProduct = () => {
+    if (image === '') {
+      alert('Please choose a image');
+    } else {
+
     Photos.create( {productName:inputName, description:inputDescription, imageAddress:image} )
       .then( console.log('Item created'))
       .then(options.backToList)
       .catch( err => console.log(err) )    
+    }
   };
  
-
-
-  // const savehandleAddProduct =() => {
-  //   pickImage();
-  //   handleAddProduct();
-  //   setModalAddVisible(!modalAddVisible);
-  // }
-
-  
 
   return (
     <View style={styles.container}>

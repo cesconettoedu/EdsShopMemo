@@ -20,12 +20,20 @@ import PhotoModalToSave from "../components/PhotoModalToSave";
 export default function PhotoList({navigation}) {
   const [refreshing, setRefreshing] = React.useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
+  const [modalSingleVisible, setModalSingleVisible] = useState(false);
   
 
   const [bringPhotos, setBringPhotos] = useState();
   const [openSavePhotoComp, setOpenSavePhotoComp] = useState(false);
 
   const [choiseCamGal, setChoiseCamGal] = useState();
+
+  //to pass to a single image modal
+  const [singleImageUri, setSingleImageUri] = useState();
+  const [singleTitle, setSingleTitle] = useState();
+  const [singleDescript, setSingleDescript] = useState();
+
+
 
 
 
@@ -57,7 +65,8 @@ export default function PhotoList({navigation}) {
 
 
   const backToList = () => {
-    setOpenSavePhotoComp(false)
+    setOpenSavePhotoComp(false);
+    onRefresh()
   }
 
 
@@ -82,6 +91,7 @@ export default function PhotoList({navigation}) {
         <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
       </View>
       <View style={styles.container}>
+
         <FlatList
           data={bringPhotos}
           refreshControl={
@@ -92,14 +102,20 @@ export default function PhotoList({navigation}) {
             <View key={item.id} style={styles.imageCont}>
               
               <TouchableOpacity
-              //  onPress={() => {}}
+                onPress={() => {
+                  setModalSingleVisible(!modalSingleVisible), 
+                  setSingleImageUri(item.imageAddress),
+                  setSingleTitle(item.productName),
+                  setSingleDescript(item.description)
+                }}
               >
                 <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
-                <Text ellipsizeMode='tail' style={styles.prodTitle}>{item.productName}</Text>
+                <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 12)}...`}</Text>
               </TouchableOpacity>
             </View>
           )}
         />
+
         <View style={{flexDirection: 'row'}}>
           <TouchableOpacity
             style={styles.back}
@@ -116,7 +132,7 @@ export default function PhotoList({navigation}) {
           </TouchableOpacity>
         </View>
         
-  {/*---------------------------- Modal to open a text input ----------------------- */}
+  {/*---------------------------- Modal to open a Camera or Gallery Choice ----------------------- */}
           <Modal
             animationType="slide"
             transparent={true}
@@ -133,10 +149,7 @@ export default function PhotoList({navigation}) {
                   </TouchableOpacity>                                     
                  
                   <View style={styles.addChoiseCont}>
-                   
-                   
-                   
-                   
+         
                     <TouchableOpacity
                       style={[styles.button ]}
                       onPress={() => getFromCamera('camera') }
@@ -149,9 +162,7 @@ export default function PhotoList({navigation}) {
                       <Text>Camera</Text>
                     </TouchableOpacity>
                     
-                 
-                 
-                 
+          
                     <TouchableOpacity
                       style={[styles.button ]}
                       onPress={() => getFromDevice('gallery') }
@@ -172,7 +183,42 @@ export default function PhotoList({navigation}) {
               </View>
 
           </Modal>
+
+      {/*---------------------------- Modal to open a Single Item ----------------------- */}
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalSingleVisible}
+            onRequestClose={() => {
+              setModalSingleVisible(!modalSingleVisible);
+            }}
+          >
+            <View style={styles.centeredView}>
+              <View style={styles.modalView}>   
+                <TouchableOpacity
+                  style={styles.closeModal}
+                  onPress={() => setModalSingleVisible(!modalSingleVisible)}>
+                   <Text>X</Text>
+                </TouchableOpacity>     
+             
+             
+              <Image
+                src={singleImageUri}
+                alt="image"
+                style={{width: '100%', height: '70%'}}
+              />
+              <Text>{singleTitle}</Text>
+              <Text>{singleDescript}</Text>
+
+
+
+              </View>
+            </View>
+
+          </Modal>
         
+
+
       </View>
       </>
     }
@@ -182,22 +228,6 @@ export default function PhotoList({navigation}) {
         
       />
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     </>
   );
