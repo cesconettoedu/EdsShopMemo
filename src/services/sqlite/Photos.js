@@ -6,12 +6,10 @@ import db from "./SQLiteDatabase";
  */
 db.transaction((tx) => {
   //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
-  //tx.executeSql("DROP TABLE items;");
+tx.executeSql("DROP TABLE photos;");
   //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
-
   tx.executeSql(
-    "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, product TEXT, memoid TEXT);"
-
+    "CREATE TABLE IF NOT EXISTS photos (id INTEGER PRIMARY KEY AUTOINCREMENT, productName TEXT, description TEXT, imageAddress TEXT);"
   );
 });
 
@@ -23,12 +21,14 @@ db.transaction((tx) => {
  *  - Pode retornar erro (reject) caso exista erro no SQL ou nos parâmetros.
  */
 const create = (obj) => {
+
+  //console.log(obj);
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "INSERT INTO items (product, memoid) values (?, ?);",
-        [obj.product, obj.memoid],
+        "INSERT INTO photos (productName, description, imageAddress) values (?, ?, ?);",
+        [obj.productName, obj.description, obj.imageAddress],
         //-----------------------
         (_, { rowsAffected, insertId }) => {
           if (rowsAffected > 0) resolve(insertId);
@@ -41,14 +41,12 @@ const create = (obj) => {
 };
 
 
-
-
-const bringAll = () => {
+const bringAllPhotos = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "SELECT * FROM items ORDER BY memoid ASC, product ASC;",
+        "SELECT * FROM photos;",
         [],
         //-----------------------
         (_, { rows }) => resolve(rows._array),
@@ -59,47 +57,11 @@ const bringAll = () => {
 };
 
 
-const bring = (memoid) => {
-  return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      //comando SQL modificável
-      tx.executeSql(
-        "SELECT * FROM items WHERE memoid=? ORDER BY product ASC;",
-        [memoid],
-        //-----------------------
-        (_, { rows }) => resolve(rows._array),
-        (_, error) => reject(error) // erro interno em tx.executeSql
-      );
-    });
-  });
-};
-
-
-
-
-const remove = (id) => {
-  return new Promise((resolve, reject) => {
-    db.transaction((tx) => {
-      //comando SQL modificável
-      tx.executeSql(
-        "DELETE FROM items WHERE id=?;",
-        [id],
-        //-----------------------
-        (_, { rowsAffected }) => {
-          resolve(rowsAffected);
-        },
-        (_, error) => reject(error) // erro interno em tx.executeSql
-      );
-    });
-  });
-};
 
 
 
 
 export default {
   create,
-  bringAll,
-  bring,
-  remove
+  bringAllPhotos,
 };

@@ -8,8 +8,10 @@ import {
   Image,
   RefreshControl,
   Modal,
-  
 } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import Photos from "../services/sqlite/Photos";
+
 
 import ImgTest from "../../assets/imageTest.jpg";
 import Cam from "../../assets/icons/cam.png";
@@ -19,7 +21,57 @@ import Gallery from "../../assets/icons/galler.png";
 export default function PhotoList() {
   const [refreshing, setRefreshing] = React.useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
+  
+  const [inputDescription, setinputDescription] = useState('um teste de description');
+  const [inputName, setinputName] = useState ('teste title');
+  const [image, setImage] = useState('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FbestTodo-d6cd21a9-f53c-4e42-bd9c-7d149e2cca42/ImagePicker/a89e1996-58ce-48fc-9a81-b1e85ef2c591.jpeg');
 
+  const [bringPhotos, setBringPhotos] = useState();
+
+
+
+  //to get image from device ////////////////////////////////////////
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [12, 16],
+      quality: 0.5,
+    });
+
+   // console.log(result.assets[0].uri);
+
+    if (!result.canceled) {
+      setImage(result.assets[0].uri); 
+    }
+  };
+
+
+  //to add device image uri to a database ////////////////////////////////////////
+  const handleAddProduct = () => {
+    Photos.create( {productName:inputName, description:inputDescription, imageAddress:image} )
+      .then( console.log('Item created'))
+      .catch( err => console.log(err) )    
+  };
+  const savehandleAddProduct =() => {
+    pickImage();
+    handleAddProduct();
+    setModalAddVisible(!modalAddVisible);
+  }
+
+
+
+//to bring all images to the database ////////////////////////////////////////
+const fetchPhoto = () => { 
+    const allP = [];
+    
+    Photos.bringAllPhotos()
+      .then((photos) => photos.forEach((c) => allP.push(c)))
+      .then(setBringPhotos(allP))
+    }
+  
+  
 
   const dataTest = [
     {
@@ -114,31 +166,35 @@ export default function PhotoList() {
     },
   ];
 
+
+
   const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
-      //add function to get all photos on data base again
+      fetchPhoto();
       setRefreshing(false);
     }, 2000);
   };
+
+
 
   return (
     <>
       <View style={styles.container}>
         <FlatList
-          data={dataTest}
+          data={bringPhotos}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
           }
           numColumns={3}
           renderItem={({ item }) => (
             <View key={item.id} style={styles.imageCont}>
-              {/* {console.log(item)}  */}
+              
               <TouchableOpacity
               //  onPress={() => {}}
               >
-                <Image style={styles.imageSize} source={ImgTest} alt="error" />
-                <Text style={styles.prodTitle}>123456789012</Text>
+                <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
+                <Text style={styles.prodTitle}>{item.productName}</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -184,9 +240,11 @@ export default function PhotoList() {
                     
                     <TouchableOpacity
                       style={[styles.button ]}
-                      onPress={() => {setModalAddVisible(!modalAddVisible) 
-                      //;handleAddProd()
-                      }}
+                      onPress={savehandleAddProduct 
+                       //  setModalAddVisible(!modalAddVisible)
+                   
+                        
+                      }
                     >
                       <Image
                         source={Gallery}
@@ -194,6 +252,7 @@ export default function PhotoList() {
                         style={{ width: 65, height: 65 }}
                       />
                       <Text>Gallery</Text>
+                      
                     </TouchableOpacity>
 
                   </View>
