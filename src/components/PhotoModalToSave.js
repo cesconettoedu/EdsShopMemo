@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity} from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
+
+import Click from "../../assets/clicktoimage.png";
 
 
 function PhotoModalToSave({options}) {
@@ -10,7 +12,8 @@ function PhotoModalToSave({options}) {
   
   const [inputDescription, setinputDescription] = useState('');
   const [inputName, setinputName] = useState ('');
-  const [image, setImage] = useState('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FbestTodo-d6cd21a9-f53c-4e42-bd9c-7d149e2cca42/ImagePicker/a89e1996-58ce-48fc-9a81-b1e85ef2c591.jpeg');
+  //const [image, setImage] = useState('file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FbestTodo-d6cd21a9-f53c-4e42-bd9c-7d149e2cca42/ImagePicker/a89e1996-58ce-48fc-9a81-b1e85ef2c591.jpeg');
+  const [image, setImage] = useState('');
 
 
 
@@ -39,6 +42,7 @@ function PhotoModalToSave({options}) {
       .then( console.log('Item created'))
       .catch( err => console.log(err) )    
   };
+ 
   const savehandleAddProduct =() => {
     pickImage();
     handleAddProduct();
@@ -46,22 +50,27 @@ function PhotoModalToSave({options}) {
   }
 
 
- 
+
+  
 
   return (
     <View style={styles.container}>
-        
-        <Image
-          src={image}
-          alt="image"
-          style={styles.imageCont}
-        />
+        <TouchableOpacity
+          style={{width: '77%',height: '60%', marginBottom: 20, borderWidth: 1, borderRadius: 8 }}
+          onPress={pickImage}
+        >
+          <Image
+            src={image}
+            alt="image"
+            style={styles.imageCont}
+          />
+        </TouchableOpacity>
         
         <TextInput 
           style={styles.input} 
           placeholder={"Name of product"} 
           autoCapitalize='sentences'
-          maxLength={15}
+          maxLength={12}
           value={inputName}
           onChangeText={text => setinputName(text)} 
         />
@@ -77,6 +86,7 @@ function PhotoModalToSave({options}) {
 
         <TouchableOpacity
           style={styles.button}
+          onPress={() => handleAddProduct()}
         >
           <Text style={styles.textStyle}>Save</Text>
         </TouchableOpacity>
@@ -94,10 +104,10 @@ const styles = StyleSheet.create({
     marginBottom: '10%'
   },
   imageCont: {
-    width: '70%', 
-    height: '60%', 
-    marginBottom: 20,
-    borderRadius: 8, 
+    flex: 1, 
+    width: null,
+    borderRadius: 8,
+     
   },
   input:{
     width: 280,

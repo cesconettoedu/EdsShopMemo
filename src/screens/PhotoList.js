@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,6 +10,7 @@ import {
   Modal,
 } from "react-native";
 
+import Photos from "../services/sqlite/Photos";
 
 import Cam from "../../assets/icons/cam.png";
 import Gallery from "../../assets/icons/galler.png";
@@ -64,7 +65,10 @@ export default function PhotoList() {
     }, 2000);
   };
 
-
+  useEffect(() => {
+    fetchPhoto();
+  }, [])
+  
 
   return (
     <>
@@ -95,7 +99,8 @@ export default function PhotoList() {
         >
           <Text style={{ color: "white" }}>Add +</Text>
         </TouchableOpacity>
-        {/* Modal to open a text input */}
+        
+  {/*---------------------------- Modal to open a text input ----------------------- */}
           <Modal
             animationType="slide"
             transparent={true}

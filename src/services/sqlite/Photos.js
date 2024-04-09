@@ -22,7 +22,7 @@ db.transaction((tx) => {
  */
 const create = (obj) => {
 
-  //console.log(obj);
+  console.log(obj);
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
