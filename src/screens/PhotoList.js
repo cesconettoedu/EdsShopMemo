@@ -30,6 +30,7 @@ export default function PhotoList({navigation}) {
   const [choiseCamGal, setChoiseCamGal] = useState();
 
   //to pass to a single image modal
+  const [singleId, setSingleId] = useState();
   const [singleImageUri, setSingleImageUri] = useState();
   const [singleTitle, setSingleTitle] = useState();
   const [singleDescript, setSingleDescript] = useState();
@@ -46,6 +47,14 @@ export default function PhotoList({navigation}) {
       .then((photos) => photos.forEach((c) => allP.push(c)))
       .then(setBringPhotos(allP))
     }
+
+//to Delete all images to the database ////////////////////////////////////////
+  const deletePhoto = (id) => { 
+    Photos.remove(id)
+      .then(setModalSingleVisible(!modalSingleVisible))
+      .then( onRefresh() )
+      .catch( err => console.log(err) )
+  }
   
   
 
@@ -63,13 +72,10 @@ export default function PhotoList({navigation}) {
     setModalAddVisible(!modalAddVisible);
   }  
 
-
-
   const backToList = () => {
     setOpenSavePhotoComp(false);
     onRefresh()
   }
-
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -108,6 +114,7 @@ export default function PhotoList({navigation}) {
                   setSingleImageUri(item.imageAddress),
                   setSingleTitle(item.productName),
                   setSingleDescript(item.description)
+                  setSingleId(item.id);
                 }}
               >
                 <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
@@ -230,7 +237,12 @@ export default function PhotoList({navigation}) {
               <Text style={{marginBottom: 10, fontSize: 30, }}>{singleTitle}</Text>
               <Text style={{fontSize: 15, }}>{singleDescript}</Text>
 
-              <View style={{top: 10, left: 50}}>
+              <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                <Btn 
+                  title={'Delete'}
+                  style={{backgroundColor: "black"}}
+                  onPress={() => deletePhoto(singleId)}
+                />
                 <Btn 
                   title={'Close'}
                   onPress={() => setModalSingleVisible(!modalSingleVisible)}

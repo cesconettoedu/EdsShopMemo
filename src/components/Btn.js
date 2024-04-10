@@ -1,20 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-function Btn(props) {
+export default function (props)  {
+
+
+  if(props.title === 'Delete'){
+    
+  }
 
   return (
     <TouchableOpacity
-      style={  {
-        borderWidth: 5,
-        borderColor: "#f7f5f4",
-        alignItems: "center",
-        justifyContent: "center",
-        width: 70,
-        height: 70,
-        backgroundColor: "#ff8c00",
-        borderRadius: 100,
-      }}
+      style={styles.btn}
       onPress={props.onPress}
     >
       <Text style={{ color: "white" }}>{props.title}</Text>
@@ -22,4 +18,17 @@ function Btn(props) {
   )
 }
 
-export default Btn
+
+const styles = StyleSheet.create({
+  btn: {
+    borderWidth: 5,
+    borderColor: "#f7f5f4",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 70,
+    height: 70,
+    backgroundColor: "#ff8c00",
+    borderRadius: 100,
+  },
+ 
+});
