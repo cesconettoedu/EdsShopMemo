@@ -7,8 +7,8 @@ function List({data}) {
             // data = (showList, productName) props from Home.js, List component
 
   const [refreshing, setRefreshing] = React.useState(false);
-  const [bringItems, setBringItems] = useState();
-  //const [count, setCount] = useState();
+  const [bringItems, setBringItems] = useState([]);
+ // const [count, setCount] = useState();
   
  
   const fetchProduct = () => { 
@@ -16,9 +16,8 @@ function List({data}) {
     if (data.showList === "*") {
       Items.bringAll()
       .then((items) => items.forEach((c) => all.push(c)))
-      .then(setBringItems(all))
+      .then(setBringItems(all))  
     } else {
-      
       Items.bring(data.showList)
       .then((items) => items.forEach((c) => all.push(c)))
       .then(setBringItems(all))
@@ -36,10 +35,7 @@ function List({data}) {
   
 
 
-
-
   const onRefresh = () => {
-    console.log('handler');
     setRefreshing(true);
     setTimeout(() => {
       fetchProduct();
@@ -47,18 +43,20 @@ function List({data}) {
     }, 1000);
   };
 
+
+  
   useEffect(() => {
     fetchProduct();
   }, [data]);
 
+
   return (
     <View style={styles.allContainer}>
+
       <Text style={styles.title}> X items to buy in total</Text>
       <FlatList
         data={bringItems}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         renderItem={({ item }) => 
           <ProductField data={item} delet={() => deleteItem(item.id)}/>
         }

@@ -117,7 +117,7 @@ export default function PhotoList({navigation}) {
           )}
         />
 
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',justifyContent:'center', gap: 110}}>
          
           {/* 
           <TouchableOpacity
@@ -127,7 +127,7 @@ export default function PhotoList({navigation}) {
             <Text style={{ color: "white" }}>Close</Text>
           </TouchableOpacity> 
           */}
-          <View style={{ justifyContent: 'flex-end', top: 25, right: 330 }}>
+          <View style={{ justifyContent: 'flex-end'}}>
             <Btn 
               title={'Close'}
               onPress={() => navigation.navigate('Home')}
@@ -143,7 +143,7 @@ export default function PhotoList({navigation}) {
             <Text style={{ color: "white" }}>Add +</Text>
           </TouchableOpacity> 
           */}
-           <View style={{ justifyContent: 'flex-end', top: 25, right: 80 }}>
+           <View style={{ justifyContent: 'flex-end' }}>
             <Btn 
               title={'Add +'}
               onPress={() => setModalAddVisible(true)}
@@ -262,7 +262,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 0.96,
     padding: 10,
-    flexDirection: "row",
     flexWrap: "wrap",
     height: "50%",
   },

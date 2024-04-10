@@ -81,7 +81,7 @@ function PhotoModalToSave({options}) {
           onChangeText={text => setinputDescription(text)} 
         />
 
-        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 50,}}>
+        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 5}}>
           {/* <TouchableOpacity
             style={styles.button}
             onPress={options.backToList}
@@ -89,7 +89,7 @@ function PhotoModalToSave({options}) {
             <Text style={styles.textStyle}>Close</Text>
           </TouchableOpacity> */}
           <View 
-            style={{ justifyContent: 'flex-end', top: 15,  }}
+            style={{ justifyContent: 'flex-end'  }}
             >
             <Btn 
               title={'Close'}
@@ -106,7 +106,7 @@ function PhotoModalToSave({options}) {
             <Text style={styles.textStyle}>Save</Text>
           </TouchableOpacity> */}
           <View 
-            style={{ justifyContent: 'flex-end', top: 15, right: 65 }}
+            style={{ justifyContent: 'flex-end', left: -5 }}
             >
             <Btn 
               title={'Save'}

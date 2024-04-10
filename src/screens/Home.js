@@ -1,9 +1,10 @@
 import React, { useState, useMemo } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, Pressable } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, RefreshControl } from "react-native";
 import RadioGroup from 'react-native-radio-buttons-group';
 
 import Items from "../services/sqlite/Items";
 import List from "../components/List";
+import Btn from "../components/Btn";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
@@ -14,11 +15,12 @@ import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 
 export default function Home({navigation}) {
+  const [refreshing, setRefreshing] = React.useState(false);
 
   const [showList, setShowList] = useState("*");
 
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
-  const [productName, setProductName] = useState();
+  const [productName, setProductName] = useState(null);
   const [selectedIdMemo, setSelectedIdMemo] = useState("Any");
 
 
@@ -51,16 +53,31 @@ export default function Home({navigation}) {
 
 
   const handleAddProduct = () => {
+    if (productName === null) {
+      alert('Please type a name');
+
+    } else {
+
     Items.create( {product:productName, memoid:selectedIdMemo} )
       .then( console.log('Item created'))
-      .catch( err => console.log(err) )    
+      .catch( err => console.log(err) )
+    }    
   };
   const handleAddProd = () => {
-    handleAddProduct();
+    // onRefresh()
     setProductName(null);
+    setSelectedIdMemo("Any");
+    handleAddProduct();
   }
 
 
+  // const onRefresh = () => {
+  //   setRefreshing(true);
+  //   setTimeout(() => {
+      
+  //     setRefreshing(false);
+  //   }, 500);
+  // };
 
   return (
     
@@ -194,9 +211,77 @@ export default function Home({navigation}) {
             }}>
 
             <View style={styles.centeredView}>
-              <View style={styles.modalView}>             
-          
+              <View style={styles.modalView}>   
+                <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>What do you need buy?</Text>
                 <TextInput 
+                  style={styles.input} 
+                  placeholder={" What do you need buy?"} 
+                  autoCapitalize='sentences'
+                  maxLength={70}
+                  value={productName}
+                  onChangeText={text => setProductName(text)} 
+                />
+                <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Where ?</Text>
+                <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between', alignItems: 'center'}}>
+                  <TouchableOpacity
+                   onPress={() => {setSelectedIdMemo("Any")}}            
+                  >
+                    <Image
+                      source={AnyIcon}
+                      alt="anymarket"
+                      style={selectedIdMemo === "Any" ?  styles.addStoreIcons : styles.addStoreIconsDesactived} 
+                    />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                   onPress={() => {setSelectedIdMemo("Costco")}}  
+                  >
+                    <Image
+                      source={CostcoIcon}
+                      alt="costco"
+                      style={selectedIdMemo === "Costco" ?  styles.addStoreIcons : styles.addStoreIconsDesactived}
+                    />
+                  </TouchableOpacity>
+
+                  <TouchableOpacity
+                   onPress={() => {setSelectedIdMemo("Dollarama")}}
+                  >
+                    <Image
+                      source={DollaramaIcon}
+                      alt="dollarama"
+                      style={selectedIdMemo === "Dollarama" ?  styles.addStoreIcons : styles.addStoreIconsDesactived} 
+                    />
+                  </TouchableOpacity>
+
+                    <TouchableOpacity
+                   onPress={() => {setSelectedIdMemo("Pharmacy")}}
+                  >
+                    <Image
+                      source={PharmacyIcon}
+                      alt="pharmacy"
+                      style={selectedIdMemo === "Pharmacy" ?  styles.addStoreIcons : styles.addStoreIconsDesactived} 
+                    />
+                  </TouchableOpacity>
+                </View>
+
+                <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-around', gap: 40, marginTop: 50}}>
+                  <Btn 
+                    title={'Close'}
+                    onPress={() => setModalVisibleAdd(!modalVisibleAdd)}
+                  />
+                  <Btn 
+                    title={'Add'}
+                    onPress={() => {
+                        setModalVisibleAdd(!modalVisibleAdd); 
+                        handleAddProd()
+                      }}
+                  />          
+                  
+                </View>
+
+
+          
+                {/* <TextInput 
                   style={styles.input} 
                   placeholder={" What do you need buy?"} 
                   autoCapitalize='sentences'
@@ -231,7 +316,7 @@ export default function Home({navigation}) {
                   >
                     <Text>X</Text>
                   </Pressable>
-                </View>
+                </View> */}
               </View>
             </View>
 
@@ -316,6 +401,8 @@ const styles = StyleSheet.create({
     padding: 15,
   },
 
+
+  
   // Modal Cart Add
   centeredView: {
     flex: 1,
@@ -329,7 +416,6 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: '90%',
-    margin: 20,
     backgroundColor: 'white',
     borderRadius: 20,
     padding: 35,
@@ -352,35 +438,46 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingHorizontal: 10
   },
-  radioAdd: {
-    marginBottom: 50,
+  addStoreIconsDesactived: {
+    width: 60, 
+    height: 60,
+    opacity: 0.3
+  },
+  addStoreIcons:{
+    width: 80, 
+    height: 80,
+  },
 
-  },
-  addClosCont: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: "#F6792B",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-    left: 25,
+ 
+  // radioAdd: {
+  //   marginBottom: 50,
 
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    fontSize: 20
-  },
-  closeModal:{
-    backgroundColor: 'white',
-    borderColor: 'black',
-    borderWidth: 1,
-    left: 80,
-    top: 30,
-    height: 30,
-    paddingTop: 3,
-  },
+  // },
+  // addClosCont: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
+  // button: {
+  //   backgroundColor: "#F6792B",
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2,
+  //   left: 25,
+
+  // },
+  // textStyle: {
+  //   color: 'white',
+  //   fontWeight: 'bold',
+  //   textAlign: 'center',
+  //   fontSize: 20
+  // },
+  // closeModal:{
+  //   backgroundColor: 'white',
+  //   borderColor: 'black',
+  //   borderWidth: 1,
+  //   left: 80,
+  //   top: 30,
+  //   height: 30,
+  //   paddingTop: 3,
+  // },
 });
