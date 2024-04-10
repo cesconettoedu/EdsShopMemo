@@ -243,8 +243,14 @@ export default function PhotoList({navigation}) {
                 <Btn 
                   title={'Delete'}
                   style={{backgroundColor: "black"}}
-                  onPress={() => deletePhoto(singleId)}
-                />
+             //     onPress={() => deletePhoto(singleId)}
+             //  add a confirmation before deleting the photo
+              /////////////////////////////////////////////////////// 
+              /////////////////////////////////////////////////////// 
+              /////////////////////////////////////////////////////// 
+              ///////////////////////////////////////////////////////               
+                      
+              />
                 <Btn 
                   title={'Close'}
                   onPress={() => setModalSingleVisible(!modalSingleVisible)}
