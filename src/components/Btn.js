@@ -3,14 +3,9 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 export default function (props)  {
 
-
-  if(props.title === 'Delete'){
-    
-  }
-
   return (
     <TouchableOpacity
-      style={styles.btn}
+      style={[props.title === 'Delete' ? styles.btnDel : styles.btn]}
       onPress={props.onPress}
     >
       <Text style={{ color: "white" }}>{props.title}</Text>
@@ -22,12 +17,22 @@ export default function (props)  {
 const styles = StyleSheet.create({
   btn: {
     borderWidth: 5,
-    borderColor: "#f7f5f4",
+    borderColor: "#e3f2fa",
     alignItems: "center",
     justifyContent: "center",
     width: 70,
     height: 70,
     backgroundColor: "#ff8c00",
+    borderRadius: 100,
+  },
+   btnDel: {
+    borderWidth: 5,
+    borderColor: "#e3f2fa",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 70,
+    height: 70,
+    backgroundColor: "#c6122e",
     borderRadius: 100,
   },
  

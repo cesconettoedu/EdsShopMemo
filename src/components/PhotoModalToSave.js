@@ -76,7 +76,7 @@ function PhotoModalToSave({options}) {
           style={styles.input} 
           placeholder={"Others info"} 
           autoCapitalize='sentences'
-          maxLength={30}
+          maxLength={60}
           value={inputDescription}
           onChangeText={text => setinputDescription(text)} 
         />

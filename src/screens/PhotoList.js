@@ -82,7 +82,7 @@ export default function PhotoList({navigation}) {
     setTimeout(() => {
       fetchPhoto();
       setRefreshing(false);
-    }, 2000);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -222,11 +222,7 @@ export default function PhotoList({navigation}) {
           >
             <View style={styles.centeredView}>
               <View style={styles.modalView}>   
-                <TouchableOpacity
-                  style={styles.closeModal}
-                  onPress={() => setModalSingleVisible(!modalSingleVisible)}>
-                   <Text>X</Text>
-                </TouchableOpacity>     
+    
              
 
               <Image
@@ -234,8 +230,14 @@ export default function PhotoList({navigation}) {
                 alt="image"
                 style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
               />
-              <Text style={{marginBottom: 10, fontSize: 30, }}>{singleTitle}</Text>
-              <Text style={{fontSize: 15, }}>{singleDescript}</Text>
+              <Text 
+                style={{marginBottom: 10, fontSize: 20, }}
+                numberOfLines={1}
+              >{singleTitle}</Text>
+              <Text 
+                style={{fontSize: 15, }}
+                numberOfLines={2}
+              >{singleDescript}</Text>
 
               <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
                 <Btn 

@@ -76,7 +76,7 @@ export default function Home({navigation}) {
   //   setTimeout(() => {
       
   //     setRefreshing(false);
-  //   }, 500);
+  //   }, 1000);
   // };
 
   return (
