@@ -1,6 +1,5 @@
-import React, { useState, useMemo } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput, RefreshControl } from "react-native";
-import RadioGroup from 'react-native-radio-buttons-group';
+import React, { useState } from "react";
+import { StyleSheet, View, TouchableOpacity, Image, Text, Modal, TextInput} from "react-native";
 
 import Items from "../services/sqlite/Items";
 import List from "../components/List";
@@ -13,44 +12,23 @@ import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
+import Ok from "../../assets/joia1.png";
 
 export default function Home({navigation}) {
-  const [refreshing, setRefreshing] = React.useState(false);
+
 
   const [showList, setShowList] = useState("*");
 
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
   const [productName, setProductName] = useState(null);
   const [selectedIdMemo, setSelectedIdMemo] = useState("Any");
+  const [modalVisibleB, setModalVisibleB] = useState(false);
 
-
-  const radioButtons = useMemo(
-    () => [
-      {
-        id: "Any",
-        label: "Any",
-        value: "Any Market",
-      },
-      {
-        id: "Dollarama",
-        label: "Dollarama",
-        value: "Dollarama",
-      },
-      {
-        id: "Costco",
-        label: "Costco",
-        value: "Costco",
-      },
-      {
-        id: "Pharmacy",
-        label: "Pharmacy",
-        value: "Pharmacy",
-      },
-    ],
-    []
-  );
-
-
+  const handleAddProd = () => {
+    setProductName(null);
+    setSelectedIdMemo("Any");
+    handleAddProduct();
+  }
 
   const handleAddProduct = () => {
     if (productName === null) {
@@ -59,30 +37,27 @@ export default function Home({navigation}) {
     } else {
 
     Items.create( {product:productName, memoid:selectedIdMemo} )
-      .then( console.log('Item created'))
+      .then( setModalVisibleAdd(!modalVisibleAdd))
+      .then( created )
       .catch( err => console.log(err) )
     }    
   };
-  const handleAddProd = () => {
-    // onRefresh()
-    setProductName(null);
-    setSelectedIdMemo("Any");
-    handleAddProduct();
-  }
 
 
-  // const onRefresh = () => {
-  //   setRefreshing(true);
-  //   setTimeout(() => {
-      
-  //     setRefreshing(false);
-  //   }, 1000);
-  // };
+  ////////////// to show the modal OK after save a item  /////////////////////
+  const created = () => {
+    setModalVisibleB(true)
+    setTimeout(() => {
+      setModalVisibleB(false)
+    }, 1000);
+  };
+
 
   return (
     
-    <View style={styles.container}>
+  <View style={styles.container}>
      
+      
     
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
@@ -139,19 +114,12 @@ export default function Home({navigation}) {
 
       </View>
 
-
-
-
 {/* this is a view of the Top part where have List of itens */}
      <View style={styles.viewTop}>
         <View >
           <List data={{showList, productName}}/>           
         </View>
       </View>
-
-
-
-
 
 {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
       <View style={styles.viewBottom}>
@@ -272,60 +240,41 @@ export default function Home({navigation}) {
                   <Btn 
                     title={'Add'}
                     onPress={() => {
-                        setModalVisibleAdd(!modalVisibleAdd); 
                         handleAddProd()
                       }}
-                  />          
-                  
+                  />   
                 </View>
-
-
-          
-                {/* <TextInput 
-                  style={styles.input} 
-                  placeholder={" What do you need buy?"} 
-                  autoCapitalize='sentences'
-                  maxLength={70}
-                  value={productName}
-                  onChangeText={text => setProductName(text)} 
-                />
-
-                <View style={styles.radioAdd}>
-                  <RadioGroup 
-                    radioButtons={radioButtons} 
-                    onPress={setSelectedIdMemo}
-                    selectedId={selectedIdMemo}
-                    layout='collum'
-                   
-                  />       
-                </View>
-                       
-                <View style={styles.addClosCont}>
-                  <Pressable
-                    style={styles.button }
-                    onPress={() => {
-                      setModalVisibleAdd(!modalVisibleAdd); 
-                      handleAddProd()
-                    }}
-                  >
-                    <Text style={styles.textStyle}>Add in Cart</Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.button, styles.closeModal]}
-                    onPress={() => setModalVisibleAdd(!modalVisibleAdd)}
-                  >
-                    <Text>X</Text>
-                  </Pressable>
-                </View> */}
               </View>
             </View>
+          </Modal> 
 
-          </Modal>   
+
+        {/*--------- Modal ----------------- to show OK after save a item */}
+          <Modal
+            animationType="fade"
+            transparent={true}
+            visible={modalVisibleB}
+            onRequestClose={() => {
+              setModalVisibleB(!modalVisibleB);
+            }}>
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>   
+                  <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Item Added</Text>
+                  <Image
+                    source={Ok}
+                    alt="joia"
+                    style={{width: 100, height: 100}}
+                  />      
+                </View>
+              </View>
+            </Modal>  
 
 
       </View>
 
     </View>
+
+
   );
 }
 
