@@ -36,12 +36,18 @@ const ProductField = ({data, delet}) => {
       </View>
 
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalSindleProd}
         onRequestClose={() => {
           setModalSindleProd(!modalSindleProd);
       }}>
+        <TouchableOpacity 
+          style={{flex:1}}
+          onPress={() => {
+            setModalSindleProd(!modalSindleProd);
+          }}
+        >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>  
             <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : [styles.placeModal, styles.any]}>
@@ -52,6 +58,7 @@ const ProductField = ({data, delet}) => {
             </Text>       
           </View>
         </View>
+        </TouchableOpacity>
       </Modal>
     </>
   );
