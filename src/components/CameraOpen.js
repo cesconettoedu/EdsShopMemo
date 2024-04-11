@@ -3,32 +3,36 @@ import { StyleSheet ,Text, View, Button, Image} from 'react-native';
 import { Camera } from 'expo-camera';
 import Btn from './Btn';
 
-const CameraOpen = ({close}) => {
-
+const CameraOpen = (close) => {
+  
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
-  const [image, setImage] = useState(null);
-   // const [type, setType] = useState(Camera.Constants.Type.back);
+  //const [image, setImage] = useState(null);
+  // const [type, setType] = useState(Camera.Constants.Type.back);
 
     
   const takePicture = async () => {
     if(camera){
       const data = await camera.takePictureAsync(null)
-      setImage(data.uri);
-      close();
+     // setImage(data.uri);
+      close.children.getUriFromCamera(data.uri);
+      goBack();
     }
   }
     if (hasCameraPermission === false) {
       return <Text>No access to camera</Text>;
     }
 
+  const goBack = () => {
+    close.children.closeCamera(false)
+  }
 
-    useEffect(() => {
-        (async () => {
-          const cameraStatus = await Camera.requestCameraPermissionsAsync();
-          setHasCameraPermission(cameraStatus.status === 'granted');
+  useEffect(() => {
+    (async () => {
+      const cameraStatus = await Camera.requestCameraPermissionsAsync();
+      setHasCameraPermission(cameraStatus.status === 'granted');
     })();
-      }, []);
+  }, []);
 
    
   return (

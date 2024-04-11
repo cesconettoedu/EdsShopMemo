@@ -40,6 +40,9 @@ function PhotoModalToSave({options}) {
   const closeCamera = () => {
     setCameraModal(false);
   };
+   const getUriFromCamera = (image) => {
+    setImage(image)
+  }
 
 
 
@@ -112,7 +115,10 @@ function PhotoModalToSave({options}) {
         </View>
       }
       {cameraModal && 
-        <CameraOpen close={closeCamera}/>
+        <CameraOpen>
+          {{closeCamera: closeCamera, getUriFromCamera:getUriFromCamera}}
+        </CameraOpen> 
+          
       }
     </>
   );
