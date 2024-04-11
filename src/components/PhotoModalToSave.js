@@ -1,23 +1,22 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Modal } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
 import Btn from "./Btn";
-
+import CameraOpen from "./CameraOpen";
 
 function PhotoModalToSave({options}) {
-
-
-  console.log('chegou aqui', options.choiseCamGal);
+//  console.log(options.choiseCamGal);
 
 
   const [inputDescription, setinputDescription] = useState('');
   const [inputName, setinputName] = useState ('');
   const [image, setImage] = useState('');
+  const [cameraModal, setCameraModal] = useState(false)
 
   
-//to get image from device ////////////////////////////////////////
+//to get image from GALLERY ////////////////////////////////////////
   const pickImage = async () => {
     if(options.choiseCamGal === 'gallery') {
       // No permissions request is necessary for launching the image library
@@ -33,12 +32,16 @@ function PhotoModalToSave({options}) {
       }
     }
     if(options.choiseCamGal === 'camera') {
-      console.log('open camera');
+      setCameraModal(true);
     }
   };
 
+// to get image from CAMERA ////////////////////////////////////////
 
-  //to add device image uri to a database ////////////////////////////////////////
+
+
+
+//to add device image uri to a database ////////////////////////////////////////
   const handleAddProduct = () => {
     if (image === '') {
       alert('Please choose a image');
@@ -53,57 +56,63 @@ function PhotoModalToSave({options}) {
  
 
   return (
-    <View style={styles.container}>
-      
-        <TouchableOpacity
-          style={{width: '77%',height: '60%', marginBottom: 20, borderWidth: 1, borderRadius: 8 }}
-          onPress={pickImage}
-        >
-          <Image
-            src={image}
-            alt="image"
-            style={styles.imageCont}
-          />
-        </TouchableOpacity>
-        
-        <TextInput 
-          style={styles.input} 
-          placeholder={"Name of product"} 
-          autoCapitalize='sentences'
-          maxLength={20}
-          value={inputName}
-          onChangeText={text => setinputName(text)} 
-        />
+    <>
+      {!cameraModal &&
+        <View style={styles.container}>
+            <TouchableOpacity
+              style={{width: '77%',height: '60%', marginBottom: 20, borderWidth: 1, borderRadius: 8 }}
+              onPress={pickImage}
+              >
+              <Image
+                src={image}
+                alt="image"
+                style={styles.imageCont}
+                />
+            </TouchableOpacity>
+            
+            <TextInput 
+              style={styles.input} 
+              placeholder={"Name of product"} 
+              autoCapitalize='sentences'
+              maxLength={20}
+              value={inputName}
+              onChangeText={text => setinputName(text)} 
+              />
 
-        <TextInput 
-          style={styles.input} 
-          placeholder={"Others info"} 
-          autoCapitalize='sentences'
-          maxLength={60}
-          value={inputDescription}
-          onChangeText={text => setinputDescription(text)} 
-        />
+            <TextInput 
+              style={styles.input} 
+              placeholder={"Others info"} 
+              autoCapitalize='sentences'
+              maxLength={60}
+              value={inputDescription}
+              onChangeText={text => setinputDescription(text)} 
+              />
 
-        <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 5}}>
-          <View 
-            style={{ justifyContent: 'flex-end'  }}
-            >
-            <Btn 
-              title={'Close'}
-              onPress={options.backToList}
-            />
-          </View>
+            <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 5}}>
+              <View 
+                style={{ justifyContent: 'flex-end'  }}
+                >
+                <Btn 
+                  title={'Close'}
+                  onPress={options.backToList}
+                  />
+              </View>
 
-          <View 
-            style={{ justifyContent: 'flex-end', left: -5 }}
-            >
-            <Btn 
-              title={'Save'}
-              onPress={() => handleAddProduct()}
-            />
-          </View>
+              <View 
+                style={{ justifyContent: 'flex-end', left: -5 }}
+                >
+                <Btn 
+                  title={'Save'}
+                  onPress={() => handleAddProduct()}
+                  />
+              </View>
+            </View>
         </View>
-    </View>
+      }
+      {cameraModal && 
+        <CameraOpen/>
+      }
+    </>
   );
 }
 
