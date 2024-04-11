@@ -22,6 +22,7 @@ export default function PhotoList({navigation}) {
   const [refreshing, setRefreshing] = React.useState(false);
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const [modalSingleVisible, setModalSingleVisible] = useState(false);
+  const [modalDelConf, setModalDelConf] = useState(false);
   
 
   const [bringPhotos, setBringPhotos] = useState();
@@ -242,15 +243,37 @@ export default function PhotoList({navigation}) {
               <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
                 <Btn 
                   title={'Delete'}
-                  style={{backgroundColor: "black"}}
-             //     onPress={() => deletePhoto(singleId)}
-             //  add a confirmation before deleting the photo
-              /////////////////////////////////////////////////////// 
-              /////////////////////////////////////////////////////// 
-              /////////////////////////////////////////////////////// 
-              ///////////////////////////////////////////////////////               
-                      
-              />
+                    onPress={() => {setModalDelConf(!modalDelConf)}}
+                />
+                  <Modal
+                    animationType="fade"
+                    transparent={true}
+                    visible={modalDelConf}
+                    onRequestClose={() => {
+                      setModalDelConf(!modalDelConf);
+                    }}>
+                    <View style={styles.centeredView}>
+                      <View style={styles.modalView}>   
+                        <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Confirm delete?</Text>
+                        <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                       
+                        <Btn 
+                          title={'Yes'}
+                          onPress={() => {deletePhoto(singleId); setModalDelConf(!modalDelConf)}}
+/>
+                        <Btn 
+                          title={'Cancel'}
+                          onPress={() => setModalDelConf(!modalDelConf)}
+                        />
+
+                      </View>
+                      </View> 
+                    </View>
+
+                  </Modal>
+
+
+
                 <Btn 
                   title={'Close'}
                   onPress={() => setModalSingleVisible(!modalSingleVisible)}
