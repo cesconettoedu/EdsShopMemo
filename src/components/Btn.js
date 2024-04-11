@@ -5,7 +5,7 @@ export default function (props)  {
 
   return (
     <TouchableOpacity
-      style={[props.title === 'Delete' ? styles.btnDel : styles.btn]}
+      style={[props.title === 'Delete' ? [styles.btn, styles.red] : [styles.btn, styles.orange]]}
       onPress={props.onPress}
     >
       <Text style={{ color: "white" }}>{props.title}</Text>
@@ -22,18 +22,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: 70,
     height: 70,
-    backgroundColor: "#ff8c00",
     borderRadius: 100,
   },
-   btnDel: {
-    borderWidth: 5,
-    borderColor: "#e3f2fa",
-    alignItems: "center",
-    justifyContent: "center",
-    width: 70,
-    height: 70,
+  red: {
     backgroundColor: "#c6122e",
-    borderRadius: 100,
   },
+  orange: {
+    backgroundColor: "#ff8c00",
+  }
+
+
  
 });

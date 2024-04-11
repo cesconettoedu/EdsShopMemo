@@ -1,36 +1,59 @@
-import React  from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Platform } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal } from "react-native";
 
 const ProductField = ({data, delet}) => {
-  
+
+  const [modalSindleProd, setModalSindleProd] = useState(false);
+
   
   
   return (
-    <View style={styles.item}>
-      <TouchableOpacity
-      //</View>onPress={() => setModalVisible(true)}
-      >
-        <View style={styles.itemLeft}>
-            
-          <View style={ data.memoid === 'Costco'  ? styles.costcoColor :  data.memoid === 'Dollarama'  ? styles.dollaramaColor : data.memoid === 'Pharmacy'  ? styles.pharmacyColor : styles.any}>
-            <Text>{data.memoid}</Text>
-          </View>
-
-          <Text style={styles.product} numberOfLines={1}>
-           {data.product} 
-          </Text>
-
-          <TouchableOpacity
-            onPress={delet}
-          >
-            <View style={styles.trash}>
-              <Text>🗑️</Text>
+    <>
+      <View style={styles.item}>
+        <TouchableOpacity
+          onPress={() => setModalSindleProd(true)}
+        >
+          <View style={styles.itemLeft}>
+              
+            <View style={ data.memoid === 'Costco'  ? [styles.place, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.place, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : [styles.place, styles.any]}>
+              <Text>{data.memoid}</Text>
             </View>
-          </TouchableOpacity>
-        
+
+            <Text style={styles.product} numberOfLines={1}>
+            {data.product} 
+            </Text>
+
+            <TouchableOpacity
+              onPress={delet}
+              >
+              <View style={styles.trash}>
+                <Text>🗑️</Text>
+              </View>
+            </TouchableOpacity>
+          
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalSindleProd}
+        onRequestClose={() => {
+          setModalSindleProd(!modalSindleProd);
+      }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>  
+            <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : [styles.placeModal, styles.any]}>
+              <Text style={{marginBottom: 10, fontSize: 15, color:'white', fontWeight:'bold'}}>{data.memoid}</Text>
+            </View> 
+            <Text style={{fontSize: 25}}>
+              {data.product}
+            </Text>       
+          </View>
         </View>
-      </TouchableOpacity>
-    </View>
+      </Modal>
+    </>
   );
 };
 
@@ -65,42 +88,60 @@ const styles = StyleSheet.create({
   },
 
 
-  //refactore this part, only background changes
-  any: {
+  place: {
     width: 80,
     height: 24,
-    backgroundColor: 'gray',
     opacity: 0.4,
     borderRadius: 5,
     marginRight: 15,
-    alignItems: 'center',   
+    alignItems: 'center',  
+  },
+  any: {
+    backgroundColor: 'gray',
   },
   costcoColor: {
-    width: 80,
-    height: 24,
     backgroundColor: "#55BCF6",
-    opacity: 0.4,
-    borderRadius: 3,
-    marginRight: 15,
-    alignItems: "center",
   },
   dollaramaColor: {
-    width: 80,
-    height: 24,
     backgroundColor: "green",
-    opacity: 0.4,
-    borderRadius: 3,
-    marginRight: 15,
-    alignItems: "center",
   },
   pharmacyColor: {
-    width: 80,
-    height: 24,
-    backgroundColor: 'red',
-    opacity: 0.4,
+    backgroundColor: 'red',   
+  },
+
+  //modal
+   centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+    height: 400,
+    width: '100%',
+    alignSelf: 'center',
+    backgroundColor: 'rgba(58, 55, 49, 0.95)' //transparent
+  },
+  modalView: {
+    width: '90%',
+    margin: 20,
+    backgroundColor: '#f7f5f4',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  placeModal: {
     borderRadius: 5,
-    marginRight: 15,
-    alignItems: 'center',   
+    margin: 5,
+    paddingRight: 10,
+    paddingLeft: 10,
+    paddingTop: 5,
   },
 });
 
