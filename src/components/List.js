@@ -8,8 +8,6 @@ function List({data}) {
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState([]);
- // const [count, setCount] = useState();
-  
  
   const fetchProduct = () => { 
     const all = [];
@@ -53,7 +51,7 @@ function List({data}) {
   return (
     <View style={styles.allContainer}>
 
-      <Text style={styles.title}> X items to buy in total</Text>
+      <Text style={styles.title}> List of items to remember</Text>
       <FlatList
         data={bringItems}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

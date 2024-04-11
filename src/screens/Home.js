@@ -57,8 +57,6 @@ export default function Home({navigation}) {
     
   <View style={styles.container}>
      
-      
-    
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
       <Text> free space, still work on </Text>
@@ -66,9 +64,7 @@ export default function Home({navigation}) {
 
 {/* this is a view of the Middle part where have Store Icons to show the product */}
       <View style={styles.viewMiddle}>
-       
-        <View style={styles.storeContainer} >
-          
+        <View style={styles.storeContainer} >          
           <TouchableOpacity
             onPress={() => {setShowList("Any")}}            
             >
@@ -108,10 +104,7 @@ export default function Home({navigation}) {
               style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
             />
           </TouchableOpacity>
-
-
         </View>
-
       </View>
 
 {/* this is a view of the Top part where have List of itens */}
@@ -123,8 +116,6 @@ export default function Home({navigation}) {
 
 {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
       <View style={styles.viewBottom}>
-       
-
        <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.photo}
@@ -137,13 +128,11 @@ export default function Home({navigation}) {
             />
           </TouchableOpacity>
         </View>
-      
 
         <View >
           <TouchableOpacity
             style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
-            onPress={() => {setShowList("*")}}
-             
+            onPress={() => {setShowList("*")}} 
           >
             <Image
               source={AllIcon}
@@ -153,7 +142,6 @@ export default function Home({navigation}) {
           </TouchableOpacity>
         </View>
 
-       
         <View style={{ flex: 0.3 }}>
           <TouchableOpacity
             style={styles.cart}
@@ -166,8 +154,6 @@ export default function Home({navigation}) {
             />
           </TouchableOpacity>
         </View>
-
-
 
         {/*--------- Modal ----------------- to open a text input */}
           <Modal
@@ -269,12 +255,8 @@ export default function Home({navigation}) {
               </View>
             </Modal>  
 
-
       </View>
-
     </View>
-
-
   );
 }
 
@@ -282,13 +264,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   }, 
-  
   viewTopPlus:{
     backgroundColor: "#ff8c00",
     flex: 1, 
   },
-
-
 
 // viem Top part where show the list of products  
   viewTop: {
@@ -349,8 +328,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 60,
     padding: 15,
   },
-
-
   
   // Modal Cart Add
   centeredView: {
@@ -396,37 +373,4 @@ const styles = StyleSheet.create({
     width: 80, 
     height: 80,
   },
-
- 
-  // radioAdd: {
-  //   marginBottom: 50,
-
-  // },
-  // addClosCont: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  // },
-  // button: {
-  //   backgroundColor: "#F6792B",
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   elevation: 2,
-  //   left: 25,
-
-  // },
-  // textStyle: {
-  //   color: 'white',
-  //   fontWeight: 'bold',
-  //   textAlign: 'center',
-  //   fontSize: 20
-  // },
-  // closeModal:{
-  //   backgroundColor: 'white',
-  //   borderColor: 'black',
-  //   borderWidth: 1,
-  //   left: 80,
-  //   top: 30,
-  //   height: 30,
-  //   paddingTop: 3,
-  // },
 });

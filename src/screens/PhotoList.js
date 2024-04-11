@@ -23,7 +23,6 @@ export default function PhotoList({navigation}) {
   const [modalAddVisible, setModalAddVisible] = useState(false);
   const [modalSingleVisible, setModalSingleVisible] = useState(false);
   const [modalDelConf, setModalDelConf] = useState(false);
-  
 
   const [bringPhotos, setBringPhotos] = useState();
   const [openSavePhotoComp, setOpenSavePhotoComp] = useState(false);
@@ -35,9 +34,6 @@ export default function PhotoList({navigation}) {
   const [singleImageUri, setSingleImageUri] = useState();
   const [singleTitle, setSingleTitle] = useState();
   const [singleDescript, setSingleDescript] = useState();
-
-
-
 
 
 //to bring all images to the database ////////////////////////////////////////
@@ -56,22 +52,22 @@ export default function PhotoList({navigation}) {
       .then( onRefresh() )
       .catch( err => console.log(err) )
   }
-  
-  
 
+
+// just to set the choise
+  const fixChoise = () => {
+    
+  }
 // got to open component to get photos from Device
-  const getFromDevice = (o) =>{
+  const getFromCamOrGall = (o) =>{
     setChoiseCamGal(o);
     setOpenSavePhotoComp(true);
     setModalAddVisible(!modalAddVisible);
+  
   }
   
-// got to open component to get photos from Camera
-  const getFromCamera = (o) =>{
-    setChoiseCamGal(o);
-    setOpenSavePhotoComp(true);
-    setModalAddVisible(!modalAddVisible);
-  }  
+
+
 
   const backToList = () => {
     setOpenSavePhotoComp(false);
@@ -93,210 +89,176 @@ export default function PhotoList({navigation}) {
 
   return (
     <>
-    {!openSavePhotoComp && 
-    <>
-      <View style={{backgroundColor: '#ff8c00', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
-      </View>
-      <View style={styles.container}>
-
-        <FlatList
-          data={bringPhotos}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-          numColumns={3}
-          renderItem={({ item }) => (
-            <View key={item.id} style={styles.imageCont}>
-              
-              <TouchableOpacity
-                onPress={() => {
-                  setModalSingleVisible(!modalSingleVisible), 
-                  setSingleImageUri(item.imageAddress),
-                  setSingleTitle(item.productName),
-                  setSingleDescript(item.description)
-                  setSingleId(item.id);
-                }}
-              >
-                <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
-                <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        />
-
-        <View style={{flexDirection: 'row',justifyContent:'center', gap: 110}}>
-         
-          {/* 
-          <TouchableOpacity
-            style={styles.back}
-            onPress={() => navigation.navigate('Home')}
-            >
-            <Text style={{ color: "white" }}>Close</Text>
-          </TouchableOpacity> 
-          */}
-          <View style={{ justifyContent: 'flex-end'}}>
-            <Btn 
-              title={'Close'}
-              onPress={() => navigation.navigate('Home')}
-            />
+      {!openSavePhotoComp && 
+        <>
+          <View style={{backgroundColor: '#ff8c00', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
+            <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
           </View>
-            
+          <View style={styles.container}>
 
-          {/* 
-          <TouchableOpacity
-            style={styles.add}
-            onPress={() => setModalAddVisible(true)}
-            >
-            <Text style={{ color: "white" }}>Add +</Text>
-          </TouchableOpacity> 
-          */}
-           <View style={{ justifyContent: 'flex-end' }}>
-            <Btn 
-              title={'Add +'}
-              onPress={() => setModalAddVisible(true)}
-            />
-          </View>
-
-        </View>
-        
-  {/*---------------------------- Modal to open a Camera or Gallery Choice ----------------------- */}
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalAddVisible}
-            onRequestClose={() => {
-              setModalAddVisible(!modalAddVisible);
-            }}>
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>   
-                  <TouchableOpacity
-                    style={styles.closeModal}
-                    onPress={() => setModalAddVisible(!modalAddVisible)}>
-                    <Text>X</Text>
-                  </TouchableOpacity>                                     
-                 
-                  <View style={styles.addChoiseCont}>
-         
-                    <TouchableOpacity
-                      style={[styles.button ]}
-                      onPress={() => getFromCamera('camera') }
-                    >
-                      <Image
-                        source={Cam}
-                        alt="camera"
-                        style={{ width: 65, height: 65 }}
-                      />
-                      <Text>Camera</Text>
-                    </TouchableOpacity>
-                    
-          
-                    <TouchableOpacity
-                      style={[styles.button ]}
-                      onPress={() => getFromDevice('gallery') }
-                    >
-                      <Image
-                        source={Gallery}
-                        alt="gallery"
-                        style={{ width: 65, height: 65 }}
-                      />
-                      <Text>Gallery</Text>
-                      
-                    </TouchableOpacity>
-
-                  </View>
+            <FlatList
+              data={bringPhotos}
+              refreshControl={
+                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+              }
+              numColumns={3}
+              renderItem={({ item }) => (
+                <View key={item.id} style={styles.imageCont}>
                   
-                 
+                  <TouchableOpacity
+                    onPress={() => {
+                      setModalSingleVisible(!modalSingleVisible), 
+                      setSingleImageUri(item.imageAddress),
+                      setSingleTitle(item.productName),
+                      setSingleDescript(item.description)
+                      setSingleId(item.id);
+                    }}
+                  >
+                    <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
+                    <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
+                  </TouchableOpacity>
                 </View>
-              </View>
+              )}
+            />
 
-          </Modal>
+            <View style={{flexDirection: 'row',justifyContent:'center', gap: 110}}>
 
-      {/*---------------------------- Modal to open a Single Item ----------------------- */}
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalSingleVisible}
-            onRequestClose={() => {
-              setModalSingleVisible(!modalSingleVisible);
-            }}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>   
-    
-             
-
-              <Image
-                src={singleImageUri}
-                alt="image"
-                style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
-              />
-              <Text 
-                style={{marginBottom: 10, fontSize: 20, }}
-                numberOfLines={1}
-              >{singleTitle}</Text>
-              <Text 
-                style={{fontSize: 15, }}
-                numberOfLines={2}
-              >{singleDescript}</Text>
-
-              <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
-                <Btn 
-                  title={'Delete'}
-                    onPress={() => {setModalDelConf(!modalDelConf)}}
-                />
-                  <Modal
-                    animationType="fade"
-                    transparent={true}
-                    visible={modalDelConf}
-                    onRequestClose={() => {
-                      setModalDelConf(!modalDelConf);
-                    }}>
-                    <View style={styles.centeredView}>
-                      <View style={styles.modalView}>   
-                        <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Confirm delete?</Text>
-                        <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
-                       
-                        <Btn 
-                          title={'Yes'}
-                          onPress={() => {deletePhoto(singleId); setModalDelConf(!modalDelConf)}}
-/>
-                        <Btn 
-                          title={'Cancel'}
-                          onPress={() => setModalDelConf(!modalDelConf)}
-                        />
-
-                      </View>
-                      </View> 
-                    </View>
-
-                  </Modal>
-
-
-
+              <View style={{ justifyContent: 'flex-end'}}>
                 <Btn 
                   title={'Close'}
-                  onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                  onPress={() => navigation.navigate('Home')}
+                />
+              </View>
+                
+              <View style={{ justifyContent: 'flex-end' }}>
+                <Btn 
+                  title={'Add +'}
+                  onPress={() => setModalAddVisible(true)}
                 />
               </View>
 
-              </View>
             </View>
+            
+      {/*---------------------------- Modal to open a Camera or Gallery Choice ----------------------- */}
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalAddVisible}
+                onRequestClose={() => {
+                  setModalAddVisible(!modalAddVisible);
+                }}>
+                  <View style={styles.centeredView}>
+                    <View style={styles.modalView}>   
+                      <TouchableOpacity
+                        style={styles.closeModal}
+                        onPress={() => setModalAddVisible(!modalAddVisible)}>
+                        <Text>X</Text>
+                      </TouchableOpacity>                                     
+                    
+                      <View style={styles.addChoiseCont}>
+            
+                        <TouchableOpacity
+                          style={[styles.button ]}
+                          onPress={() => getFromCamOrGall('camera') }
+                        >
+                          <Image
+                            source={Cam}
+                            alt="camera"
+                            style={{ width: 65, height: 65 }}
+                          />
+                          <Text>Camera</Text>
+                        </TouchableOpacity>
+                              
+                        <TouchableOpacity
+                          style={[styles.button ]}
+                          onPress={() => getFromCamOrGall('gallery') }
+                        >
+                          <Image
+                            source={Gallery}
+                            alt="gallery"
+                            style={{ width: 65, height: 65 }}
+                          />
+                          <Text>Gallery</Text>
+                        </TouchableOpacity>
 
-          </Modal>
-        
+                      </View>
+                    </View>
+                  </View>
+              </Modal>
 
+          {/*---------------------------- Modal to open a Single Item ----------------------- */}
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalSingleVisible}
+                onRequestClose={() => {
+                  setModalSingleVisible(!modalSingleVisible);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>   
+                  <Image
+                    src={singleImageUri}
+                    alt="image"
+                    style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
+                  />
+                  <Text 
+                    style={{marginBottom: 10, fontSize: 20, }}
+                    numberOfLines={1}
+                  >{singleTitle}</Text>
+                  <Text 
+                    style={{fontSize: 15, }}
+                    numberOfLines={2}
+                  >{singleDescript}</Text>
 
-      </View>
-      </>
-    }
-    { openSavePhotoComp && 
-      <PhotoModalToSave 
-        options={{choiseCamGal, backToList}}
-        
-      />
-    }
+                  <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                    <Btn 
+                      title={'Delete'}
+                        onPress={() => {setModalDelConf(!modalDelConf)}}
+                    />
+                      <Modal
+                        animationType="fade"
+                        transparent={true}
+                        visible={modalDelConf}
+                        onRequestClose={() => {
+                          setModalDelConf(!modalDelConf);
+                        }}>
+                        <View style={styles.centeredView}>
+                          <View style={styles.modalView}>   
+                            <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Confirm delete?</Text>
+                            <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                          
+                            <Btn 
+                              title={'Yes'}
+                              onPress={() => {deletePhoto(singleId); setModalDelConf(!modalDelConf)}}
+                            />
+                            <Btn 
+                              title={'Cancel'}
+                              onPress={() => setModalDelConf(!modalDelConf)}
+                            />
 
+                          </View>
+                          </View> 
+                        </View>
+                      </Modal>
+
+                    <Btn 
+                      title={'Close'}
+                      onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                    />
+                  </View>
+                  </View>
+                </View>
+              </Modal>
+
+          </View>
+        </>
+      }
+      { openSavePhotoComp && 
+        <PhotoModalToSave 
+          options={{choiseCamGal, backToList}}
+        />
+      }
     </>
   );
 }
@@ -323,37 +285,6 @@ const styles = StyleSheet.create({
     width: "95%",
     alignSelf: "center",
   },
-
-
-
-  // use Btn component to display
-  // add: {
-  //   borderWidth: 5,
-  //   borderColor: "#f7f5f4",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   width: 70,
-  //   position: "absolute",
-  //   top: "93%",
-  //   right: 20,
-  //   height: 70,
-  //   backgroundColor: "#ff8c00",
-  //   borderRadius: 100,
-  // },
-  // back: {
-  //   borderWidth: 5,
-  //   borderColor: "#f7f5f4",
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   width: 70,
-  //   position: "absolute",
-  //   top: "93%",
-  //   right: 250,
-  //   height: 70,
-  //   backgroundColor: "#ff8c00",
-  //   borderRadius: 100,
-  // },
-
 
 //  Modal
   centeredView: {
@@ -396,9 +327,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '50%'
     
-  },
-  textStyle:{
-
   },
   closeModal:{
     backgroundColor: 'white',

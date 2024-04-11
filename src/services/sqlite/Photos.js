@@ -21,8 +21,6 @@ db.transaction((tx) => {
  *  - Pode retornar erro (reject) caso exista erro no SQL ou nos parâmetros.
  */
 const create = (obj) => {
-
-  console.log(obj);
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável

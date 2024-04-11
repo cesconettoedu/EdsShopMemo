@@ -9,28 +9,31 @@ import Btn from "./Btn";
 function PhotoModalToSave({options}) {
 
 
-  
+  console.log('chegou aqui', options.choiseCamGal);
+
+
   const [inputDescription, setinputDescription] = useState('');
   const [inputName, setinputName] = useState ('');
   const [image, setImage] = useState('');
 
-
-
-
+  
 //to get image from device ////////////////////////////////////////
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [12, 16],
-      quality: 0.5,
-    });
-
-   // console.log(result.assets[0].uri);
-
-    if (!result.canceled) {
-      setImage(result.assets[0].uri); 
+    if(options.choiseCamGal === 'gallery') {
+      // No permissions request is necessary for launching the image library
+      let result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.All,
+        allowsEditing: true,
+        aspect: [12, 16],
+        quality: 0.5,
+      });
+      
+      if (!result.canceled) {
+        setImage(result.assets[0].uri); 
+      }
+    }
+    if(options.choiseCamGal === 'camera') {
+      console.log('open camera');
     }
   };
 
@@ -82,12 +85,6 @@ function PhotoModalToSave({options}) {
         />
 
         <View style={{flexDirection: 'row', width: '70%', justifyContent:'space-between', marginTop: 5}}>
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={options.backToList}
-          >
-            <Text style={styles.textStyle}>Close</Text>
-          </TouchableOpacity> */}
           <View 
             style={{ justifyContent: 'flex-end'  }}
             >
@@ -97,14 +94,6 @@ function PhotoModalToSave({options}) {
             />
           </View>
 
-         
-         
-          {/* <TouchableOpacity
-            style={styles.button}
-            onPress={() => handleAddProduct()}
-          >
-            <Text style={styles.textStyle}>Save</Text>
-          </TouchableOpacity> */}
           <View 
             style={{ justifyContent: 'flex-end', left: -5 }}
             >
@@ -113,7 +102,6 @@ function PhotoModalToSave({options}) {
               onPress={() => handleAddProduct()}
             />
           </View>
-
         </View>
     </View>
   );
@@ -131,8 +119,7 @@ const styles = StyleSheet.create({
   imageCont: {
     flex: 1, 
     width: null,
-    borderRadius: 8,
-     
+    borderRadius: 8,  
   },
   input:{
     width: 280,
@@ -143,13 +130,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     paddingHorizontal: 10
   },
-  // button: {
-  //   backgroundColor: "#F6792B",
-  //   borderRadius: 20,
-  //   padding: 10,
-  //   elevation: 2,
-  //   width: '40%'
-  // },
   textStyle: {
     color: 'white',
     fontWeight: 'bold',

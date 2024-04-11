@@ -30,7 +30,4 @@ const styles = StyleSheet.create({
   orange: {
     backgroundColor: "#ff8c00",
   }
-
-
- 
 });
