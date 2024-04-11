@@ -37,7 +37,9 @@ function PhotoModalToSave({options}) {
   };
 
 // to get image from CAMERA ////////////////////////////////////////
-
+  const closeCamera = () => {
+    setCameraModal(false);
+  };
 
 
 
@@ -110,7 +112,7 @@ function PhotoModalToSave({options}) {
         </View>
       }
       {cameraModal && 
-        <CameraOpen/>
+        <CameraOpen close={closeCamera}/>
       }
     </>
   );

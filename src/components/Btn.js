@@ -5,10 +5,10 @@ export default function (props)  {
 
   return (
     <TouchableOpacity
-      style={[props.title === 'Delete' ? [styles.btn, styles.red] : [styles.btn, styles.orange]]}
+      style={[props.title === 'Delete' ? [styles.btn, styles.red] : props.title === 'Take Picture' ? [styles.btn, styles.takePicture] : [styles.btn, styles.orange]]}
       onPress={props.onPress}
     >
-      <Text style={{ color: "white" }}>{props.title}</Text>
+      <Text style={{ color: "white", textAlign:'center' }}>{props.title}</Text>
     </TouchableOpacity>
   )
 }
@@ -29,5 +29,11 @@ const styles = StyleSheet.create({
   },
   orange: {
     backgroundColor: "#ff8c00",
-  }
+  },
+  takePicture: {
+    position : "absolute",
+    alignSelf: 'center',
+    top: '88%',
+    backgroundColor: "#ff8c00",
+  },
 });
