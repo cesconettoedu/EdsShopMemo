@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, Modal } from "react-native";
+import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
 import Btn from "./Btn";
 import CameraOpen from "./CameraOpen";
+
+import Click from "../../assets/clicktoimage.png";
 
 function PhotoModalToSave({options}) {
 //  console.log(options.choiseCamGal);
@@ -68,6 +70,16 @@ function PhotoModalToSave({options}) {
               style={{width: '77%',height: '60%', marginBottom: 20, borderWidth: 1, borderRadius: 8 }}
               onPress={pickImage}
               >
+                <ImageBackground
+                  source={Click}
+                  style={{
+                    height: '100%',
+                    width: '100%',
+                    opacity: 0.6,
+                    position: 'absolute',
+                    
+                  }}
+                />
               <Image
                 src={image}
                 alt="image"

@@ -58,9 +58,6 @@ const CameraOpen = (close) => {
           title="Take Picture" 
           onPress={() => takePicture()}
         />
-
-
-
         {/* {image && 
           <Image source={{uri: image}} style={{flex:1}}
         />} */}
