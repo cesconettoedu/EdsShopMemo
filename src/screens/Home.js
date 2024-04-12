@@ -14,6 +14,7 @@ import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 import Question from "../../assets/icons/question2.png";
 import Ok from "../../assets/joia1.png";
+import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 
 export default function Home({navigation}) {
 
@@ -60,14 +61,22 @@ export default function Home({navigation}) {
      
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
-      <Text> free space, advertising </Text>
+      <TouchableOpacity
+        //onPress={() => navigation.navigate('Question')}
+      >
+        <Image
+          source={Ad}
+          alt="ad"
+          style={{width: 200, height: 50, left: 13}}
+        />
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => navigation.navigate('Question')}
       >
         <Image
           source={Question}
           alt="question"
-          style={{width: 40, height: 40, left: 13}}
+          style={{width: 40, height: 40}}
         />
       </TouchableOpacity>
     </View>
