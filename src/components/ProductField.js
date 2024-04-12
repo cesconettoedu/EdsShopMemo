@@ -35,6 +35,8 @@ const ProductField = ({data, delet}) => {
         </TouchableOpacity>
       </View>
 
+
+{/* -------------Modal to open a single product field -------------- */}
       <Modal
         animationType="fade"
         transparent={true}
@@ -149,6 +151,7 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingLeft: 10,
     paddingTop: 5,
+    marginBottom: 30,
   },
 });
 

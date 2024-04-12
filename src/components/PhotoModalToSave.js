@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { StyleSheet, View, Image, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";

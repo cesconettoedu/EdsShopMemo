@@ -12,6 +12,7 @@ import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
+import Question from "../../assets/icons/question1.png";
 import Ok from "../../assets/joia1.png";
 
 export default function Home({navigation}) {
