@@ -54,11 +54,9 @@ export default function PhotoList({navigation}) {
   }
 
 
-// just to set the choise
-  const fixChoise = () => {
-    
-  }
-// got to open component to get photos from Device
+
+
+  // got to open component to get photos from Device
   const getFromCamOrGall = (o) =>{
     setChoiseCamGal(o);
     setOpenSavePhotoComp(true);

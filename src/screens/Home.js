@@ -12,7 +12,7 @@ import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
-import Question from "../../assets/icons/question1.png";
+import Question from "../../assets/icons/question2.png";
 import Ok from "../../assets/joia1.png";
 
 export default function Home({navigation}) {
@@ -60,7 +60,16 @@ export default function Home({navigation}) {
      
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
-      <Text> free space, still work on </Text>
+      <Text> free space, advertising </Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Question')}
+      >
+        <Image
+          source={Question}
+          alt="question"
+          style={{width: 40, height: 40, left: 13}}
+        />
+      </TouchableOpacity>
     </View>
 
 {/* this is a view of the Middle part where have Store Icons to show the product */}
@@ -266,8 +275,12 @@ const styles = StyleSheet.create({
     flex: 1,
   }, 
   viewTopPlus:{
-    backgroundColor: "#ff8c00",
-    flex: 1, 
+   backgroundColor: "#ff8c00",
+    flex: 0.8, 
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+
   },
 
 // viem Top part where show the list of products  

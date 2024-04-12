@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeScreen from "./src/screens/Home";
 import PhotoList from "./src/screens/PhotoList";
+import Question from "./src/screens/Question";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,11 @@ export default function App() {
           <Stack.Screen 
             name="PhotoList" 
             component={PhotoList} 
+          />
+
+          <Stack.Screen 
+            name="Question" 
+            component={Question} 
           />
 
         </Stack.Navigator>
