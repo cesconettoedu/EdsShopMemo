@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from "react-native";
+import Update from "../../assets/icons/update.png";
 
 const ProductField = ({data, delet}) => {
 
   const [modalSindleProd, setModalSindleProd] = useState(false);
-
-  
   
   return (
     <>
@@ -50,16 +49,26 @@ const ProductField = ({data, delet}) => {
             setModalSindleProd(!modalSindleProd);
           }}
         >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>  
-            <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : [styles.placeModal, styles.any]}>
-              <Text style={{marginBottom: 10, fontSize: 15, color:'white', fontWeight:'bold'}}>{data.memoid}</Text>
-            </View> 
-            <Text style={{fontSize: 25}}>
-              {data.product}
-            </Text>       
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>  
+              <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : [styles.placeModal, styles.any]}>
+                <Text style={{marginBottom: 10, fontSize: 15, color:'white', fontWeight:'bold'}}>{data.memoid}</Text>
+              </View> 
+              <Text style={{fontSize: 25}}>
+                {data.product}
+              </Text> 
+              <TouchableOpacity
+                //onPress={console.log('update', data.id)}        
+                style={{marginTop: 30}}
+                >
+                <Image
+                  source={Update}
+                  alt="update"
+                  style={{width: 50, height: 50}} 
+                />
+              </TouchableOpacity>      
+            </View>
           </View>
-        </View>
         </TouchableOpacity>
       </Modal>
     </>

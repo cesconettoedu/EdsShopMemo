@@ -41,8 +41,6 @@ const create = (obj) => {
 };
 
 
-
-
 const bringAll = () => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -75,8 +73,6 @@ const bring = (memoid) => {
 };
 
 
-
-
 const remove = (id) => {
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
@@ -94,6 +90,25 @@ const remove = (id) => {
   });
 };
 
+const update = (id, obj) => {
+  return new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      //comando SQL modificável
+      tx.executeSql(
+        "UPDATE items SET product=?, memoid=?, WHERE id=?;",
+        [obj.product, obj.memoid, id],
+        //-----------------------
+        (_, { rowsAffected }) => {
+          if (rowsAffected > 0) resolve(rowsAffected);
+          else reject("Error updating obj: id=" + id); // nenhum registro alterado
+        },
+        (_, error) => reject(error) // erro interno em tx.executeSql
+      );
+    });
+  });
+};
+
+
 
 
 
@@ -101,5 +116,6 @@ export default {
   create,
   bringAll,
   bring,
-  remove
+  remove,
+  update
 };
