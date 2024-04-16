@@ -3,10 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from
 import Update from "../../assets/icons/update.png";
 import ItemAddUpdate from "./ItemAddUpdate";
 
-const ProductField = ({data, delet}) => {
+const ProductField = ({data, delet, onRefresh}) => {
 
   const [modalSingleProd, setModalSingleProd] = useState(false);
   const [modalUpdateProd, setModalUpdateProd] = useState(false);
+
+  const updateItem = () => { 
+    setModalSingleProd(false); 
+    onRefresh();
+  } 
+
 
   return (
     <>
@@ -86,6 +92,7 @@ const ProductField = ({data, delet}) => {
            modalUpdateProd={setModalUpdateProd}
            modalSingleProd={setModalSingleProd}
            prodData={data}
+           updateItem={() => updateItem()}
         />
 
       </Modal>

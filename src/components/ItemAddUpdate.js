@@ -10,7 +10,7 @@ import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 import Ok from "../../assets/joia1.png";
 
-function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingleProd }) {
+function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingleProd, updateItem }) {
 
 
   const [productName, setProductName] = useState(null);
@@ -51,7 +51,6 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
       alert("Please type a name");
     } else {
       Items.update( prodData.id, {product: productName, memoid: selectedIdMemo} )
-        .then(console.log('update'))
         .then(updated)
         .catch((err) => console.log(err));
     }
@@ -61,7 +60,7 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
             setModalVisibleB(true);
             setTimeout(() => {
               setModalVisibleB(false);
-              modalSingleProd(false);
+              updateItem();
               modalUpdateProd(false);
             }, 1000);
           };

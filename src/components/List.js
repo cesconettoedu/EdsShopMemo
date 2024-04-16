@@ -57,7 +57,7 @@ function List({data}) {
         data={bringItems}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         renderItem={({ item }) => 
-          <ProductField data={item} delet={() => deleteItem(item.id)}/>
+          <ProductField data={item} delet={() => deleteItem(item.id)} onRefresh={fetchProduct}/>
         }
       />
     </View>
