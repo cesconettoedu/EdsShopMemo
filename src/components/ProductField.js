@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from "react-native";
 import Update from "../../assets/icons/update.png";
+import ItemAddUpdate from "./ItemAddUpdate";
 
 const ProductField = ({data, delet}) => {
 
-  const [modalSindleProd, setModalSindleProd] = useState(false);
-  
+  const [modalSingleProd, setModalSingleProd] = useState(false);
+  const [modalUpdateProd, setModalUpdateProd] = useState(false);
+
   return (
     <>
       <View style={styles.item}>
         <TouchableOpacity
-          onPress={() => setModalSindleProd(true)}
+          onPress={() => setModalSingleProd(true)}
         >
           <View style={styles.itemLeft}>
               
@@ -35,18 +37,18 @@ const ProductField = ({data, delet}) => {
       </View>
 
 
-{/* -------------Modal to open a single product field -------------- */}
+    {/* -------------Modal to open a single product field -------------- */}
       <Modal
         animationType="fade"
         transparent={true}
-        visible={modalSindleProd}
+        visible={modalSingleProd}
         onRequestClose={() => {
-          setModalSindleProd(!modalSindleProd);
+          setModalSingleProd(!modalSingleProd);
       }}>
         <TouchableOpacity 
           style={{flex:1}}
           onPress={() => {
-            setModalSindleProd(!modalSindleProd);
+            setModalSingleProd(!modalSingleProd);
           }}
         >
           <View style={styles.centeredView}>
@@ -58,7 +60,7 @@ const ProductField = ({data, delet}) => {
                 {data.product}
               </Text> 
               <TouchableOpacity
-                //onPress={console.log('update', data.id)}        
+                onPress={() => setModalUpdateProd(true)}        
                 style={{marginTop: 30}}
                 >
                 <Image
@@ -71,6 +73,24 @@ const ProductField = ({data, delet}) => {
           </View>
         </TouchableOpacity>
       </Modal>
+
+    {/* -------------Modal to open a UPDATE product component ItemAddUpdate.js -------------- */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalUpdateProd}
+        onRequestClose={() => {
+          setModalUpdateProd(false);
+      }}>
+        <ItemAddUpdate
+           modalUpdateProd={setModalUpdateProd}
+           modalSingleProd={setModalSingleProd}
+           prodData={data}
+        />
+
+      </Modal>
+    
+    
     </>
   );
 };

@@ -5,6 +5,7 @@ import Items from "../services/sqlite/Items";
 
 function List({data}) {
             // data = (showList, productName) props from Home.js, List component
+    
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState([]);

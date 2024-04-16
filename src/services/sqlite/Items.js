@@ -95,7 +95,7 @@ const update = (id, obj) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "UPDATE items SET product=?, memoid=?, WHERE id=?;",
+        "UPDATE items SET product=?, memoid=? WHERE id=?;",
         [obj.product, obj.memoid, id],
         //-----------------------
         (_, { rowsAffected }) => {
