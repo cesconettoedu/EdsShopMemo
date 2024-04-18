@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Image} from "react-native";
 
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
 
 function Welcome({navigation}) {
+  const [load, setLoad] = useState(true);
 
   const justEnter = () => {
     setTimeout(() => {
-      navigation.navigate('Home')
+      setLoad(false);
+      // navigation.navigate('Home');
     }, 1000);
   };
 
@@ -17,19 +19,33 @@ function Welcome({navigation}) {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={EuIcon}
-        alt="euicon"
-        style={{width: 150, height: 150}}
-      />
-      <Image
-        source={Load}
-        alt="loading"
-        style={{width: 150, height: 150}}
-      />
-      
-    </View>
+    <>
+    {load &&
+      <View style={styles.container}>
+        <Image
+          source={EuIcon}
+          alt="euicon"
+          style={{width: 150, height: 150}}
+          />
+        <Image
+          source={Load}
+          alt="loading"
+          style={{width: 150, height: 150}}
+          />
+        
+      </View>
+    }
+    {!load &&
+      <View style={styles.container}>
+        <Image
+          source={EuIcon}
+          alt="euicon"
+          style={{width: 150, height: 150}}
+          />
+             
+      </View>
+    }
+    </>
   )
 }
 
