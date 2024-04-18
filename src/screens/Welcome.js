@@ -9,7 +9,6 @@ import Load from "../../assets/gif/load.gif";
 
 function Welcome({navigation}) {
   const [load, setLoad] = useState(true);
-  const [imageOpen, setImageOpen] = useState("../../assets/instructions/allitems.png");
 
   const allItems = require("../../assets/instructions/allitems.png");
   const cart = require("../../assets/instructions/cart.png");
@@ -25,7 +24,6 @@ function Welcome({navigation}) {
   const justEnter = () => {
     setTimeout(() => {
       setLoad(false);
-      // navigation.navigate('Home');
     }, 1000);
   };
 

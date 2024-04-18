@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   tutorial: {
-    backgroundColor:'red',
+    
     fontSize: 20,
     color: 'blue',
     textDecorationLine: 'underline'
