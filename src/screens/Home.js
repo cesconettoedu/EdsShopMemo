@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal } from "react-native";
-
+import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
 
 import CartIcon from "../../assets/icons/cart4.png";
@@ -28,7 +28,7 @@ export default function Home({navigation}) {
   return (
     
   <View style={styles.container}>
-     
+  <StatusBar style="auto" /> 
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
       <TouchableOpacity
