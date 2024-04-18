@@ -43,6 +43,10 @@ function Welcome({navigation}) {
           style={{width: 150, height: 150}}
           />
              
+          {/* colocar cada screenshot com um botao de pula para o proximo e um de SKip tudo, junto sempre */}
+
+
+
       </View>
     }
     </>
