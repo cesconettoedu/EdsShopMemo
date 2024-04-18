@@ -1,11 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image} from "react-native";
+import { StyleSheet, View, Image, ImageBackground} from "react-native";
+
+import Btn from "../components/Btn"
 
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
 
+
 function Welcome({navigation}) {
   const [load, setLoad] = useState(true);
+  const [imageOpen, setImageOpen] = useState("../../assets/instructions/allitems.png");
+
+  const allItems = require("../../assets/instructions/allitems.png");
+  const cart = require("../../assets/instructions/cart.png");
+  const photos = require("../../assets/instructions/photo.png");
+  const byplace = require("../../assets/instructions/byplace.png");
+
+
+  const [screens, setScreens] = useState(allItems);
+
+
+
 
   const justEnter = () => {
     setTimeout(() => {
@@ -14,8 +29,11 @@ function Welcome({navigation}) {
     }, 1000);
   };
 
+
+
   useEffect(() => {
      justEnter();
+     setScreens(allItems);
   }, [])
 
   return (
@@ -37,15 +55,45 @@ function Welcome({navigation}) {
     }
     {!load &&
       <View style={styles.container}>
-        <Image
-          source={EuIcon}
-          alt="euicon"
-          style={{width: 150, height: 150}}
-          />
-             
-          {/* colocar cada screenshot com um botao de pula para o proximo e um de SKip tudo, junto sempre */}
+        
+        {/* First instruction AllItems*/}
+        <ImageBackground 
+          source={screens}
+          resizeMode="cover" 
+          style={styles.image}
+        >
+          <View style={{flexDirection:'row', justifyContent: 'space-around'}} >
+            <Btn 
+              title={'Skip'}
+              onPress={() => navigation.navigate('Home')}
+            />
+            {screens === allItems &&
+              <Btn 
+                title={'Next'}
+                onPress={() => setScreens(cart) }
+              />
+            }
+            {screens === cart &&
+              <Btn 
+                title={'Next'}
+                onPress={() => setScreens(photos) }
+              />
+            }
+            {screens === photos &&
+              <Btn 
+                title={'Next'}
+                onPress={() => setScreens(byplace) }
+              />
+            }
+            {screens === byplace &&
+              <Btn 
+                title={'End'}
+                onPress={() => navigation.navigate('Home')}
+              />
+            }
 
-
+          </View>
+        </ImageBackground>
 
       </View>
     }
@@ -61,10 +109,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'black',
-    padding: 15
   }, 
-  text: {
-    color: '#fd7014',
-    fontSize: 24,
-  }
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    width: '100%', 
+    height: '100%',
+  },
 })

@@ -67,6 +67,16 @@ export default function Question({navigation}) {
         }
         keyExtractor={(item) => item.id}
       />
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Welcome')}
+        style={{top: -50,}}
+      >
+        <Text style={styles.tutorial}>
+          Watch tutorial
+        </Text>
+      </TouchableOpacity>
+
     </View>
  );
 }
@@ -78,4 +88,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  tutorial: {
+    backgroundColor:'red',
+    fontSize: 20,
+    color: 'blue',
+    textDecorationLine: 'underline'
+  }
 });
