@@ -33,7 +33,7 @@ export default function Home({navigation}) {
  {/* this is a view of the HEADER free place to put something */}   
     <View style={styles.viewTopPlus}>
       <TouchableOpacity
-        //onPress={() => navigation.navigate('Question')}
+        //onPress={ }
       >
         <Image
           source={Ad}

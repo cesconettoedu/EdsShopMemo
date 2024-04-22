@@ -5,10 +5,10 @@ import Items from "../services/sqlite/Items";
 
 function List({data}) {
             // data = (showList, productName) props from Home.js, List component
-    
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState([]);
+  const [place, setPlace] = useState();
  
   const fetchProduct = () => { 
     const all = [];
@@ -46,13 +46,20 @@ function List({data}) {
   
   useEffect(() => {
     fetchProduct();
+    if(data.showList === '*'){
+      setPlace('All Items') 
+    } else if (data.showList === 'Any'){
+      setPlace('Any Market') 
+    } else {
+      setPlace(data.showList)
+    }
   }, [data]);
 
 
   return (
     <View style={styles.allContainer}>
 
-      <Text style={styles.title}> List of items to remember</Text>
+      <Text style={styles.title}>{place}</Text>
       <FlatList
         data={bringItems}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
