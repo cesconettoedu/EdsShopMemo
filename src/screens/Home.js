@@ -12,6 +12,7 @@ import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
+
 import ItemAddUpdate from "../components/ItemAddUpdate";
 
 export default function Home({navigation}) {

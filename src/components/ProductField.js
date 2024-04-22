@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from "react-native";
-import Update from "../../assets/icons/update.png";
 import ItemAddUpdate from "./ItemAddUpdate";
+
+import Update from "../../assets/icons/update.png";
 
 const ProductField = ({data, delet, onRefresh}) => {
 

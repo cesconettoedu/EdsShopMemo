@@ -11,12 +11,12 @@ import {
 } from "react-native";
 
 import Photos from "../services/sqlite/Photos";
-
-import Cam from "../../assets/icons/cam.png";
-import Gallery from "../../assets/icons/galler.png";
 import PhotoModalToSave from "../components/PhotoModalToSave";
 import Btn from "../components/Btn";
 
+import Cam from "../../assets/icons/cam.png";
+import Gallery from "../../assets/icons/galler.png";
+import Update from "../../assets/icons/update.png";
 
 export default function PhotoList({navigation}) {
   const [refreshing, setRefreshing] = React.useState(false);
@@ -209,7 +209,7 @@ export default function PhotoList({navigation}) {
                     numberOfLines={2}
                   >{singleDescript}</Text>
 
-                  <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                  <View style={{flexDirection: 'row', gap:30, marginTop: 10, top: 10}}>
                     <Btn 
                       title={'Delete'}
                         onPress={() => {setModalDelConf(!modalDelConf)}}
@@ -240,6 +240,18 @@ export default function PhotoList({navigation}) {
                         </View>
                       </Modal>
 
+                    <TouchableOpacity
+                      onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                      style={{justifyContent: 'center'}}
+                    >
+                      <Image
+                        source={Update}
+                        alt="update"
+                        style={{width: 50, height: 50}} 
+                      />
+                    </TouchableOpacity> 
+                      
+                  
                     <Btn 
                       title={'Close'}
                       onPress={() => setModalSingleVisible(!modalSingleVisible)}
