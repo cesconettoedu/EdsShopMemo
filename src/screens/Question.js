@@ -1,10 +1,13 @@
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 
 import Close from '../../assets/icons/close.png'
+import Tutorial from '../components/Tutorial';
 
 
 export default function Question({navigation}) {
 
+  const [ tutorial, setTutorial] = useState(false);
 
 
   const questionsPage = [
@@ -33,51 +36,59 @@ export default function Question({navigation}) {
 
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Home')}
-        style={{flexDirection: 'row', width: '100%', justifyContent: 'flex-end', marginRight: 35, marginTop: 10}}
-      >
-        <Image
-          source={Close}
-          alt="close"
-          style={{ width: 25, height: 25 }}
+    <>
+      {!tutorial &&
+        <View style={styles.container}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={{flexDirection: 'row', width: '100%', justifyContent: 'flex-end', marginRight: 35, marginTop: 10}}
+          >
+            <Image
+              source={Close}
+              alt="X"
+              style={{ width: 25, height: 25 }}
+            />
+          
+          </TouchableOpacity> 
+
+        
+          <FlatList 
+            data={questionsPage}
+            renderItem={({ item }) => 
+              <View  style={{ margin: 20 }}>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 5 }}>{item.title}</Text>
+          
+                  <FlatList 
+                    data={item.topics}
+                    renderItem={({ item }) => (
+                      <Text style={{ marginLeft: 10, marginBottom: 3 }}>
+                        {item}
+                      </Text>
+                    )}    
+                  />
+
+              </View>
+            }
+            keyExtractor={(item) => item.id}
+          />
+
+          <TouchableOpacity
+            onPress={() => setTutorial(true)}
+            style={{top: -50,}}
+          >
+            <Text style={styles.tutorial}>
+              Watch tutorial
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+      }
+      {tutorial &&
+        <Tutorial
+          open={setTutorial}
         />
-      
-      </TouchableOpacity> 
-
-
-      
-      <FlatList 
-        data={questionsPage}
-        renderItem={({ item }) => 
-          <View  style={{ margin: 20 }}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 5 }}>{item.title}</Text>
-      
-              <FlatList 
-                data={item.topics}
-                renderItem={({ item }) => (
-                  <Text style={{ marginLeft: 10, marginBottom: 3 }}>
-                    {item}
-                  </Text>
-                )}    
-              />
-
-          </View>
-        }
-        keyExtractor={(item) => item.id}
-      />
-
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Welcome')}
-        style={{top: -50,}}
-      >
-        <Text style={styles.tutorial}>
-          Watch tutorial
-        </Text>
-      </TouchableOpacity>
-
-    </View>
+      }
+    </>
  );
 }
 

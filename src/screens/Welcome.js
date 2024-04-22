@@ -1,37 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Image, ImageBackground} from "react-native";
-
-import Btn from "../components/Btn"
+import { StyleSheet, View, Image } from "react-native";
 
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
 
-
 function Welcome({navigation}) {
+
   const [load, setLoad] = useState(true);
-
-  const allItems = require("../../assets/instructions/allitems.png");
-  const cart = require("../../assets/instructions/cart.png");
-  const photos = require("../../assets/instructions/photo.png");
-  const byplace = require("../../assets/instructions/byplace.png");
-
-
-  const [screens, setScreens] = useState(allItems);
-
-
-
 
   const justEnter = () => {
     setTimeout(() => {
       setLoad(false);
+      navigation.navigate("Home")
     }, 1000);
   };
 
-
-
   useEffect(() => {
      justEnter();
-     setScreens(allItems);
+   
   }, [])
 
   return (
@@ -51,50 +37,9 @@ function Welcome({navigation}) {
         
       </View>
     }
-    {!load &&
-      <View style={styles.container}>
-        
-        {/* First instruction AllItems*/}
-        <ImageBackground 
-          source={screens}
-          resizeMode="cover" 
-          style={styles.image}
-        >
-          <View style={{flexDirection:'row', justifyContent: 'space-around'}} >
-            <Btn 
-              title={'Skip'}
-              onPress={() => navigation.navigate('Home')}
-            />
-            {screens === allItems &&
-              <Btn 
-                title={'Next'}
-                onPress={() => setScreens(cart) }
-              />
-            }
-            {screens === cart &&
-              <Btn 
-                title={'Next'}
-                onPress={() => setScreens(photos) }
-              />
-            }
-            {screens === photos &&
-              <Btn 
-                title={'Next'}
-                onPress={() => setScreens(byplace) }
-              />
-            }
-            {screens === byplace &&
-              <Btn 
-                title={'End'}
-                onPress={() => navigation.navigate('Home')}
-              />
-            }
+    {/* {!load &&
 
-          </View>
-        </ImageBackground>
-
-      </View>
-    }
+    } */}
     </>
   )
 }
