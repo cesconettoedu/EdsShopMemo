@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "bestTodo",
-    "slug": "Ed's ShopMemo",
-    "version": "1.0.0",
+    "slug": "bestTodo",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
