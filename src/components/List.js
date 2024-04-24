@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View, FlatList, RefreshControl } from "react-native";
+import { StyleSheet, Text, View, FlatList, RefreshControl, Share, Button} from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
+import Btn from "../components/Btn";
+
 
 function List({data}) {
             // data = (showList, productName) props from Home.js, List component
@@ -56,10 +58,25 @@ function List({data}) {
   }, [data]);
 
 
+
+  const shareList = () => {
+    const listContent = bringItems.map(item => item.product).join('\n  - ');   
+    Share.share({
+      message: place+':'+('\n')+'  - '+listContent,
+      title: place,
+    });
+  };
+
+
   return (
     <View style={styles.allContainer}>
-
-      <Text style={styles.title}>{place}</Text>
+      <View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center', gap: 60, left: 50}}>
+        <Text style={styles.title}>{place}</Text>
+        <Btn 
+          title={'Share List'}
+          onPress={shareList}
+        />
+      </View>
       <FlatList
         data={bringItems}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
