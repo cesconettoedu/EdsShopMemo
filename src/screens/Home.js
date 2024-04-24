@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
@@ -14,160 +14,206 @@ import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
 import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
+import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
+import Load from "../../assets/gif/load.gif";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
 
+
+
+
 export default function Home({navigation}) {
 
+  const [load, setLoad] = useState(true); 
 
   const [showList, setShowList] = useState("*");
 
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
   const [productName, setProductName] = useState(null);
 
+  
+  
+  const justEnter = () => {
+      setTimeout(() => {
+        setLoad(false);
+        navigation.navigate("Home")
 
+      }, 1000);
+    };
+
+  useEffect(() => {
+      justEnter();
+    
+    }, [])
 
 
   return (
-    
-  <View style={styles.container}>
-  <StatusBar style="auto" /> 
- {/* this is a view of the HEADER free place to put something */}   
-    <View style={styles.viewTopPlus}>
-      <TouchableOpacity
-        //onPress={ }
-      >
-        <Image
-          source={Ad}
-          alt="ad"
-          style={{width: 200, height: 50, left: 13}}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Question')}
-      >
-        <Image
-          source={Question}
-          alt="question"
-          style={{width: 40, height: 40}}
-        />
-      </TouchableOpacity>
-    </View>
-
-{/* this is a view of the Middle part where have Store Icons to show the product */}
-      <View style={styles.viewMiddle}>
-        <View style={styles.storeContainer} >          
-          <TouchableOpacity
-            onPress={() => {setShowList("Any")}}            
-            >
-            <Image
-              source={AnyIcon}
-              alt="anymarket"
-              style={showList === "Any" ?  styles.storeIconsActive : styles.storeIcons} 
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => {setShowList("Costco")}}  
-            >
-            <Image
-              source={CostcoIcon}
-              alt="costco"
-              style={showList === "Costco" ?  styles.storeIconsActive : styles.storeIcons}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-             onPress={() => {setShowList("Dollarama")}}
-             >
-            <Image
-              source={DollaramaIcon}
-              alt="dollarama"
-              style={showList === "Dollarama" ?  styles.storeIconsActive : styles.storeIcons} 
-            />
-          </TouchableOpacity>
-
+    <>
+      {load &&
+        <View style={styles.containerLoad}>
+          <Image
+            source={EuIcon}
+            alt="euicon"
+            style={{width: 150, height: 150}}
+          />
+          <Image
+            source={Load}
+            alt="loading"
+            style={{width: 150, height: 150}}
+          />
+          
+        </View>
+      }
+      {!load &&
+        <View style={styles.container}>
+        <StatusBar style="auto" /> 
+      {/* this is a view of the HEADER free place to put something */}   
+          <View style={styles.viewTopPlus}>
             <TouchableOpacity
-             onPress={() => {setShowList("Pharmacy")}}
-             >
-            <Image
-              source={PharmacyIcon}
-              alt="pharmacy"
-              style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
+              //onPress={ }
+            >
+              <Image
+                source={Ad}
+                alt="ad"
+                style={{width: 200, height: 50, left: 13}}
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('Question')}
+            >
+              <Image
+                source={Question}
+                alt="question"
+                style={{width: 40, height: 40}}
+              />
+            </TouchableOpacity>
+          </View>
 
-{/* this is a view of the Top part where have List of itens */}
-     <View style={styles.viewTop}>
-        <View >
-          <List data={{showList, productName}}/>           
-        </View>
-      </View>
+      {/* this is a view of the Middle part where have Store Icons to show the product */}
+            <View style={styles.viewMiddle}>
+              <View style={styles.storeContainer} >          
+                <TouchableOpacity
+                  onPress={() => {setShowList("Any")}}            
+                  >
+                  <Image
+                    source={AnyIcon}
+                    alt="anymarket"
+                    style={showList === "Any" ?  styles.storeIconsActive : styles.storeIcons} 
+                  />
+                </TouchableOpacity>
 
-{/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
-      <View style={styles.viewBottom}>
-       <View style={{ flex: 0.3 }}>
-          <TouchableOpacity
-            style={styles.photo}
-            onPress={() => navigation.navigate('PhotoList')}
-          >
-            <Image
-              source={PhotoIcon}
-              alt="photoicon"
-              style={{ width: 45, height: 45 }}
-            />
-          </TouchableOpacity>
-        </View>
+                <TouchableOpacity
+                  onPress={() => {setShowList("Costco")}}  
+                  >
+                  <Image
+                    source={CostcoIcon}
+                    alt="costco"
+                    style={showList === "Costco" ?  styles.storeIconsActive : styles.storeIcons}
+                  />
+                </TouchableOpacity>
 
-        <View >
-          <TouchableOpacity
-            style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
-            onPress={() => {setShowList("*")}} 
-          >
-            <Image
-              source={AllIcon}
-              alt="allitens"
-              style={{ width: 60, height: 60 }}
-            />
-          </TouchableOpacity>
-        </View>
+                <TouchableOpacity
+                  onPress={() => {setShowList("Dollarama")}}
+                  >
+                  <Image
+                    source={DollaramaIcon}
+                    alt="dollarama"
+                    style={showList === "Dollarama" ?  styles.storeIconsActive : styles.storeIcons} 
+                  />
+                </TouchableOpacity>
 
-        <View style={{ flex: 0.3 }}>
-          <TouchableOpacity
-            style={styles.cart}
-            onPress={() => setModalVisibleAdd(true) }
-          >
-            <Image
-              source={CartIcon}
-              alt="carticon"
-              style={{ width: 45, height: 45 }}
-            />
-          </TouchableOpacity>
-        </View>
+                  <TouchableOpacity
+                  onPress={() => {setShowList("Pharmacy")}}
+                  >
+                  <Image
+                    source={PharmacyIcon}
+                    alt="pharmacy"
+                    style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
 
-        {/*--------- Modal ----------------- to open a Component to insert info */}
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisibleAdd}
-            onRequestClose={() => {
-              setModalVisibleAdd(!modalVisibleAdd);
-            }}>
+      {/* this is a view of the Top part where have List of itens */}
+          <View style={styles.viewTop}>
+              <View >
+                <List data={{showList, productName}}/>           
+              </View>
+            </View>
 
-            <ItemAddUpdate
-              modalVisibleAdd={setModalVisibleAdd}            
-            />
+      {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
+            <View style={styles.viewBottom}>
+            <View style={{ flex: 0.3 }}>
+                <TouchableOpacity
+                  style={styles.photo}
+                  onPress={() => navigation.navigate('PhotoList')}
+                >
+                  <Image
+                    source={PhotoIcon}
+                    alt="photoicon"
+                    style={{ width: 45, height: 45 }}
+                  />
+                </TouchableOpacity>
+              </View>
 
-          </Modal> 
+              <View >
+                <TouchableOpacity
+                  style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
+                  onPress={() => {setShowList("*")}} 
+                >
+                  <Image
+                    source={AllIcon}
+                    alt="allitens"
+                    style={{ width: 60, height: 60 }}
+                  />
+                </TouchableOpacity>
+              </View>
 
-      </View>
-    </View>
+              <View style={{ flex: 0.3 }}>
+                <TouchableOpacity
+                  style={styles.cart}
+                  onPress={() => setModalVisibleAdd(true) }
+                >
+                  <Image
+                    source={CartIcon}
+                    alt="carticon"
+                    style={{ width: 45, height: 45 }}
+                  />
+                </TouchableOpacity>
+              </View>
+
+              {/*--------- Modal ----------------- to open a Component to insert info */}
+                <Modal
+                  animationType="slide"
+                  transparent={true}
+                  visible={modalVisibleAdd}
+                  onRequestClose={() => {
+                    setModalVisibleAdd(!modalVisibleAdd);
+                  }}>
+
+                  <ItemAddUpdate
+                    modalVisibleAdd={setModalVisibleAdd}            
+                  />
+
+                </Modal> 
+
+            </View>
+          </View>
+      }
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+
+  containerLoad: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'black',
+  }, 
+
+  
   container: {
     flex: 1,
   }, 

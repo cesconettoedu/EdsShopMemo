@@ -3,7 +3,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Welcome from "./src/screens/Welcome";
 import HomeScreen from "./src/screens/Home";
 import PhotoList from "./src/screens/PhotoList";
 import Question from "./src/screens/Question";
@@ -15,11 +14,6 @@ export default function App() {
     <SafeAreaView style={styles.root}>
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
-
-          <Stack.Screen 
-            name="Welcome" 
-            component={Welcome}
-          />
 
           <Stack.Screen 
             name="Home" 
