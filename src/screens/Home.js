@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     flex: 1,
   }, 
   viewTopPlus:{
-   backgroundColor: "#ff8c00",
+   backgroundColor: "#f7f5f4",
     flex: 0.8, 
     flexDirection: 'row',
     justifyContent: 'space-around',
