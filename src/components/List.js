@@ -70,8 +70,8 @@ function List({data}) {
 
   return (
     <View style={styles.allContainer}>
-      <View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center', gap: 60, left: 50}}>
-        <Text style={styles.title}>{place}</Text>
+      <View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
+        {/* <Text style={styles.title}>{place}</Text> */}
         <Btn 
           title={'Share List'}
           onPress={shareList}
