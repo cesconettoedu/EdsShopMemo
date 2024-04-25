@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useImperativeHandle } from "react";
-import { StyleSheet, Text, View, FlatList, RefreshControl, Share, Button} from "react-native";
+import { StyleSheet, View, FlatList, RefreshControl, Share } from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Modal, Text } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
 
@@ -12,6 +12,7 @@ import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 //import DollaramaIcon from "../../assets/icons/test/dollar1.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
+import Party from "../../assets/icons/party.png";
 import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
@@ -114,6 +115,11 @@ export default function Home({navigation}) {
 
       {/* this is a view of the Middle part where have Store Icons to show the product */}
             <View style={styles.viewMiddle}>
+              <ScrollView
+                horizontal={true}
+                style={{ marginLeft:15, marginRight:15 }}
+              >
+
               <View style={styles.storeContainer} >          
                 <TouchableOpacity
                   onPress={() => {setShowList("Any")}}            
@@ -145,7 +151,7 @@ export default function Home({navigation}) {
                   />
                 </TouchableOpacity>
 
-                  <TouchableOpacity
+                <TouchableOpacity
                   onPress={() => {setShowList("Pharmacy")}}
                   >
                   <Image
@@ -154,7 +160,18 @@ export default function Home({navigation}) {
                     style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
                   />
                 </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={() => {setShowList("Party")}}
+                  >
+                  <Image
+                    source={Party}
+                    alt="Party"
+                    style={showList === "Party" ?  styles.storeIconsActive : styles.storeIcons} 
+                  />
+                </TouchableOpacity>
               </View>
+               </ScrollView>
             </View>
 
       {/* this is a view of the Top part where have List of itens */}
@@ -269,18 +286,17 @@ const styles = StyleSheet.create({
   storeContainer:{
     flex:1,
     flexDirection:"row",
-    gap: 15,
     alignItems: "center",
     justifyContent: "center",
-    gap: 25,
+    gap: 18,
   },
   storeIcons: {
     width: 60, 
     height: 60,
   },
   storeIconsActive: {
-    width: 60, 
-    height: 60,
+    width: 70, 
+    height: 70,
     borderRadius: 8,
     borderWidth: 4,
     borderColor: "#fd7014",

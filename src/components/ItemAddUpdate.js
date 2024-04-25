@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput, Modal } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput, Modal, ScrollView } from "react-native";
 
 import Items from "../services/sqlite/Items";
 import Btn from "../components/Btn";
@@ -8,6 +8,7 @@ import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
 import DollaramaIcon from "../../assets/icons/dollarama3.png";
 import PharmacyIcon from "../../assets/icons/pharmacy.png";
+import Party from "../../assets/icons/party.png";
 import Ok from "../../assets/joia1.png";
 
 function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingleProd, updateItem }) {
@@ -101,6 +102,10 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
               alignItems: "center",
             }}
           >
+            <ScrollView
+              horizontal={true}
+              style={{ marginLeft:15, marginRight:15 }}
+            >
             <TouchableOpacity
               onPress={() => {
                 setSelectedIdMemo("Any");
@@ -148,6 +153,18 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
                 style={ selectedIdMemo === "Pharmacy" ? styles.addStoreIcons : styles.addStoreIconsDesactived }
               />
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setSelectedIdMemo("Party");
+              }}
+            >
+              <Image
+                source={Party}
+                alt="Party"
+                style={ selectedIdMemo === "Party" ? styles.addStoreIcons : styles.addStoreIconsDesactived }
+              />
+            </TouchableOpacity>
+            </ScrollView>
           </View>
 
           <View

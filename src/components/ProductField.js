@@ -60,7 +60,12 @@ const ProductField = ({data, delet, onRefresh}) => {
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>  
-              <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : [styles.placeModal, styles.any]}>
+              <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  
+                            data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : 
+                            data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : 
+                            data.memoid === 'Party'  ? [styles.placeModal, styles.partyColor] :
+                            [styles.placeModal, styles.any]}
+              >
                 <Text style={{marginBottom: 10, fontSize: 15, color:'white', fontWeight:'bold'}}>{data.memoid}</Text>
               </View> 
               <Text style={{fontSize: 25}}>
@@ -153,6 +158,9 @@ const styles = StyleSheet.create({
   },
   pharmacyColor: {
     backgroundColor: 'red',   
+  },
+  partyColor: {
+    backgroundColor: '#FDDA0D',   
   },
 
   //modal
