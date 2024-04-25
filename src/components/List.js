@@ -70,20 +70,19 @@ function List({data}) {
 
   return (
     <View style={styles.allContainer}>
-      <View style={{flexDirection:'row', justifyContent: 'center', alignItems: 'center'}}>
-        {/* <Text style={styles.title}>{place}</Text> */}
+      <View style={{flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
         <Btn 
           title={'Share List'}
           onPress={shareList}
         />
       </View>
-      <FlatList
-        data={bringItems}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        renderItem={({ item }) => 
-          <ProductField data={item} delet={() => deleteItem(item.id)} onRefresh={fetchProduct}/>
-        }
-      />
+        <FlatList
+          data={bringItems}
+          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          renderItem={({ item }) => 
+            <ProductField data={item} delet={() => deleteItem(item.id)} onRefresh={fetchProduct}/>
+          }
+        />
     </View>
   );
 }

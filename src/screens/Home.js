@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Modal } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Modal, Text } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
 
@@ -16,6 +16,7 @@ import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
+import Dots3 from "../../assets/icons/3dots2.png";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
 
@@ -156,7 +157,12 @@ export default function Home({navigation}) {
                 </TouchableOpacity>
               </View>
 
-              <View >
+              <View style={{flexDirection:'column', alignItems:'center', marginBottom: 20, gap: 10}}>
+                <Image
+                  source={Dots3}
+                  alt="3dots"
+                  style={{ width: 50, height: 10 }}
+                />
                 <TouchableOpacity
                   style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
                   onPress={() => {setShowList("*")}} 
@@ -272,9 +278,10 @@ const styles = StyleSheet.create({
   allItens: {
     borderWidth: 1, 
     borderColor: "lightgrey",
-    borderRadius: 5, 
+    borderRadius: 15, 
   },
   allItensaActive: {
+    backgroundColor: "#ffffff",
     borderWidth: 3, 
     borderColor: "#fd7014",
     borderRadius: 8, 
