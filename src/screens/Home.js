@@ -17,6 +17,7 @@ import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
 import Dots3 from "../../assets/icons/3dots2.png";
+import ShareList from "../../assets/icons/shareList4.png";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
 
@@ -32,8 +33,7 @@ export default function Home({navigation}) {
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
   const [productName, setProductName] = useState(null);
 
-  
-  
+
   const justEnter = () => {
       setTimeout(() => {
         setLoad(false);
@@ -76,9 +76,34 @@ export default function Home({navigation}) {
               <Image
                 source={Ad}
                 alt="ad"
-                style={{width: 200, height: 50, left: 13}}
+                style={{width: 200, height: 50, left: 10}}
               />
             </TouchableOpacity>
+
+
+
+
+
+
+
+            <TouchableOpacity
+              onPress={() => {}}
+            >
+              <Image
+                source={ShareList}
+                alt="share list"
+                style={{width: 38, height: 38, left: 10}}
+              />
+            </TouchableOpacity>
+
+
+
+
+
+
+
+
+
             <TouchableOpacity
               onPress={() => navigation.navigate('Question')}
             >
@@ -88,6 +113,7 @@ export default function Home({navigation}) {
                 style={{width: 40, height: 40}}
               />
             </TouchableOpacity>
+
           </View>
 
       {/* this is a view of the Middle part where have Store Icons to show the product */}

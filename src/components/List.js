@@ -6,7 +6,9 @@ import Btn from "../components/Btn";
 
 
 function List({data}) {
-            // data = (showList, productName) props from Home.js, List component
+            // data = (showList, productName, triggerFunctionInList) props from Home.js, List component
+    
+
 
   const [refreshing, setRefreshing] = React.useState(false);
   const [bringItems, setBringItems] = useState([]);
@@ -54,12 +56,13 @@ function List({data}) {
       setPlace('Any Market') 
     } else {
       setPlace(data.showList)
-    }
+    }; 
+    
   }, [data]);
 
-
-
-  const shareList = () => {
+ 
+  
+ const shareList = () => {
     const listContent = bringItems.map(item => item.product).join('\n  - ');   
     Share.share({
       message: place+':'+('\n')+'  - '+listContent,
@@ -70,12 +73,12 @@ function List({data}) {
 
   return (
     <View style={styles.allContainer}>
-      <View style={{flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
+      {/* <View style={{flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
         <Btn 
           title={'Share List'}
           onPress={shareList}
         />
-      </View>
+      </View> */}
         <FlatList
           data={bringItems}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
