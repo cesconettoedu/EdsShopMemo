@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useImperativeHandle } from "react";
 import { StyleSheet, Text, View, FlatList, RefreshControl, Share, Button} from "react-native";
 import ProductField from "./ProductField";
 import Items from "../services/sqlite/Items";
-import Btn from "../components/Btn";
 
 
-function List({data}) {
+function List({data, refs}) {
             // data = (showList, productName, triggerFunctionInList) props from Home.js, List component
     
 
@@ -60,8 +59,14 @@ function List({data}) {
     
   }, [data]);
 
+
+
  
-  
+  // Expose the function using useImperativeHandle - usei porque nao tinha aonde chamar a funcao.
+  useImperativeHandle(refs, () => ({
+    triggerShareFunction: shareList
+  }));
+
  const shareList = () => {
     const listContent = bringItems.map(item => item.product).join('\n  - ');   
     Share.share({
@@ -73,12 +78,6 @@ function List({data}) {
 
   return (
     <View style={styles.allContainer}>
-      {/* <View style={{flexDirection:'row', justifyContent: 'flex-end', alignItems: 'center'}}>
-        <Btn 
-          title={'Share List'}
-          onPress={shareList}
-        />
-      </View> */}
         <FlatList
           data={bringItems}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

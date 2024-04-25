@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal, Text } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
@@ -48,6 +48,16 @@ export default function Home({navigation}) {
     }, [])
 
 
+
+  const ListSheradRef = useRef(null);
+
+ // Function to trigger the function in the child component
+  const triggerShareFunction = () => {
+    // Call the function inside the child component using the ref
+    ListSheradRef.current && ListSheradRef.current.triggerShareFunction();
+  };
+
+
   return (
     <>
       {load &&
@@ -80,14 +90,8 @@ export default function Home({navigation}) {
               />
             </TouchableOpacity>
 
-
-
-
-
-
-
             <TouchableOpacity
-              onPress={() => {}}
+              onPress={triggerShareFunction}
             >
               <Image
                 source={ShareList}
@@ -95,14 +99,6 @@ export default function Home({navigation}) {
                 style={{width: 38, height: 38, left: 10}}
               />
             </TouchableOpacity>
-
-
-
-
-
-
-
-
 
             <TouchableOpacity
               onPress={() => navigation.navigate('Question')}
@@ -164,7 +160,9 @@ export default function Home({navigation}) {
       {/* this is a view of the Top part where have List of itens */}
           <View style={styles.viewTop}>
               <View >
-                <List data={{showList, productName}}/>           
+                <List data={{showList, productName}}
+                  refs={ListSheradRef}
+                />           
               </View>
             </View>
 
