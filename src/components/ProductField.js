@@ -23,7 +23,11 @@ const ProductField = ({data, delet, onRefresh}) => {
         >
           <View style={styles.itemLeft}>
               
-            <View style={ data.memoid === 'Costco'  ? [styles.place, styles.costcoColor] :  data.memoid === 'Dollarama'  ? [styles.place, styles.dollaramaColor] : data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : [styles.place, styles.any]}>
+            <View style={ data.memoid === 'Costco'  ? [styles.place, styles.costcoColor] :  
+                          data.memoid === 'Dollarama'  ? [styles.place, styles.dollaramaColor] : 
+                          data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : 
+                          data.memoid === 'Party'  ? [styles.place, styles.partyColor] :
+                          [styles.place, styles.any]}>
               <Text>{data.memoid}</Text>
             </View>
 
@@ -145,6 +149,7 @@ const styles = StyleSheet.create({
     opacity: 0.4,
     borderRadius: 5,
     marginRight: 15,
+    paddingTop: 2,
     alignItems: 'center',  
   },
   any: {
