@@ -3,12 +3,20 @@ import { StyleSheet, View, Text, FlatList, TouchableOpacity, Image } from 'react
 
 import Close from '../../assets/icons/close.png'
 import Tutorial from '../components/Tutorial';
-
+import TutoImages from "../components/TutoImages";
 
 export default function Question({navigation}) {
 
   const [ tutorial, setTutorial] = useState(false);
+  const [ whichTutorial, setWhichTutorial] = useState();
 
+  const close = () => {
+    setTutorial(false);
+  }
+  
+  const wich = (w) => {
+    setWhichTutorial(w);
+  }
 
   const questionsPage = [
     {
@@ -71,44 +79,36 @@ export default function Question({navigation}) {
             keyExtractor={(item) => item.id}
           />
 
-          {/* <TouchableOpacity
-            onPress={() => setTutorial(true)}
-            style={{top: -50,}}
-          >
-            <Text style={styles.tutorial}>
-              Watch tutorial
-            </Text>
-          </TouchableOpacity> */}
-
-
-
-          <View style={styles.tutorialContainer}
-          >
+        
+          <View style={styles.tutorialContainer}>
             <Text style={[styles.title, styles.tutoTitle]}>Watch tutorial</Text>
             
             <View style={{padding:20, flexDirection: 'row', gap: 20, flexWrap: 'wrap', justifyContent: 'center'}}>
            
               <TouchableOpacity
                 style={styles.btnTutorial}
-                onPress={() => setTutorial(true)}
+                onPress={() => {setTutorial(true); wich(addDelUp)}}
               >
                 <Text style={styles.textBtnTutorial}>Add, Delete Update Item</Text>              
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.btnTutorial}
+                onPress={() => {setTutorial(true); wich(chooseList)}}
               >
                 <Text style={styles.textBtnTutorial}>Choose Lists</Text>           
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.btnTutorial}
+                onPress={() => {setTutorial(true); wich(addDelPhotos)}}
               >
                 <Text style={styles.textBtnTutorial}>Add, Delete Photos</Text>
               </TouchableOpacity>
 
               <TouchableOpacity
                 style={styles.btnTutorial}
+                onPress={() => {setTutorial(true); wich(shareList)}}
               >
                 <Text style={styles.textBtnTutorial}>Share List</Text>
               </TouchableOpacity>
@@ -124,7 +124,8 @@ export default function Question({navigation}) {
       }
       {tutorial &&
         <Tutorial
-          open={setTutorial}
+          props={{close, whichTutorial}}
+          
         />
       }
     </>
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
 // tutorial part
 
 tutorialContainer: {
-  backgroundColor: 'lightblue', 
+  backgroundColor: '#afcbca', 
   width: '100%', 
   height: '30%', 
   justifyContent: 'center', 

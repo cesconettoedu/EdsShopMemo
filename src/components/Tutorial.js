@@ -1,73 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ImageBackground} from "react-native";
-
-import Btn from "../components/Btn"
-
-export default function Tutorial({open}) {
+import React, { useState, useRef } from "react";
+import { StyleSheet, View, FlatList, Animated} from "react-native";
+import TutorialItem from "./TutorialItem";
+import Btn from "./Btn"
 
 
+export default function Tutorial(props) {
+  const [currentIndex, setCurrentIndex] = useState(0)
 
-  const allItems = require("../../assets/instructions/01allitems.png");
-  const cart = require("../../assets/instructions/02cart.png");
-  const photos = require("../../assets/instructions/03photo.png");
-  const byplace = require("../../assets/instructions/04byplace.png");
-  const openItemEdit = require("../../assets/instructions/05openItemEdit.png");
-  const openItemEditA = require("../../assets/instructions/06-01openItemEdit.png");
-  const openItemEditB = require("../../assets/instructions/06-02openItemEdit.png");
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const slidesRef = useRef(null)
 
-  const [screens, setScreens] = useState(allItems);
+  const viewableItemsChanged = useRef(({ viewableItems}) => {
+      setCurrentIndex(viewableItems[0].index);
+  }).current;
 
+  const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
-  useEffect(() => {
-    setScreens(allItems);
-  }, [])
-
-
-
-
-
+ 
   return (
     <View style={styles.container}>
-      {/* First instruction AllItems*/}
-      <ImageBackground source={screens} resizeMode='contain' style={styles.image}>
-      </ImageBackground>
+      <View style={{flex: 3}}>
 
-      <View>
-        <View style={{ flexDirection: "row", gap: 90, margin:20 }}>
-         
-          <Btn title={"Skip"} onPress={() => open(false)} />
-          {screens === allItems && (
-          
-          <Btn title={"Next"} onPress={() => setScreens(cart)} />
-          )}
-          {screens === cart && (
-          
-          <Btn title={"Next"} onPress={() => setScreens(photos)} />
-          )}
-          {screens === photos && (
-          
-          <Btn title={"Next"} onPress={() => setScreens(byplace)} />
-          )}
-          {screens === byplace && (
-
-          <Btn title={"Next"} onPress={() => setScreens(openItemEdit)} />
-          )}
-          {screens === openItemEdit && (
-
-          <Btn title={"Next"} onPress={() => setScreens(openItemEditA)} />
-          )}
-          {screens === openItemEditA && (
-          
-          <Btn title={"Next"} onPress={() => setScreens(openItemEditB)} />
-          )}
-          {screens === openItemEditB && (
-          
-          <Btn title={"End"} onPress={() => open(false)} />
-          )}
-        
-        </View>
-            
+     
+      <FlatList
+        data={props.props.whichTutorial} 
+        renderItem={({ item }) => <TutorialItem item={item} />}
+        horizontal
+        showsHorizontalScrollIndicator
+        pagingEnabled
+        bounces={false}  
+        keyExtractor={(item) => item.id}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+          useNativeDriver: false,
+        })}
+        scrollEventThrottle={32}
+        onViewableItemsChanged={viewableItemsChanged}
+        viewabilityConfig={viewConfig}
+        ref={slidesRef}
+      />
       </View>
+      <View style={{alignItems:'center'}}>
+
+      <Btn
+        title='Close'
+        onPress={props.props.close}
+        />
+        </View>
     </View>
   );
 }
@@ -76,14 +54,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    paddingTop: 10
-  }, 
-  image: {
-    flex: 1,
-    justifyContent: 'center',
-    width: '100%', 
-    height: '100%',
-  },
+    alignContent: 'center'
+  }
 }); 
