@@ -55,7 +55,7 @@ export default function Question({navigation}) {
             data={questionsPage}
             renderItem={({ item }) => 
               <View  style={{ margin: 20 }}>
-                <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 5 }}>{item.title}</Text>
+                <Text style={styles.title}>{item.title}</Text>
           
                   <FlatList 
                     data={item.topics}
@@ -71,14 +71,54 @@ export default function Question({navigation}) {
             keyExtractor={(item) => item.id}
           />
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => setTutorial(true)}
             style={{top: -50,}}
           >
             <Text style={styles.tutorial}>
               Watch tutorial
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+
+
+
+          <View style={styles.tutorialContainer}
+          >
+            <Text style={[styles.title, styles.tutoTitle]}>Watch tutorial</Text>
+            
+            <View style={{padding:20, flexDirection: 'row', gap: 20, flexWrap: 'wrap', justifyContent: 'center'}}>
+           
+              <TouchableOpacity
+                style={styles.btnTutorial}
+                onPress={() => setTutorial(true)}
+              >
+                <Text style={styles.textBtnTutorial}>Add, Delete Update Item</Text>              
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.btnTutorial}
+              >
+                <Text style={styles.textBtnTutorial}>Choose Lists</Text>           
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.btnTutorial}
+              >
+                <Text style={styles.textBtnTutorial}>Add, Delete Photos</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.btnTutorial}
+              >
+                <Text style={styles.textBtnTutorial}>Share List</Text>
+              </TouchableOpacity>
+
+            </View>
+          </View>
+
+
+
+
 
         </View>
       }
@@ -98,10 +138,47 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  tutorial: {
-    
-    fontSize: 20,
-    color: 'blue',
-    textDecorationLine: 'underline'
-  }
+  title: {
+    fontSize: 18, 
+    fontWeight: 'bold', 
+    marginBottom: 5
+  },  
+
+  // tutorial: {
+  //   fontSize: 20,
+  //   color: 'blue',
+  //   textDecorationLine: 'underline'
+  // },
+
+
+// tutorial part
+
+tutorialContainer: {
+  backgroundColor: 'lightblue', 
+  width: '100%', 
+  height: '30%', 
+  justifyContent: 'center', 
+  marginBottom: 10
+},
+tutoTitle:{
+  textAlign: 'center',
+  textDecorationLine: 'underline'
+},
+btnTutorial:{
+  backgroundColor: '#ff8c00', 
+  width: '35%', 
+  height: '50%', 
+  borderRadius: 4
+},
+textBtnTutorial: {
+  color:'#f7f5f4',
+  fontWeight: 'bold',
+  textAlign: 'center',
+  padding: 3,
+},
+
+
+
+
+
 });
