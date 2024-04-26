@@ -17,7 +17,7 @@ import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
-import Dots3 from "../../assets/icons/3dots2.png";
+import Line from "../../assets/icons/line.png";
 import ShareList from "../../assets/icons/shareList4.png";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
@@ -200,7 +200,7 @@ export default function Home({navigation}) {
 
               <View style={{flexDirection:'column', alignItems:'center', marginBottom: 20, gap: 10}}>
                 <Image
-                  source={Dots3}
+                  source={Line}
                   alt="3dots"
                   style={{ width: 50, height: 10 }}
                 />
