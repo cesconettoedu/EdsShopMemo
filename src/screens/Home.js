@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
+import { SwipeGesture } from "react-native-swipe-gesture-handler";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
@@ -26,7 +27,7 @@ import ItemAddUpdate from "../components/ItemAddUpdate";
 
 
 export default function Home({navigation}) {
-
+  
   const [load, setLoad] = useState(true); 
 
   const [showList, setShowList] = useState("*");
@@ -34,6 +35,9 @@ export default function Home({navigation}) {
   const [modalVisibleAdd, setModalVisibleAdd] = useState(false);
   const [productName, setProductName] = useState(null);
 
+
+  let testChange = "*";
+  
 
   const justEnter = () => {
       setTimeout(() => {
@@ -49,14 +53,58 @@ export default function Home({navigation}) {
     }, [])
 
 
-
-  const ListSheradRef = useRef(null);
+   const ListSheradRef = useRef(null);
 
  // Function to trigger the function in the child component
   const triggerShareFunction = () => {
     // Call the function inside the child component using the ref
     ListSheradRef.current && ListSheradRef.current.triggerShareFunction();
   };
+
+
+  const onSwipePerformed = (action) => {
+       console.log('teste mudou ', testChange);
+      switch(action){
+        case 'left':{
+          if(testChange === "Party"){
+            testChange = "Pharmacy"; 
+          }else if(testChange === "Pharmacy"){
+            testChange = "Dollarama"; 
+          }else if(testChange === "Dollarama"){
+            testChange = "Costco"; 
+          }else if(testChange === "Costco"){
+            testChange = "Any"; 
+          }else if(testChange === "Any"){
+            testChange = "*"; 
+          }
+          setShowList(testChange);
+           console.log('teste mudou left', testChange);
+          break;
+        }
+         case 'right':{ 
+          if(testChange === "*"){
+            testChange = "Any"; 
+          }else if(testChange === "Any"){
+            testChange = "Costco"; 
+          }else if(testChange === "Costco"){
+            testChange = "Dollarama"; 
+          }else if(testChange === "Dollarama"){
+            testChange = "Pharmacy"; 
+          }else if(testChange === "Pharmacy"){
+            testChange = "Party"; 
+          }
+          setShowList(testChange);
+           console.log('teste mudou right', testChange);
+          break;
+        }
+        default : {
+         console.log('Undeteceted action');
+         }
+      }
+    }
+
+
+
 
 
   return (
@@ -122,7 +170,7 @@ export default function Home({navigation}) {
 
               <View style={styles.storeContainer} >          
                 <TouchableOpacity
-                  onPress={() => {setShowList("Any")}}            
+                  onPress={() => {setShowList("Any"); testChange = "Any"}}            
                   >
                   <Image
                     source={AnyIcon}
@@ -132,7 +180,7 @@ export default function Home({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => {setShowList("Costco")}}  
+                  onPress={() => {setShowList("Costco"); testChange = "Costco"}}  
                   >
                   <Image
                     source={CostcoIcon}
@@ -142,7 +190,7 @@ export default function Home({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => {setShowList("Dollarama")}}
+                  onPress={() => {setShowList("Dollarama"); testChange = "Dollarama"}}
                   >
                   <Image
                     source={DollaramaIcon}
@@ -152,7 +200,7 @@ export default function Home({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => {setShowList("Pharmacy")}}
+                  onPress={() => {setShowList("Pharmacy"); testChange = "Pharmacy"}}
                   >
                   <Image
                     source={PharmacyIcon}
@@ -162,7 +210,7 @@ export default function Home({navigation}) {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => {setShowList("Party")}}
+                  onPress={() => {setShowList("Party"); testChange = "Party"}}
                   >
                   <Image
                     source={Party}
@@ -176,11 +224,13 @@ export default function Home({navigation}) {
 
       {/* this is a view of the Top part where have List of itens */}
           <View style={styles.viewTop}>
-              <View >
+              <SwipeGesture  
+                onSwipePerformed={onSwipePerformed} 
+                >
                 <List data={{showList, productName}}
                   refs={ListSheradRef}
                 />           
-              </View>
+              </SwipeGesture>
             </View>
 
       {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
@@ -206,7 +256,7 @@ export default function Home({navigation}) {
                 />
                 <TouchableOpacity
                   style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
-                  onPress={() => {setShowList("*")}} 
+                  onPress={() => {setShowList("*"); testChange = "*"}} 
                 >
                   <Image
                     source={AllIcon}
