@@ -63,7 +63,6 @@ export default function Home({navigation}) {
 
 
   const onSwipePerformed = (action) => {
-       console.log('teste mudou ', testChange);
       switch(action){
         case 'left':{
           if(testChange === "Party"){
@@ -78,7 +77,6 @@ export default function Home({navigation}) {
             testChange = "*"; 
           }
           setShowList(testChange);
-           console.log('teste mudou left', testChange);
           break;
         }
          case 'right':{ 
@@ -94,7 +92,6 @@ export default function Home({navigation}) {
             testChange = "Party"; 
           }
           setShowList(testChange);
-           console.log('teste mudou right', testChange);
           break;
         }
         default : {
