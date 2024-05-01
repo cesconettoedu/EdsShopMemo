@@ -17,6 +17,9 @@ import Cam from "../../assets/icons/cam.png";
 import Gallery from "../../assets/icons/galler.png";
 import PhotoModalToSave from "../components/PhotoModalToSave";
 import Btn from "../components/Btn";
+import SharePhoto from "../../assets/icons/shareList4.png";
+
+
 
 
 export default function PhotoList({navigation}) {
@@ -197,12 +200,33 @@ export default function PhotoList({navigation}) {
                 }}
               >
                 <View style={styles.centeredView}>
-                  <View style={styles.modalView}>   
+                  <View style={styles.modalView}> 
+                  <TouchableOpacity
+                    onPress={() => {shareImage(singleImageUri)}}
+                    style={{position: 'absolute', alignSelf: 'flex-end', right: 5, top: 5}}
+                  >
+                    <Image
+                      source={SharePhoto}
+                      alt="share photo"
+                      style={{width: 40, height: 40, borderRadius: 100, borderWidth: 2, borderColor: '#ff8c00'}}
+                    />
+                  </TouchableOpacity>  
                   <Image
                     src={singleImageUri}
                     alt="image"
                     style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
                   />
+                  {/* <TouchableOpacity
+                    onPress={() => {shareImage(singleImageUri)}}
+                    style={{position: 'absolute', bottom: 175, right: 35}}
+                  >
+                    <Image
+                      source={SharePhoto}
+                      alt="share photo"
+                      style={{width: 38, height: 38}}
+                    />
+                  </TouchableOpacity> */}
+
                   <Text 
                     style={{marginBottom: 10, fontSize: 20, }}
                     numberOfLines={1}
@@ -246,10 +270,6 @@ export default function PhotoList({navigation}) {
                     <Btn 
                       title={'Close'}
                       onPress={() => setModalSingleVisible(!modalSingleVisible)}
-                    />
-                    <Btn 
-                      title={'Share'}
-                      onPress={() => {shareImage(singleImageUri); }}
                     />
                   </View>
                   </View>
