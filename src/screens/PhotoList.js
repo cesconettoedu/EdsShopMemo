@@ -203,7 +203,7 @@ export default function PhotoList({navigation}) {
                   <View style={styles.modalView}> 
                   <TouchableOpacity
                     onPress={() => {shareImage(singleImageUri)}}
-                    style={{position: 'absolute', alignSelf: 'flex-end', right: 5, top: 5}}
+                    style={{position: 'absolute', alignSelf: 'flex-end', right: 3, top: 3}}
                   >
                     <Image
                       source={SharePhoto}
