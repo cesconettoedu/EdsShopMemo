@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
-//import { SwipeGesture } from "react-native-swipe-gesture-handler";
 
 import CartIcon from "../../assets/icons/cart4.png";
 import PhotoIcon from "../../assets/icons/photoIcon3.png";
@@ -53,54 +52,13 @@ export default function Home({navigation}) {
     }, [])
 
 
-   const ListSheradRef = useRef(null);
-
+  
+  const ListSheradRef = useRef(null);
  // Function to trigger the function in the child component
   const triggerShareFunction = () => {
     // Call the function inside the child component using the ref
     ListSheradRef.current && ListSheradRef.current.triggerShareFunction();
   };
-
-
-  // const onSwipePerformed = (action) => {
-  //     switch(action){
-  //       case 'left':{
-  //         if(testChange === "Party"){
-  //           testChange = "Pharmacy"; 
-  //         }else if(testChange === "Pharmacy"){
-  //           testChange = "Dollarama"; 
-  //         }else if(testChange === "Dollarama"){
-  //           testChange = "Costco"; 
-  //         }else if(testChange === "Costco"){
-  //           testChange = "Any"; 
-  //         }else if(testChange === "Any"){
-  //           testChange = "*"; 
-  //         }
-  //         setShowList(testChange);
-  //         break;
-  //       }
-  //        case 'right':{ 
-  //         if(testChange === "*"){
-  //           testChange = "Any"; 
-  //         }else if(testChange === "Any"){
-  //           testChange = "Costco"; 
-  //         }else if(testChange === "Costco"){
-  //           testChange = "Dollarama"; 
-  //         }else if(testChange === "Dollarama"){
-  //           testChange = "Pharmacy"; 
-  //         }else if(testChange === "Pharmacy"){
-  //           testChange = "Party"; 
-  //         }
-  //         setShowList(testChange);
-  //         break;
-  //       }
-  //       default : {
-  //        console.log('Undeteceted action');
-  //        }
-  //     }
-  //   }
-
-
 
 
 
@@ -221,16 +179,12 @@ export default function Home({navigation}) {
 
       {/* this is a view of the Top part where have List of itens */}
           <View style={styles.viewTop}>
-             {/* <SwipeGesture  
-                onSwipePerformed={onSwipePerformed} 
-                >*/}
                 <View>
 
                 <List data={{showList, productName}}
                   refs={ListSheradRef}
                   />           
                 </View>
-              {/* </SwipeGesture> */}
             </View>
 
       {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}

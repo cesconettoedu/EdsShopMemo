@@ -9,6 +9,7 @@ import {
   RefreshControl,
   Modal,
 } from "react-native";
+import * as Sharing from 'expo-sharing';
 
 import Photos from "../services/sqlite/Photos";
 
@@ -65,7 +66,9 @@ export default function PhotoList({navigation}) {
   }
   
 
-
+  const shareImage = (foto) => {
+   Sharing.shareAsync(foto);
+  }
 
   const backToList = () => {
     setOpenSavePhotoComp(false);
@@ -243,6 +246,10 @@ export default function PhotoList({navigation}) {
                     <Btn 
                       title={'Close'}
                       onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                    />
+                    <Btn 
+                      title={'Share'}
+                      onPress={() => {shareImage(singleImageUri); }}
                     />
                   </View>
                   </View>
