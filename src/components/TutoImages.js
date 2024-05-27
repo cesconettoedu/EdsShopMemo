@@ -42,8 +42,32 @@ export default [
   ],
   addDelPhotos = [
     {
-      id: '1 / 8',
+      id: '1 / 7',
       image: require("../../assets/instructions/adddelup/AddDelUp01.png")
+    },
+    {
+      id: '2 / 7',
+      image: require("../../assets/instructions/addDelPhoto/1.png")
+    },
+    {
+      id: '3 / 7',
+      image: require("../../assets/instructions/addDelPhoto/2.png")
+    },
+    {
+      id: '4 / 7',
+      image: require("../../assets/instructions/addDelPhoto/3.png")
+    },
+    {
+      id: '5 / 7',
+      image: require("../../assets/instructions/addDelPhoto/4.png")
+    },
+    {
+      id: '6 / 7',
+      image: require("../../assets/instructions/addDelPhoto/5.png")
+    },
+    {
+      id: '7 / 7',
+      image: require("../../assets/instructions/addDelPhoto/6.png")
     },
 
   ],
