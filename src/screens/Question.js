@@ -27,6 +27,7 @@ export default function Question({navigation}) {
          '- Choose to see all lists together or separate by location.', 
          '- Add or delete the photo and description of a product taken on the camera or in the cell phone gallery.',
          '- Send the complete list or selected list to someone else.',
+         '- Share product photo to someone else.',
         ]
     },
     {
@@ -89,7 +90,7 @@ export default function Question({navigation}) {
                 style={styles.btnTutorial}
                 onPress={() => {setTutorial(true); wich(addDelUp)}}
               >
-                <Text style={styles.textBtnTutorial}>Add, Delete Update Item</Text>              
+                <Text style={styles.textBtnTutorial}>Item list</Text>              
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -103,7 +104,7 @@ export default function Question({navigation}) {
                 style={styles.btnTutorial}
                 onPress={() => {setTutorial(true); wich(addDelPhotos)}}
               >
-                <Text style={styles.textBtnTutorial}>Add, Delete Photos</Text>
+                <Text style={styles.textBtnTutorial}>Product photos</Text>
               </TouchableOpacity>
 
               <TouchableOpacity

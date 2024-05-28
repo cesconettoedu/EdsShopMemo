@@ -47,27 +47,27 @@ export default [
     },
     {
       id: '2 / 7',
-      image: require("../../assets/instructions/addDelPhoto/1.png")
+      image: require("../../assets/instructions/addDelPhoto/1.jpg")
     },
     {
       id: '3 / 7',
-      image: require("../../assets/instructions/addDelPhoto/2.png")
+      image: require("../../assets/instructions/addDelPhoto/2.jpg")
     },
     {
       id: '4 / 7',
-      image: require("../../assets/instructions/addDelPhoto/3.png")
+      image: require("../../assets/instructions/addDelPhoto/3.jpg")
     },
     {
       id: '5 / 7',
-      image: require("../../assets/instructions/addDelPhoto/4.png")
+      image: require("../../assets/instructions/addDelPhoto/4.jpg")
     },
     {
       id: '6 / 7',
-      image: require("../../assets/instructions/addDelPhoto/5.png")
+      image: require("../../assets/instructions/addDelPhoto/5.jpg")
     },
     {
       id: '7 / 7',
-      image: require("../../assets/instructions/addDelPhoto/6.png")
+      image: require("../../assets/instructions/addDelPhoto/6.jpg")
     },
 
   ],
