@@ -6,4 +6,4 @@
 
 ## Screenshots
 
-<img src="./assets/instructions/adddelup/AddDelUp09.png" width="216" height="410"> &emsp; <img src="./assets/readmePic/new2.jpeg" width="216" height="410">&emsp; <img src="./assets/readmePic/new3.jpeg" width="216" height="410">&emsp; <img src="./assets/readmePic/new4.jpeg" width="216" height="410">&emsp; <img src="./assets/readmePic/new5.jpeg" width="216" height="410">
+<img src="./assets/screenshot/1.jpg" width="200" height="410"> &emsp; <img src="./assets/screenshot/2.jpg" width="200" height="410">&emsp; <img src="./assets/screenshot/3.jpg" width="200" height="410">&emsp; <img src="./assets/screenshot/4.jpg" width="200" height="410">&emsp; <img src="./assets/screenshot/5.jpg" width="200" height="410">; <img src="./assets/screenshot/6.jpg" width="200" height="410">
