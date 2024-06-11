@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from "react-native";
 import ItemAddUpdate from "./ItemAddUpdate";
-
+import Ionicons from '@expo/vector-icons/Ionicons';
 import Update from "../../assets/icons/update.png";
 
 const ProductField = ({data, delet, onRefresh}) => {
@@ -17,7 +17,7 @@ const ProductField = ({data, delet, onRefresh}) => {
 
   return (
     <>
-      <View style={styles.item}>
+      {/* <View style={styles.item}>
         <TouchableOpacity
           onPress={() => setModalSingleProd(true)}
         >
@@ -35,17 +35,50 @@ const ProductField = ({data, delet, onRefresh}) => {
             {data.product} 
             </Text>
 
-            <TouchableOpacity
-              onPress={delet}
-              >
-              <View style={styles.trash}>
-                <Text>🗑️</Text>
+            <View style={styles.iconsPhoTra}>
+              <View style={styles.photo}>
+                <Text>📷</Text>
               </View>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={delet}               
+              >
+                <View style={styles.trash}>              
+                  <Text>🗑️</Text>
+                </View>
+              </TouchableOpacity>               
+            </View>
+
           
           </View>
         </TouchableOpacity>
+      </View> */}
+
+      <View >
+        <TouchableOpacity
+          onPress={() => setModalSingleProd(true)}
+          style={styles.item}
+        >
+        <Text style={ data.memoid === 'Costco'  ? [styles.place, styles.costcoColor] :  
+                          data.memoid === 'Dollarama'  ? [styles.place, styles.dollaramaColor] : 
+                          data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : 
+                          data.memoid === 'Party'  ? [styles.place, styles.partyColor] :
+                          [styles.place, styles.any]} >{data.memoid}</Text>
+        <Text style={styles.itemText} numberOfLines={1}>Banana Banana Banana Banana</Text>
+        <View style={styles.actionIcons}>
+          <Ionicons name="images" size={24} color="rgba(247,255,244,0.8)" style={styles.icon} />
+          <TouchableOpacity
+                onPress={delet}   
+                style={styles.icon}             
+              >
+            <Ionicons name="trash" size={24} color="#EA2615" />
+          </TouchableOpacity>
+        </View>
+        </TouchableOpacity>
       </View>
+
+
+
+
 
 
     {/* -------------Modal to open a single product field -------------- */}
@@ -113,44 +146,84 @@ const ProductField = ({data, delet, onRefresh}) => {
 };
 
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: "#f7f5f4",
-    padding: 4,
-    borderRadius: 3,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    margin: 2,
-    marginBottom: 5,
-    height: 40,
-  },
-  itemLeft: {
-    flexDirection: "row",  
-    flexWrap: "wrap",
-  },
+  // item: {
+  //   backgroundColor: "#f7f5f4",
+  //   padding: 4,
+  //   borderRadius: 3,
+  //   flexDirection: "row",
+  //   alignItems: "center",
+  //   justifyContent: "space-between",
+  //   margin: 2,
+  //   marginBottom: 5,
+  //   height: 40,
+  // },
+  // itemLeft: {
+  //   flexDirection: "row",  
+  //   flexWrap: "wrap",
+  // },
 
-  product: {
-    //limit size of product description field
-    fontSize: 18, 
-    width: Platform.OS === "ios" ? 220 : 190,
-  },
+  // product: {
+  //   //limit size of product description field
+  //   fontSize: 18, 
+  //   width: Platform.OS === "ios" ? 220 : 170,
+  // },
 
-  trash: {
-    justifyContent: "flex-end",
-    width: 25,
-    height: 25,
-    left: Platform.OS === "ios" ? "180%" : "100%",
-  },
+  // iconsPhoTra:{
+  //   flexDirection: 'row', 
+    
+  // },
+  // photo:{
+  //   left: Platform.OS === "ios" ? "180%" : "60%",
+  // },
+  // trash: {
+  //   flexDirection: 'row', 
+  //   justifyContent: "flex-end",
+  //   width: 25,
+  //   height: 25,
+  //   left: Platform.OS === "ios" ? "180%" : "80%",
+  // },
+  // place: {
+  //   width: '80%',
+  //   height: 24,
+  //   opacity: 0.4,
+  //   borderRadius: 5,
+  //   marginRight: 15,
+  //   paddingTop: 2,
+  //   alignItems: 'center',  
+  // },
 
+item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(247,255,244,0.05)',
+    width:' 95%',
+    marginLeft: '2%',
+  },
+  itemText: {
+    fontSize: 18,
+    marginLeft: 5,
+    marginRight: 5,
+    width: '53%',
+  },
+  actionIcons: {
+    flexDirection: 'row',
+    marginLeft: 10,
+  },
+  icon: {
+    
+    width: '25%',
+  },
 
   place: {
-    width: 80,
-    height: 24,
-    opacity: 0.4,
-    borderRadius: 5,
-    marginRight: 15,
-    paddingTop: 2,
-    alignItems: 'center',  
+    width: '23%',
+    marginRight: 5,
+    padding:2,
+    borderRadius: 3,
+    opacity: 0.6,
+    textAlign: 'center',
   },
   any: {
     backgroundColor: 'gray',
