@@ -2,9 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
+import {LinearGradient} from 'expo-linear-gradient';
 
-import CartIcon from "../../assets/icons/cart4.png";
-import PhotoIcon from "../../assets/icons/photoIcon3.png";
+import CartIcon from "../../assets/icons/addItem.png";
+import PhotoIcon from "../../assets/icons/PhotoGallery.png";
 import AllIcon from "../../assets/icons/all.png";
 import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
@@ -75,121 +76,143 @@ export default function Home({navigation}) {
             source={Load}
             alt="loading"
             style={{width: 150, height: 150}}
-          />
-          
+          />   
         </View>
       }
       {!load &&
         <View style={styles.container}>
-        <StatusBar style="auto" /> 
-      {/* this is a view of the HEADER free place to put something */}   
-          <View style={styles.viewTopPlus}>
-            <TouchableOpacity
-              //onPress={ }
-            >
-              <Image
-                source={Ad}
-                alt="ad"
-                style={{width: 200, height: 50, left: 10}}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={triggerShareFunction}
-            >
-              <Image
-                source={ShareList}
-                alt="share list"
-                style={{width: 38, height: 38, left: 10}}
-              />
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => navigation.navigate('Question')}
-            >
-              <Image
-                source={Question}
-                alt="question"
-                style={{width: 40, height: 40}}
-              />
-            </TouchableOpacity>
-
-          </View>
-
-      {/* this is a view of the Middle part where have Store Icons to show the product */}
-            <View style={styles.viewMiddle}>
-              <ScrollView
-                horizontal={true}
-                style={{ marginLeft:15, marginRight:15 }}
+          <StatusBar style="auto" /> 
+            {/* this is a view of the HEADER free place to put something */}   
+            <View style={styles.viewTopPlus}>
+              <TouchableOpacity
+                //onPress={ }
+               >
+                <Image
+                  source={Ad}
+                  alt="ad"
+                  style={{width: 200, height: 50, left: 10}}
+                />
+              </TouchableOpacity>
+              
+              <TouchableOpacity
+                onPress={triggerShareFunction}
               >
+                <Image
+                  source={ShareList}
+                  alt="share list"
+                  style={{width: 38, height: 38, left: 10}}
+                />
+              </TouchableOpacity>
 
-              <View style={styles.storeContainer} >          
-                <TouchableOpacity
-                  onPress={() => {setShowList("Any"); testChange = "Any"}}            
-                  >
-                  <Image
-                    source={AnyIcon}
-                    alt="anymarket"
-                    style={showList === "Any" ?  styles.storeIconsActive : styles.storeIcons} 
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {setShowList("Costco"); testChange = "Costco"}}  
-                  >
-                  <Image
-                    source={CostcoIcon}
-                    alt="costco"
-                    style={showList === "Costco" ?  styles.storeIconsActive : styles.storeIcons}
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {setShowList("Dollarama"); testChange = "Dollarama"}}
-                  >
-                  <Image
-                    source={DollaramaIcon}
-                    alt="dollarama"
-                    style={showList === "Dollarama" ?  styles.storeIconsActive : styles.storeIcons} 
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {setShowList("Pharmacy"); testChange = "Pharmacy"}}
-                  >
-                  <Image
-                    source={PharmacyIcon}
-                    alt="pharmacy"
-                    style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
-                  />
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={() => {setShowList("Party"); testChange = "Party"}}
-                  >
-                  <Image
-                    source={Party}
-                    alt="Party"
-                    style={showList === "Party" ?  styles.storeIconsActive : styles.storeIcons} 
-                  />
-                </TouchableOpacity>
-              </View>
-               </ScrollView>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('Question')}
+              >
+                <Image
+                  source={Question}
+                  alt="question"
+                  style={{width: 40, height: 40}}
+                />
+              </TouchableOpacity>
             </View>
-
-      {/* this is a view of the Top part where have List of itens */}
-          <View style={styles.viewTop}>
-                <View>
-
-                <List data={{showList, productName}}
+    
+           {/* this is a view of the Top part where have List of itens */}
+            <View style={styles.viewTop}>
+              <View>
+                <List 
+                  data={{showList, productName}}
                   refs={ListSheradRef}
-                  />           
-                </View>
+                />           
+              </View>
             </View>
+
+            {/* this is a view of the Middle part where have Store Icons to show SINGLE Lists */}
+            <View style={styles.viewMiddle}>
+              {/* <LinearGradient
+                colors={['#484848', '#252525', '#090B10']}
+                style={{ flex: 1 }}
+              > */}
+                <ScrollView
+                  horizontal={true}
+                  style={{ marginLeft:2, marginRight:2, paddingLeft: 10 }}
+                >
+                  <View style={styles.storeContainer}> 
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("*"); testChange = "*"}}        
+                    >
+                      <Image
+                        source={AllIcon}
+                        alt="allitens"
+                        style={showList === "*" ?  styles.storeIconsActive : styles.storeIcons}  
+                      />
+                    </TouchableOpacity> 
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("Any"); testChange = "Any"}}            
+                    >
+                      <Image
+                        source={AnyIcon}
+                        alt="anymarket"
+                        style={showList === "Any" ?  styles.storeIconsActive : styles.storeIcons} 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("Costco"); testChange = "Costco"}}  
+                    >
+                      <Image
+                        source={CostcoIcon}
+                        alt="costco"
+                        style={showList === "Costco" ?  styles.storeIconsActive : styles.storeIcons}
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("Dollarama"); testChange = "Dollarama"}}
+                    >
+                      <Image
+                        source={DollaramaIcon}
+                        alt="dollarama"
+                        style={showList === "Dollarama" ?  styles.storeIconsActive : styles.storeIcons} 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("Pharmacy"); testChange = "Pharmacy"}}
+                    >
+                      <Image
+                        source={PharmacyIcon}
+                        alt="pharmacy"
+                        style={showList === "Pharmacy" ?  styles.storeIconsActive : styles.storeIcons} 
+                      />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                      onPress={() => {setShowList("Party"); testChange = "Party"}}
+                    >
+                      <Image
+                        source={Party}
+                        alt="Party"
+                        style={showList === "Party" ?  styles.storeIconsActive : styles.storeIcons} 
+                      />
+                    </TouchableOpacity>
+                
+                  
+                   {/* just to create a space after last icon, its a invisible space, quebra galho */}
+                    <Image
+                      source={Party}
+                      alt="Party"
+                      style={{width:0, height:0}} 
+                    />
+                  </View>
+                </ScrollView>
+              {/* </LinearGradient> */}
+            </View>
+
 
       {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
             <View style={styles.viewBottom}>
-            <View style={{ flex: 0.3 }}>
+              <View style={{ width: '' }}>
                 <TouchableOpacity
                   style={styles.photo}
                   onPress={() => navigation.navigate('PhotoList')}
@@ -197,18 +220,15 @@ export default function Home({navigation}) {
                   <Image
                     source={PhotoIcon}
                     alt="photoicon"
-                    style={{ width: 45, height: 45 }}
+                    resizeMode="contain"
+                    style={{ width: 120, height: 45 }}
                   />
                 </TouchableOpacity>
               </View>
 
-              <View style={{flexDirection:'column', alignItems:'center', marginBottom: 20, gap: 10}}>
-                <Image
-                  source={Line}
-                  alt="3dots"
-                  style={{ width: 50, height: 10 }}
-                />
-                <TouchableOpacity
+              <View style={{alignItems:'center', marginBottom: 5, width: ''}}>
+              
+                {/* <TouchableOpacity
                   style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
                   onPress={() => {setShowList("*"); testChange = "*"}} 
                 >
@@ -217,10 +237,10 @@ export default function Home({navigation}) {
                     alt="allitens"
                     style={{ width: 60, height: 60 }}
                   />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
 
-              <View style={{ flex: 0.3 }}>
+              <View style={{}}>
                 <TouchableOpacity
                   style={styles.cart}
                   onPress={() => setModalVisibleAdd(true) }
@@ -228,7 +248,8 @@ export default function Home({navigation}) {
                   <Image
                     source={CartIcon}
                     alt="carticon"
-                    style={{ width: 45, height: 45 }}
+                    resizeMode="contain"
+                    style={{ width: 120, height: 45 }}
                   />
                 </TouchableOpacity>
               </View>
@@ -284,7 +305,6 @@ const styles = StyleSheet.create({
 
 // view with Store Icons  
   viewMiddle: {
-    backgroundColor: "#ff8c00",
     flex: 0.8,
   },
   storeContainer:{
@@ -292,32 +312,27 @@ const styles = StyleSheet.create({
     flexDirection:"row",
     alignItems: "center",
     justifyContent: "center",
-    gap: 18,
+    gap: 12,
   },
   storeIcons: {
-    width: 60, 
-    height: 60,
+    width: 55, 
+    height: 55,
   },
   storeIconsActive: {
     width: 70, 
     height: 70,
-    borderRadius: 8,
+    borderRadius: 12,
     borderWidth: 4,
-    borderColor: "#fd7014",
+    borderColor: "#7A7D88",
   },
   
 // view with PhotoIcon - AllItens - CartIcon  
   viewBottom: {
     flex: 0.9,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
+    gap: 25,
     alignItems: "center",
-  },
-  photo: {
-    backgroundColor: "#ff8c00",
-    borderTopRightRadius: 60,
-    borderBottomRightRadius: 60,
-    padding: 15,
   },
   allItens: {
     borderWidth: 1, 
@@ -327,14 +342,8 @@ const styles = StyleSheet.create({
   allItensaActive: {
     backgroundColor: "#ffffff",
     borderWidth: 3, 
-    borderColor: "#fd7014",
+    borderColor: "#7A7D88",
     borderRadius: 8, 
   },
-  cart: {
-    backgroundColor: "#ff8c00",
-    borderTopLeftRadius: 60,
-    borderBottomLeftRadius: 60,
-    padding: 15,
-  },
-  
+
 });

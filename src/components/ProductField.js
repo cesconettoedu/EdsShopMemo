@@ -63,7 +63,7 @@ const ProductField = ({data, delet, onRefresh}) => {
                           data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : 
                           data.memoid === 'Party'  ? [styles.place, styles.partyColor] :
                           [styles.place, styles.any]} >{data.memoid}</Text>
-        <Text style={styles.itemText} numberOfLines={1}>Banana Banana Banana Banana</Text>
+        <Text style={styles.itemText} numberOfLines={1}>{data.product}</Text>
         <View style={styles.actionIcons}>
           <Ionicons name="images" size={24} color="rgba(247,255,244,0.8)" style={styles.icon} />
           <TouchableOpacity
@@ -96,7 +96,7 @@ const ProductField = ({data, delet, onRefresh}) => {
           }}
         >
           <View style={styles.centeredView}>
-            <View style={styles.modalView}>  
+            <View style={styles.modalView}> 
               <View style={ data.memoid === 'Costco'  ? [styles.placeModal, styles.costcoColor] :  
                             data.memoid === 'Dollarama'  ? [styles.placeModal, styles.dollaramaColor] : 
                             data.memoid === 'Pharmacy'  ? [styles.placeModal, styles.pharmacyColor] : 
