@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
-import {LinearGradient} from 'expo-linear-gradient';
 
 import CartIcon from "../../assets/icons/addItem.png";
 import PhotoIcon from "../../assets/icons/PhotoGallery.png";
@@ -18,7 +17,6 @@ import Question from "../../assets/icons/question2.png";
 import Ad from "../../assets/gif/PLACE-YOUR-ADVERT-HERE-2.gif";
 import EuIcon from "../../assets/icons/eulogoSquareTodo.png";
 import Load from "../../assets/gif/load.gif";
-import Line from "../../assets/icons/line.png";
 import ShareList from "../../assets/icons/shareList4.png";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
