@@ -230,7 +230,7 @@ export default function PhotoList({navigation}) {
                   <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
                     <Btn 
                       title={'Delete'}
-                        onPress={() => {setModalDelConf(!modalDelConf)}}
+                      onPress={() => {setModalDelConf(!modalDelConf)}}
                     />
                       <Modal
                         animationType="fade"

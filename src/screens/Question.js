@@ -82,7 +82,7 @@ export default function Question({navigation}) {
 
         
           <View style={styles.tutorialContainer}>
-            <Text style={[styles.title, styles.tutoTitle]}>Watch tutorial</Text>
+            <Text style={[styles.title, styles.tutoTitle]}>Watch tutorial (Under Work) </Text>
             
             <View style={{padding:20, flexDirection: 'row', gap: 20, flexWrap: 'wrap', justifyContent: 'center'}}>
            

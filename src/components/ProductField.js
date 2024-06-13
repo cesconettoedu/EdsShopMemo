@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Platform, Modal, Image } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Modal, Image } from "react-native";
 import ItemAddUpdate from "./ItemAddUpdate";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Btn from "./Btn";
+
+import NoImage from "../../assets/noimage.png";
 import Update from "../../assets/icons/update.png";
 
 const ProductField = ({data, delet, onRefresh}) => {
@@ -66,25 +69,32 @@ const ProductField = ({data, delet, onRefresh}) => {
               >
                 <Text style={{marginBottom: 10, fontSize: 15, color:'white', fontWeight:'bold'}}>{data.memoid}</Text>
               </View> 
-              <Text style={{fontSize: 25}}>
+              <Text style={{fontSize: 25, marginBottom: 20}}>
                 {data.product}
               </Text> 
-              <Image
+              
+              {data.urilink &&
+                <Image
                   src={data.urilink}
                   alt="product"
                   resizeMode="contain"
-                  style={{width: 100, height: 100}} 
+                  style={{width: '100%', height: '67%', borderRadius:3, marginBottom: 25}} 
                 />
-              <TouchableOpacity
-                onPress={() => setModalUpdateProd(true)}        
-                style={{marginTop: 30}}
-                >
+              }
+              {!data.urilink &&
                 <Image
-                  source={Update}
-                  alt="update"
-                  style={{width: 50, height: 50}} 
+                  source={NoImage}
+                  alt="no"
+                  resizeMode="contain"
+                  style={{width: '50%', height: '37%', borderRadius:3, marginBottom: 25}} 
                 />
-              </TouchableOpacity>      
+              }
+              <View style={{flex: 1 ,justifyContent: 'flex-end'}}>
+                <Btn 
+                  title={'Update'}
+                  onPress={() => setModalUpdateProd(true)}
+                />
+              </View>
             </View>
           </View>
         </TouchableOpacity>
@@ -241,7 +251,7 @@ item: {
     paddingRight: 10,
     paddingLeft: 10,
     paddingTop: 5,
-    marginBottom: 30,
+    marginBottom: 10,
   },
 });
 
