@@ -13,8 +13,8 @@ import * as Sharing from 'expo-sharing';
 import Fontisto from '@expo/vector-icons/Fontisto';
 import Photos from "../services/sqlite/Photos";
 
-import Cam from "../../assets/icons/cam.png";
-import Gallery from "../../assets/icons/galler.png";
+import Cam from "../../assets/icons/camW.png";
+import Gallery from "../../assets/icons/gallerW.png";
 import PhotoModalToSave from "../components/PhotoModalToSave";
 import Btn from "../components/Btn";
 import SharePhoto from "../../assets/icons/shareList4.png";
@@ -171,7 +171,7 @@ export default function PhotoList({navigation}) {
                             alt="camera"
                             style={{ width: 65, height: 65 }}
                           />
-                          <Text>Camera</Text>
+                          <Text style={{color:'#f7f5f4',  fontWeight: 500, letterSpacing: 2}}>Camera</Text>
                         </TouchableOpacity>
                               
                         <TouchableOpacity
@@ -183,7 +183,7 @@ export default function PhotoList({navigation}) {
                             alt="gallery"
                             style={{ width: 65, height: 65 }}
                           />
-                          <Text>Gallery</Text>
+                          <Text style={{color:'#f7f5f4',  fontWeight: 500, letterSpacing: 2}}>Gallery</Text>
                         </TouchableOpacity>
 
                       </View>
@@ -337,7 +337,7 @@ const styles = StyleSheet.create({
     gap: 40    
   },
    button: {
-    backgroundColor: "#F6792B",
+    backgroundColor: "#363535",
     borderRadius: 20,
     padding: 10,
     elevation: 2,

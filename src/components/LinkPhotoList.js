@@ -10,10 +10,12 @@ import {
   Modal,
 } from "react-native";
 
+import Fontisto from '@expo/vector-icons/Fontisto';
+
 import Photos from "../services/sqlite/Photos";
 
-import Cam from "../../assets/icons/cam.png";
-import Gallery from "../../assets/icons/galler.png";
+import Cam from "../../assets/icons/camW.png";
+import Gallery from "../../assets/icons/gallerW.png";
 import PhotoModalToSave from "./PhotoModalToSave";
 import Btn from "./Btn";
 import Load from "../../assets/gif/Spinner3.gif";
@@ -166,12 +168,14 @@ export default function LinkPhotoList({choise}) {
                   setModalAddVisible(!modalAddVisible);
                 }}>
                   <View style={styles.centeredView}>
-                    <View style={styles.modalView}>   
+                    <View style={styles.modalView}>
+                      <View style={{left: '55%'}}>
                       <TouchableOpacity
                         style={styles.closeModal}
                         onPress={() => setModalAddVisible(!modalAddVisible)}>
-                        <Text>X</Text>
+                        <Fontisto name="close" size={30} color="black" />
                       </TouchableOpacity>                                     
+                      </View>                      
                     
                       <View style={styles.addChoiseCont}>
             
@@ -184,7 +188,7 @@ export default function LinkPhotoList({choise}) {
                             alt="camera"
                             style={{ width: 65, height: 65 }}
                           />
-                          <Text>Camera</Text>
+                          <Text style={{color:'#f7f5f4',  fontWeight: 500, letterSpacing: 2}}>Camera</Text>
                         </TouchableOpacity>
                               
                         <TouchableOpacity
@@ -196,7 +200,7 @@ export default function LinkPhotoList({choise}) {
                             alt="gallery"
                             style={{ width: 65, height: 65 }}
                           />
-                          <Text>Gallery</Text>
+                          <Text style={{color:'#f7f5f4',  fontWeight: 500, letterSpacing: 2}}>Gallery</Text>
                         </TouchableOpacity>
 
                       </View>
@@ -261,11 +265,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(58, 55, 49, 0.95)' //transparent
   },
   modalView: {
+    flexDirection: 'column',
     width: '90%',
     margin: 20,
     backgroundColor: '#f7f5f4',
     borderRadius: 20,
-    padding: 35,
+    paddingBottom: 35,
+    paddingLeft: 35,
+    paddingRight: 35,
+    paddingTop: 5,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -283,7 +291,7 @@ const styles = StyleSheet.create({
     gap: 40    
   },
    button: {
-    backgroundColor: "#F6792B",
+    backgroundColor: "#363535",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
@@ -292,16 +300,7 @@ const styles = StyleSheet.create({
     
   },
   closeModal:{
-    backgroundColor: 'white',
-    borderColor: 'black',
-    borderWidth: 1,
-    left: 140,
-    top: -30,
-    height: 30,
-    paddingTop: 3,
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+    marginBottom: 25
   },
 
 
