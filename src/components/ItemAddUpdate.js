@@ -117,7 +117,7 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
               width: "100%",
               justifyContent: "space-between",
               alignItems: "center",
-              
+              marginBottom: 20
             }}
           >
             <ScrollView
