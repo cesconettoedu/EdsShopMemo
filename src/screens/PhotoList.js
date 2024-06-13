@@ -97,32 +97,30 @@ export default function PhotoList({navigation}) {
             <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
           </View>
           <View style={styles.container}>
-            <View style={{ justifyContent: 'center',
-              alignItems: 'center'}}>
-
-            <FlatList
-              data={bringPhotos}
-              refreshControl={
-                <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-              }
-              numColumns={3}
-              renderItem={({ item }) => (
-                <View key={item.id} style={styles.imageCont}>
-                  
-                  <TouchableOpacity
-                    onPress={() => {
-                      setModalSingleVisible(!modalSingleVisible), 
-                      setSingleImageUri(item.imageAddress),
-                      setSingleTitle(item.productName),
-                      setSingleDescript(item.description)
-                      setSingleId(item.id);
-                    }}
-                    >
-                    <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
-                    <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
+            <View style={{ justifyContent: 'center', alignItems: 'center'}}>
+              <FlatList
+                data={bringPhotos}
+                refreshControl={
+                  <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                }
+                numColumns={3}
+                renderItem={({ item }) => (
+                  <View key={item.id} style={styles.imageCont}>
+                    
+                    <TouchableOpacity
+                      onPress={() => {
+                        setModalSingleVisible(!modalSingleVisible), 
+                        setSingleImageUri(item.imageAddress),
+                        setSingleTitle(item.productName),
+                        setSingleDescript(item.description)
+                        setSingleId(item.id);
+                      }}
+                      >
+                      <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
+                      <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
               />
             </View>
 
