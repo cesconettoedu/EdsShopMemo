@@ -202,7 +202,6 @@ export default function Home({navigation}) {
                 </ScrollView>
             </View>
 
-
       {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
             <View style={styles.viewBottom}>
               <View style={{ width: '' }}>
@@ -244,7 +243,6 @@ export default function Home({navigation}) {
                   <ItemAddUpdate
                     modalVisibleAdd={setModalVisibleAdd}            
                   />
-
                 </Modal> 
 
             </View>
@@ -263,7 +261,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   }, 
 
-  
   container: {
     flex: 1,
   }, 

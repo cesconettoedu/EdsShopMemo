@@ -5,8 +5,6 @@ import Btn from "../components/Btn"
 
 export default function Tutorial({open}) {
 
-
-
   const allItems = require("../../assets/instructions/01allitems.png");
   const cart = require("../../assets/instructions/02cart.png");
   const photos = require("../../assets/instructions/03photo.png");
@@ -21,9 +19,6 @@ export default function Tutorial({open}) {
   useEffect(() => {
     setScreens(allItems);
   }, [])
-
-
-
 
 
   return (

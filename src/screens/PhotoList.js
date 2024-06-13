@@ -58,9 +58,7 @@ export default function PhotoList({navigation}) {
   }
 
 
-
-
-  // got to open component to get photos from Device
+// got to open component to get photos from Device
   const getFromCamOrGall = (o) =>{
     setChoiseCamGal(o);
     setOpenSavePhotoComp(true);
@@ -349,8 +347,5 @@ const styles = StyleSheet.create({
   closeModal:{
     marginBottom: 25
   }
-
-
-
 
 });

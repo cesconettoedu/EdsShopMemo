@@ -89,9 +89,7 @@ export default function LinkPhotoList({choise}) {
   });
   
 
-
-
-   const justLoad = () => {
+  const justLoad = () => {
     setLoad(true);
       setTimeout(() => {
         setLoad(false);
@@ -205,8 +203,6 @@ export default function LinkPhotoList({choise}) {
                     </View>
                   </View>
               </Modal>
-
-          
 
           </View>
         </>

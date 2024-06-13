@@ -5,7 +5,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Btn from "./Btn";
 
 import NoImage from "../../assets/noimage.png";
-import Update from "../../assets/icons/update.png";
 
 const ProductField = ({data, delet, onRefresh}) => {
 
@@ -123,52 +122,6 @@ const ProductField = ({data, delet, onRefresh}) => {
 };
 
 const styles = StyleSheet.create({
-  // item: {
-  //   backgroundColor: "#f7f5f4",
-  //   padding: 4,
-  //   borderRadius: 3,
-  //   flexDirection: "row",
-  //   alignItems: "center",
-  //   justifyContent: "space-between",
-  //   margin: 2,
-  //   marginBottom: 5,
-  //   height: 40,
-  // },
-  // itemLeft: {
-  //   flexDirection: "row",  
-  //   flexWrap: "wrap",
-  // },
-
-  // product: {
-  //   //limit size of product description field
-  //   fontSize: 18, 
-  //   width: Platform.OS === "ios" ? 220 : 170,
-  // },
-
-  // iconsPhoTra:{
-  //   flexDirection: 'row', 
-    
-  // },
-  // photo:{
-  //   left: Platform.OS === "ios" ? "180%" : "60%",
-  // },
-  // trash: {
-  //   flexDirection: 'row', 
-  //   justifyContent: "flex-end",
-  //   width: 25,
-  //   height: 25,
-  //   left: Platform.OS === "ios" ? "180%" : "80%",
-  // },
-  // place: {
-  //   width: '80%',
-  //   height: 24,
-  //   opacity: 0.4,
-  //   borderRadius: 5,
-  //   marginRight: 15,
-  //   paddingTop: 2,
-  //   alignItems: 'center',  
-  // },
-
 item: {
     flexDirection: 'row',
     alignItems: 'center',

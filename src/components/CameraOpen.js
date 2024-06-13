@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet ,Text, View, Button, Image} from 'react-native';
+import { StyleSheet ,Text, View } from 'react-native';
 import { Camera } from 'expo-camera';
 import Btn from './Btn';
 
@@ -44,23 +44,12 @@ const CameraOpen = (close) => {
                 //type={type}
                 ratio={'1:1'} />
         </View>
-        {/* <Button
-                title="Flip Image"
-                onPress={() => {
-                  setType(
-                    type === Camera.Constants.Type.back
-                      ? Camera.Constants.Type.front
-                      : Camera.Constants.Type.back
-                  );
-                }}>
-        </Button> */}
+
         <Btn 
           title="Take Picture" 
           onPress={() => takePicture()}
         />
-        {/* {image && 
-          <Image source={{uri: image}} style={{flex:1}}
-        />} */}
+
     </View>
   )
 }
