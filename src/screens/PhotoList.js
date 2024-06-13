@@ -97,6 +97,8 @@ export default function PhotoList({navigation}) {
             <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
           </View>
           <View style={styles.container}>
+            <View style={{ justifyContent: 'center',
+              alignItems: 'center'}}>
 
             <FlatList
               data={bringPhotos}
@@ -115,13 +117,14 @@ export default function PhotoList({navigation}) {
                       setSingleDescript(item.description)
                       setSingleId(item.id);
                     }}
-                  >
+                    >
                     <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
                     <Text ellipsizeMode='tail' style={styles.prodTitle}>{`${item.productName.substring(0, 11)}...`}</Text>
                   </TouchableOpacity>
                 </View>
               )}
-            />
+              />
+            </View>
 
             <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
 
@@ -279,14 +282,13 @@ export default function PhotoList({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.96,
+    flex: 0.90,
     padding: 10,   
     height: "50%",
   },
   imageCont: {
     margin: 5,
     marginBottom: 20,
-    
   },
   imageSize: {
     width: 100,
