@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput, Modal, ScrollView } from "react-native";
 
+
 import Items from "../services/sqlite/Items";
 import Btn from "../components/Btn";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import LinkPhotoList from "../components/LinkPhotoList";
 
 import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
@@ -12,13 +15,24 @@ import Party from "../../assets/icons/party.png";
 import Ok from "../../assets/joia1.png";
 
 function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingleProd, updateItem }) {
-
+  
 
   const [productName, setProductName] = useState(null);
   const [selectedIdMemo, setSelectedIdMemo] = useState("Any");
   const [modalVisibleB, setModalVisibleB] = useState(false);
+  const [modalVisibleLinkPhoto, setModalVisibleLinkPhoto] = useState(false);
   
+  const [uriToLink, setUriToLink] = useState("");
   
+
+  //pegando a uri da photo do LinkPhotoList.js
+  handleUriToLink = (num) => {
+    setUriToLink(num);
+    console.log("chegouuu", uriToLink);
+  }
+
+
+
 ////////////// to save a new item  /////////////////////
   const handleAddProd = () => {
     setProductName(null);
@@ -67,7 +81,6 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
           };
 
 
-
   useEffect(() => {
     if(prodData){
       setProductName(prodData.product);
@@ -75,6 +88,11 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
     }
   }, [])
   
+
+
+  const closeLinkPhotoList = () => {
+    setModalVisibleLinkPhoto(false);
+  }
 
   return (
     <>
@@ -165,6 +183,41 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
               />
             </TouchableOpacity>
             </ScrollView>
+          </View>
+          <View>
+            <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 10, marginTop: 10 }}>
+              Do you like to link a photo ?
+            </Text>
+            <TouchableOpacity
+              onPress={() => setModalVisibleLinkPhoto(true)}  
+            >
+              <Ionicons name="images" size={40} color="gray" style={{alignSelf:'center'}}/>
+              {/* 
+              
+              Tenho que cirar uma maneira de linkar o uri e o produto em outra tabela
+              
+            */}
+            <Image
+              src={uriToLink}
+              alt="uri"
+              style={{width: 60, height:60, alignSelf:'center'}}
+            />
+            </TouchableOpacity>
+
+            <Modal
+              animationType="slide"
+              visible={modalVisibleLinkPhoto}
+              onRequestClose={() => {
+                setModalVisibleLinkPhoto(!setModalVisibleLinkPhoto);
+              }}>
+                <LinkPhotoList
+                  choise={{
+                    closeLinkPhotoList,
+                    handleUriToLink,
+                  }}
+                />
+            </Modal> 
+
           </View>
 
           <View
