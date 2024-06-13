@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     position : "absolute",
     alignSelf: 'center',
     top: '88%',
-    backgroundColor: "#ff8c00",
+    backgroundColor: "#363535",
   },
   shareList: {
     backgroundColor: "#ff8c00",

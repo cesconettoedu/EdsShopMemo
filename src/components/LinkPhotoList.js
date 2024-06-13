@@ -16,6 +16,7 @@ import Cam from "../../assets/icons/cam.png";
 import Gallery from "../../assets/icons/galler.png";
 import PhotoModalToSave from "./PhotoModalToSave";
 import Btn from "./Btn";
+import Load from "../../assets/gif/Spinner3.gif";
 
 
 
@@ -31,6 +32,8 @@ export default function LinkPhotoList({choise}) {
   const [choiseCamGal, setChoiseCamGal] = useState();
 
   const [singleUri, setSingleUri] = useState();
+
+  const [load, setLoad] = useState(false); 
   
 
 //to bring all images to the database ////////////////////////////////////////
@@ -62,7 +65,7 @@ export default function LinkPhotoList({choise}) {
       setRefreshing(false);
     }, 1000);
   };
-
+ 
   useEffect(() => {
     fetchPhoto();
   }, [])
@@ -87,16 +90,33 @@ export default function LinkPhotoList({choise}) {
   
 
 
+
+   const justLoad = () => {
+    setLoad(true);
+      setTimeout(() => {
+        setLoad(false);
+      }, 500);
+    };
    
 
   return (
     <>
       {!openSavePhotoComp && 
         <>
-          <View style={{backgroundColor: '#ff8c00', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{backgroundColor: '#363535', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Select Photo</Text>
           </View>
           <View style={styles.container}>
+         
+         
+          {load &&
+            <Image
+            source={Load}
+            alt="loading"
+            style={styles.loadFake}
+            /> 
+          }
+
 
             <FlatList
               data={bringPhotos}
@@ -111,7 +131,7 @@ export default function LinkPhotoList({choise}) {
                     onPress={() => {
                      
                       setSingleUri(item.imageAddress);
-                      
+                      justLoad();
                     }}
                   >
                     <Image style={styles.imageSize} src={item.imageAddress} alt="error" />
@@ -207,10 +227,20 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     height: "50%",
   },
+  loadFake:{
+    width: 40,
+    height: 40,
+    position: 'absolute',
+    zIndex: 9, 
+    alignSelf: 'center',
+    backgroundColor: 'white', 
+    borderRadius: 50,
+    marginTop: 30, 
+    padding: 20
+  },
   imageCont: {
     margin: 5,
     marginBottom: 20,
-    
   },
   imageSize: {
     width: 100,

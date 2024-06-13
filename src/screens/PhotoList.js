@@ -216,7 +216,7 @@ export default function PhotoList({navigation}) {
                   <Image
                     src={singleImageUri}
                     alt="image"
-                    style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
+                    style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20, marginTop: 35}}
                   />
                   <Text 
                     style={{marginBottom: 10, fontSize: 20, }}
