@@ -1,2 +1,0 @@
-Agora tenho que criar uma coluna na tabela de items para colocar
-a uri que peguei

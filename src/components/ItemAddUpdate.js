@@ -44,7 +44,7 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
     if (productName === null) {
       alert("Please type a name");
     } else {
-      Items.create({ product: productName, memoid: selectedIdMemo })
+      Items.create({ product: productName, memoid: selectedIdMemo, urilink: uriToLink })
         .then(created)
         .catch((err) => console.log(err));
     }
@@ -65,7 +65,7 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
     if (productName === null) {
       alert("Please type a name");
     } else {
-      Items.update( prodData.id, {product: productName, memoid: selectedIdMemo} )
+      Items.update( prodData.id, {product: productName, memoid: selectedIdMemo, urilink: uriToLink} )
         .then(updated)
         .catch((err) => console.log(err));
     }

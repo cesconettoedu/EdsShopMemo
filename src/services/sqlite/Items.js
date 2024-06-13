@@ -10,7 +10,7 @@ db.transaction((tx) => {
   //<<<<<<<<<<<<<<<<<<<<<<<< USE ISSO APENAS DURANTE OS TESTES!!! >>>>>>>>>>>>>>>>>>>>>>>
 
   tx.executeSql(
-    "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, product TEXT, memoid TEXT);"
+    "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, product TEXT, memoid TEXT, urilink TEXT);"
 
   );
 });
@@ -23,12 +23,13 @@ db.transaction((tx) => {
  *  - Pode retornar erro (reject) caso exista erro no SQL ou nos parâmetros.
  */
 const create = (obj) => {
+  console.log("SQL",obj);
   return new Promise((resolve, reject) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "INSERT INTO items (product, memoid) values (?, ?);",
-        [obj.product, obj.memoid],
+        "INSERT INTO items (product, memoid, urilink) values (?, ?, ?);",
+        [obj.product, obj.memoid, obj.urilink],
         //-----------------------
         (_, { rowsAffected, insertId }) => {
           if (rowsAffected > 0) resolve(insertId);
@@ -95,8 +96,8 @@ const update = (id, obj) => {
     db.transaction((tx) => {
       //comando SQL modificável
       tx.executeSql(
-        "UPDATE items SET product=?, memoid=? WHERE id=?;",
-        [obj.product, obj.memoid, id],
+        "UPDATE items SET product=?, memoid=?, urilink=? WHERE id=?;",
+        [obj.product, obj.memoid, obj.urilink ,id],
         //-----------------------
         (_, { rowsAffected }) => {
           if (rowsAffected > 0) resolve(rowsAffected);

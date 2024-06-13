@@ -14,7 +14,7 @@ const ProductField = ({data, delet, onRefresh}) => {
     onRefresh();
   } 
 
-
+ console.log('Modal aparecer image', data);
   return (
     <>
       {/* <View style={styles.item}>
@@ -108,6 +108,12 @@ const ProductField = ({data, delet, onRefresh}) => {
               <Text style={{fontSize: 25}}>
                 {data.product}
               </Text> 
+              <Image
+                  src={data.urilink}
+                  alt="product"
+                  resizeMode="contain"
+                  style={{width: 100, height: 100}} 
+                />
               <TouchableOpacity
                 onPress={() => setModalUpdateProd(true)}        
                 style={{marginTop: 30}}
