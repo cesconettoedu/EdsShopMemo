@@ -95,7 +95,7 @@ export default function PhotoList({navigation}) {
     <>
       {!openSavePhotoComp && 
         <>
-          <View style={{backgroundColor: '#ff8c00', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
+          <View style={{backgroundColor: '#363535', height: '5%', justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{fontWeight: 'bold', fontSize: 18, color: '#f7f5f4'}}>Product photos</Text>
           </View>
           <View style={styles.container}>
@@ -125,16 +125,16 @@ export default function PhotoList({navigation}) {
               )}
             />
 
-            <View style={{flexDirection: 'row',justifyContent:'center', gap: 110}}>
+            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
 
-              <View style={{ justifyContent: 'flex-end'}}>
+              <View >
                 <Btn 
                   title={'Close'}
                   onPress={() => navigation.navigate('Home')}
                 />
               </View>
                 
-              <View style={{ justifyContent: 'flex-end' }}>
+              <View >
                 <Btn 
                   title={'Add +'}
                   onPress={() => setModalAddVisible(true)}
@@ -208,7 +208,7 @@ export default function PhotoList({navigation}) {
                     <Image
                       source={SharePhoto}
                       alt="share photo"
-                      style={{width: 40, height: 40, borderRadius: 100, borderWidth: 2, borderColor: '#ff8c00'}}
+                      style={{width: 40, height: 40, borderRadius: 100, borderWidth: 2, borderColor: '#0580bd'}}
                     />
                   </TouchableOpacity>  
                   <Image
@@ -216,17 +216,6 @@ export default function PhotoList({navigation}) {
                     alt="image"
                     style={{width: '100%', height: '67%', borderRadius: 5, marginBottom: 20}}
                   />
-                  {/* <TouchableOpacity
-                    onPress={() => {shareImage(singleImageUri)}}
-                    style={{position: 'absolute', bottom: 175, right: 35}}
-                  >
-                    <Image
-                      source={SharePhoto}
-                      alt="share photo"
-                      style={{width: 38, height: 38}}
-                    />
-                  </TouchableOpacity> */}
-
                   <Text 
                     style={{marginBottom: 10, fontSize: 20, }}
                     numberOfLines={1}
@@ -291,8 +280,7 @@ export default function PhotoList({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 0.96,
-    padding: 10,
-    flexWrap: "wrap",
+    padding: 10,   
     height: "50%",
   },
   imageCont: {
@@ -351,7 +339,6 @@ const styles = StyleSheet.create({
     elevation: 2,
     alignItems: 'center',
     width: '50%'
-    
   },
   closeModal:{
     backgroundColor: 'white',

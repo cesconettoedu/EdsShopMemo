@@ -11,7 +11,7 @@ export default function (props)  {
               [styles.btn, styles.orange]]}
       onPress={props.onPress}
     >
-      <Text style={{ color: "white", textAlign:'center' }}>{props.title}</Text>
+      <Text style={{ color: "white", textAlign:'center', fontWeight: 700, letterSpacing: 2}}>{props.title}</Text>
     </TouchableOpacity>
   )
 }
@@ -19,19 +19,20 @@ export default function (props)  {
 
 const styles = StyleSheet.create({
   btn: {
-    borderWidth: 5,
-    borderColor: "#e3f2fa",
+    borderWidth: 3,
+    borderColor: "black",
     alignItems: "center",
     justifyContent: "center",
-    width: 70,
-    height: 70,
-    borderRadius: 100,
+    width: 120,
+    height: 50,
+    borderRadius: 30,
   },
   red: {
     backgroundColor: "#c6122e",
+    borderColor: "#d60000",
   },
   orange: {
-    backgroundColor: "#ff8c00",
+    backgroundColor: "#363535",
   },
   takePicture: {
     position : "absolute",

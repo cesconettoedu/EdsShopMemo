@@ -4,7 +4,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput, Modal, Scro
 
 import Items from "../services/sqlite/Items";
 import Btn from "../components/Btn";
-import Ionicons from '@expo/vector-icons/Ionicons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import LinkPhotoList from "../components/LinkPhotoList";
 
 import AnyIcon from "../../assets/icons/any3.png";
@@ -117,6 +117,7 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
               width: "100%",
               justifyContent: "space-between",
               alignItems: "center",
+              
             }}
           >
             <ScrollView
@@ -190,12 +191,14 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
             <TouchableOpacity
               onPress={() => setModalVisibleLinkPhoto(true)}  
             >
-              <Ionicons name="images" size={40} color="gray" style={{alignSelf:'center'}}/>
+              {!uriToLink && <MaterialCommunityIcons name="file-image-plus-outline" size={120} color="gray" style={{alignSelf:'center'}}/>}
+              {uriToLink && 
               <Image
                 src={uriToLink}
                 alt="uri"
-                style={{width: 60, height:60, alignSelf:'center'}}
+                style={{width: 120, height:120, alignSelf:'center', borderRadius: 5}}
               />
+              }
             </TouchableOpacity>
 
             <Modal
