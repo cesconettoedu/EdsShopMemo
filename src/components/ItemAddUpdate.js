@@ -28,7 +28,6 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
   //pegando a uri da photo do LinkPhotoList.js
   handleUriToLink = (num) => {
     setUriToLink(num);
-    console.log("chegouuu", uriToLink);
   }
 
 

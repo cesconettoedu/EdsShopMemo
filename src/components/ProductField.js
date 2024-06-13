@@ -14,45 +14,9 @@ const ProductField = ({data, delet, onRefresh}) => {
     onRefresh();
   } 
 
- console.log('Modal aparecer image', data);
+
   return (
     <>
-      {/* <View style={styles.item}>
-        <TouchableOpacity
-          onPress={() => setModalSingleProd(true)}
-        >
-          <View style={styles.itemLeft}>
-              
-            <View style={ data.memoid === 'Costco'  ? [styles.place, styles.costcoColor] :  
-                          data.memoid === 'Dollarama'  ? [styles.place, styles.dollaramaColor] : 
-                          data.memoid === 'Pharmacy'  ? [styles.place, styles.pharmacyColor] : 
-                          data.memoid === 'Party'  ? [styles.place, styles.partyColor] :
-                          [styles.place, styles.any]}>
-              <Text>{data.memoid}</Text>
-            </View>
-
-            <Text style={styles.product} numberOfLines={1}>
-            {data.product} 
-            </Text>
-
-            <View style={styles.iconsPhoTra}>
-              <View style={styles.photo}>
-                <Text>📷</Text>
-              </View>
-              <TouchableOpacity
-                onPress={delet}               
-              >
-                <View style={styles.trash}>              
-                  <Text>🗑️</Text>
-                </View>
-              </TouchableOpacity>               
-            </View>
-
-          
-          </View>
-        </TouchableOpacity>
-      </View> */}
-
       <View >
         <TouchableOpacity
           onPress={() => setModalSingleProd(true)}
@@ -65,7 +29,8 @@ const ProductField = ({data, delet, onRefresh}) => {
                           [styles.place, styles.any]} >{data.memoid}</Text>
         <Text style={styles.itemText} numberOfLines={1}>{data.product}</Text>
         <View style={styles.actionIcons}>
-          <Ionicons name="images" size={24} color="rgba(247,255,244,0.8)" style={styles.icon} />
+          {data.urilink && <Ionicons name="images" size={24} color="#363535" style={styles.icon} />}
+          {!data.urilink && <Ionicons name="images" size={24} color="#dfdbd8" style={styles.icon} />}
           <TouchableOpacity
                 onPress={delet}   
                 style={styles.icon}             
@@ -75,10 +40,6 @@ const ProductField = ({data, delet, onRefresh}) => {
         </View>
         </TouchableOpacity>
       </View>
-
-
-
-
 
 
     {/* -------------Modal to open a single product field -------------- */}

@@ -31,7 +31,6 @@ export default function LinkPhotoList({choise}) {
   const [choiseCamGal, setChoiseCamGal] = useState();
 
   const [singleUri, setSingleUri] = useState();
-  console.log(singleUri);
   
 
 //to bring all images to the database ////////////////////////////////////////
