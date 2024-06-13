@@ -127,10 +127,6 @@ export default function Home({navigation}) {
 
             {/* this is a view of the Middle part where have Store Icons to show SINGLE Lists */}
             <View style={styles.viewMiddle}>
-              {/* <LinearGradient
-                colors={['#484848', '#252525', '#090B10']}
-                style={{ flex: 1 }}
-              > */}
                 <ScrollView
                   horizontal={true}
                   style={{ marginLeft:2, marginRight:2, paddingLeft: 10 }}
@@ -206,7 +202,6 @@ export default function Home({navigation}) {
                     />
                   </View>
                 </ScrollView>
-              {/* </LinearGradient> */}
             </View>
 
 
@@ -225,21 +220,6 @@ export default function Home({navigation}) {
                   />
                 </TouchableOpacity>
               </View>
-
-              <View style={{alignItems:'center', marginBottom: 5, width: ''}}>
-              
-                {/* <TouchableOpacity
-                  style={showList === "*" ?  styles.allItensaActive : styles.allItens}  
-                  onPress={() => {setShowList("*"); testChange = "*"}} 
-                >
-                  <Image
-                    source={AllIcon}
-                    alt="allitens"
-                    style={{ width: 60, height: 60 }}
-                  />
-                </TouchableOpacity> */}
-              </View>
-
               <View style={{}}>
                 <TouchableOpacity
                   style={styles.cart}
@@ -331,7 +311,7 @@ const styles = StyleSheet.create({
     flex: 0.9,
     flexDirection: "row",
     justifyContent: "center",
-    gap: 25,
+    gap: 60,
     alignItems: "center",
   },
   allItens: {

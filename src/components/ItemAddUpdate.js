@@ -191,16 +191,11 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
               onPress={() => setModalVisibleLinkPhoto(true)}  
             >
               <Ionicons name="images" size={40} color="gray" style={{alignSelf:'center'}}/>
-              {/* 
-              
-              Tenho que cirar uma maneira de linkar o uri e o produto em outra tabela
-              
-            */}
-            <Image
-              src={uriToLink}
-              alt="uri"
-              style={{width: 60, height:60, alignSelf:'center'}}
-            />
+              <Image
+                src={uriToLink}
+                alt="uri"
+                style={{width: 60, height:60, alignSelf:'center'}}
+              />
             </TouchableOpacity>
 
             <Modal
@@ -216,7 +211,6 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
                   }}
                 />
             </Modal> 
-
           </View>
 
           <View

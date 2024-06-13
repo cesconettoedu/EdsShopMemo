@@ -9,8 +9,6 @@ import CameraOpen from "./CameraOpen";
 import Click from "../../assets/clicktoimage.png";
 
 function PhotoModalToSave({options}) {
-//  console.log(options.choiseCamGal);
-
 
   const [inputDescription, setinputDescription] = useState('');
   const [inputName, setinputName] = useState ('');
