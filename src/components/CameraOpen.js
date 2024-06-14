@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet ,Text, View } from 'react-native';
+import { StyleSheet ,Text, View, Image } from 'react-native';
 import { Camera } from 'expo-camera';
 import Btn from './Btn';
+import Load from "../../assets/gif/Spinner3.gif";
 
 const CameraOpen = (close) => {
   
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   //const [image, setImage] = useState(null);
-  // const [type, setType] = useState(Camera.Constants.Type.back);
+  //const [type, setType] = useState(Camera.Constants.Type.back);
+  const [load, setLoad] = useState(false); 
 
     
   const takePicture = async () => {
     if(camera){
       const data = await camera.takePictureAsync(null)
-     // setImage(data.uri);
       close.children.getUriFromCamera(data.uri);
       goBack();
     }
@@ -27,6 +28,14 @@ const CameraOpen = (close) => {
     close.children.closeCamera(false)
   }
 
+
+  const justLoad = () => {
+    setLoad(true);
+      setTimeout(() => {
+        setLoad(false);
+      }, 2500);
+  };
+
   useEffect(() => {
     (async () => {
       const cameraStatus = await Camera.requestCameraPermissionsAsync();
@@ -37,6 +46,13 @@ const CameraOpen = (close) => {
    
   return (
     <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,1)',}}>
+        {load &&
+            <Image
+            source={Load}
+            alt="loading"
+            style={styles.loadFake}
+            /> 
+          }
       <View style={styles.cameraContainer}>
           <Camera 
                 ref={ref => setCamera(ref)}
@@ -47,7 +63,7 @@ const CameraOpen = (close) => {
 
         <Btn 
           title="Take Picture" 
-          onPress={() => takePicture()}
+          onPress={() => {takePicture(); justLoad()}}
         />
 
     </View>
@@ -65,5 +81,16 @@ const styles = StyleSheet.create({
   fixedRatio:{
       flex: 1,
       aspectRatio: 0.8,   
+  },
+  loadFake:{
+    width: 40,
+    height: 40,
+    position: 'absolute',
+    zIndex: 9, 
+    alignSelf: 'center',
+    backgroundColor: 'white', 
+    borderRadius: 50,
+    marginTop: 30, 
+    padding: 20
   },
 })

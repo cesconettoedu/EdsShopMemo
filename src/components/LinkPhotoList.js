@@ -129,7 +129,6 @@ export default function LinkPhotoList({choise}) {
                   
                   <TouchableOpacity
                     onPress={() => {
-                     
                       setSingleUri(item.imageAddress);
                       justLoad();
                     }}
