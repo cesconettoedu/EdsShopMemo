@@ -141,7 +141,7 @@ export default function LinkPhotoList({choise}) {
               )}
             />
 
-            <View style={{flexDirection: 'row',justifyContent:'center', gap: 110}}>
+            <View style={{flexDirection: 'row',justifyContent:'center', gap: 50}}>
 
               <View style={{ justifyContent: 'flex-end'}}>
                 <Btn 

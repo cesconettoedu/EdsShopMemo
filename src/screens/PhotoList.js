@@ -226,7 +226,7 @@ export default function PhotoList({navigation}) {
                     numberOfLines={2}
                   >{singleDescript}</Text>
 
-                  <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                  <View style={{flexDirection: 'row', gap:40, marginTop: 10, top: 10}}>
                     <Btn 
                       title={'Delete'}
                       onPress={() => {setModalDelConf(!modalDelConf)}}
@@ -241,7 +241,7 @@ export default function PhotoList({navigation}) {
                         <View style={styles.centeredView}>
                           <View style={styles.modalView}>   
                             <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Confirm delete?</Text>
-                            <View style={{flexDirection: 'row', gap:70, marginTop: 10, top: 10}}>
+                            <View style={{flexDirection: 'row', gap:40, marginTop: 10, top: 10}}>
                           
                             <Btn 
                               title={'Yes'}
