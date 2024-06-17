@@ -2,7 +2,7 @@
   "expo": {
     "name": "Shop Memo",
     "slug": "bestTodo",
-    "version": "1.1.2",
+    "version": "2.2.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,7 +18,7 @@
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 12,
+      "versionCode": 22,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
