@@ -124,7 +124,7 @@ export default function PhotoList({navigation}) {
               />
             </View>
 
-            <View style={{flexDirection: 'row', justifyContent:'space-around'}}>
+            <View style={{flexDirection: 'row', justifyContent:'space-around', paddingTop:10, bottom: -10}}>
 
               <View >
                 <Btn 
@@ -280,9 +280,11 @@ export default function PhotoList({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.90,
+    flex: 0.9,
     padding: 10,   
     height: "50%",
+    backgroundColor: '#EEEEEE'
+    //backgroundColor: 'red'
   },
   imageCont: {
     margin: 5,

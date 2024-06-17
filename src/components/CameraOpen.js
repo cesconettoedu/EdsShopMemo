@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet ,Text, View, Image } from 'react-native';
-import { Camera } from 'expo-camera';
+import { Camera, CameraType } from 'expo-camera/legacy';
 import Btn from './Btn';
 import Load from "../../assets/gif/Spinner3.gif";
 
@@ -9,7 +9,8 @@ const CameraOpen = (close) => {
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [camera, setCamera] = useState(null);
   //const [image, setImage] = useState(null);
-  //const [type, setType] = useState(Camera.Constants.Type.back);
+  //const [type, setType] = useState(CameraType.back);
+  const [permission, requestPermission] = Camera.useCameraPermissions();
   const [load, setLoad] = useState(false); 
 
     
@@ -38,8 +39,8 @@ const CameraOpen = (close) => {
 
   useEffect(() => {
     (async () => {
-      const cameraStatus = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(cameraStatus.status === 'granted');
+      const cameraStatus = await requestPermission();
+      requestPermission(cameraStatus.status === 'grant permission');
     })();
   }, []);
 

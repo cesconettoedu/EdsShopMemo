@@ -140,7 +140,7 @@ export default function LinkPhotoList({choise}) {
               )}
             />
 
-            <View style={{flexDirection: 'row',justifyContent:'center', gap: 50}}>
+            <View style={{flexDirection: 'row',justifyContent:'space-around', paddingTop: 10, bottom: -60}}>
 
               <View style={{ justifyContent: 'flex-end'}}>
                 <Btn 
@@ -221,10 +221,10 @@ export default function LinkPhotoList({choise}) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 0.96,
+    flex: 0.9,
     padding: 10,
-    flexWrap: "wrap",
     height: "50%",
+    backgroundColor: '#EEEEEE'
   },
   loadFake:{
     width: 40,
