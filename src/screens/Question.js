@@ -28,6 +28,7 @@ export default function Question({navigation}) {
          '- Add or delete the photo and description of a product taken on the camera or in the cell phone gallery.',
          '- Send the complete list or selected list to someone else.',
          '- Share product photo to someone else.',
+         '- Link a product to a photo.'
         ]
     },
     {
@@ -81,7 +82,7 @@ export default function Question({navigation}) {
           />
 
         
-          <View style={styles.tutorialContainer}>
+          {/* <View style={styles.tutorialContainer}>
             <Text style={[styles.title, styles.tutoTitle]}>Watch tutorial (Under Work) </Text>
             
             <View style={{padding:20, flexDirection: 'row', gap: 20, flexWrap: 'wrap', justifyContent: 'center'}}>
@@ -115,7 +116,7 @@ export default function Question({navigation}) {
               </TouchableOpacity>
 
             </View>
-          </View>
+          </View> */}
 
 
 
