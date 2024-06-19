@@ -12,7 +12,10 @@
       "channel" : "preview"
     },
     "production": {
-      "channel" : "production"
+      "channel" : "production",
+      "env": {
+        "EAS_BUILD_DISABLE_NPM_CACHE": "1" 
+      }
     }
   },
   "submit": {
