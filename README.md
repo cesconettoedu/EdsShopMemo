@@ -4,6 +4,10 @@
 <h4>It even lets you save photos or take them from your gallery to find out what the packaging of the product you want to remember really was.</h4>
 <h4>And you can share any list or photo..</h4>
 
+<h4>You can find it on the Google Play Store at the link below:</h4>
+
+[Ed's ShopMemo](https://play.google.com/store/apps/details?id=com.cesconettoedu.bestTodo)
+
 ## Screenshots
 
 <img src="./assets/screenshot/a1.png" width="200" height="410"> &emsp; <img src="./assets/screenshot/a2.png" width="200" height="410">&emsp; <img src="./assets/screenshot/a3.png" width="200" height="410">&emsp; <img src="./assets/screenshot/a4.png" width="200" height="410">&emsp; <img src="./assets/screenshot/a5.png" width="200" height="410">
