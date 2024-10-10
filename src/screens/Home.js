@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Image, Modal, ScrollView, Text } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 import List from "../components/List";
 
@@ -21,7 +21,7 @@ import ShareList from "../../assets/icons/shareList4.png";
 
 import ItemAddUpdate from "../components/ItemAddUpdate";
 
-
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 
 export default function Home({navigation}) {
@@ -204,32 +204,34 @@ export default function Home({navigation}) {
 
       {/* this is a view of the Bottom part where have PhotoIcon - AllItens - CartIcon */}
             <View style={styles.viewBottom}>
-              <View style={{ width: '' }}>
+              
                 <TouchableOpacity
-                  style={styles.photo}
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => navigation.navigate('PhotoList')}
                 >
-                  <Image
+                  {/* <Image
                     source={PhotoIcon}
                     alt="photoicon"
                     resizeMode="contain"
                     style={{ width: 120, height: 45 }}
-                  />
+                  /> */}
+                  <FontAwesome size={26} name="photo" color="#6B6E78" />
+                  <Text>Photo Gallery</Text>
                 </TouchableOpacity>
-              </View>
-              <View style={{}}>
+              
                 <TouchableOpacity
-                  style={styles.cart}
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => setModalVisibleAdd(true) }
                 >
-                  <Image
+                  {/* <Image
                     source={CartIcon}
                     alt="carticon"
                     resizeMode="contain"
                     style={{ width: 120, height: 45 }}
-                  />
+                  /> */}
+                  <FontAwesome size={36} name="plus" color="#6B6E78" />
+                   <Text>Add item</Text>
                 </TouchableOpacity>
-              </View>
 
               {/*--------- Modal ----------------- to open a Component to insert info */}
                 <Modal
@@ -308,6 +310,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     gap: 60,
     alignItems: "center",
+    backgroundColor:"#ffffff"
   },
   allItens: {
     borderWidth: 1, 

@@ -283,18 +283,17 @@ const styles = StyleSheet.create({
   // Modal Cart Add
   centeredView: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
-    marginTop: 22,
     height: 400,
     width: "100%",
-    alignSelf: "center",
     backgroundColor: "rgba(58, 55, 49, 0.95)",
   },
   modalView: {
-    width: "90%",
+    width: "95%",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderTopRightRadius: 10,
+    borderTopLeftRadius: 10,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",

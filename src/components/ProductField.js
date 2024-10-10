@@ -126,7 +126,7 @@ item: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 10,
+    paddingVertical: 6,
     borderBottomWidth: 1,
     borderBottomColor: 'rgba(247,255,244,0.05)',
     width:' 95%',
