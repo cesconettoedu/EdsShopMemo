@@ -6,6 +6,7 @@ import Items from "../services/sqlite/Items";
 import Btn from "../components/Btn";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import LinkPhotoList from "../components/LinkPhotoList";
 
 
@@ -224,17 +225,23 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
                       
             {prodData && 
             <>
-              <Btn 
-                title={"Close"} 
+              <TouchableOpacity
+                style={{alignItems: 'center', minWidth: 120, }}
                 onPress={() => { 
-                    modalUpdateProd(false)
-                    modalSingleProd(false)                             
+                  modalUpdateProd(false)
+                  modalSingleProd(false)                             
                 }}
-              />
-              <Btn
-                title={"Update"}
+              >
+                <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                <Text style={{fontSize: 12}}>Close</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{alignItems: 'center', minWidth: 120, }}
                 onPress={() => { handleUpdateProduct() }}
-              />
+              >
+                <AntDesign name="check" size={24} color="#6B6E78" />
+                <Text style={{fontSize: 12}}>Update</Text>
+              </TouchableOpacity>
             </>
             }
             {!prodData && 
@@ -266,8 +273,8 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
 
       {/*--------- Modal ----------------- to show OK after save a item */}
       <Modal animationType="fade" transparent={true} visible={modalVisibleB}>
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+        <View style={styles.centeredViewOk}>
+          <View style={styles.modalViewOk}>
             <Text
               style={{ fontWeight: "bold", fontSize: 20, marginBottom: 10 }}
             >
@@ -337,6 +344,31 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     alignItems: "center",
     backgroundColor:'#ffff'
+  },
+
+  // Ok modal
+  centeredViewOk: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    height: 400,
+    width: "100%",
+    backgroundColor: "rgba(58, 55, 49, 0.95)",
+  },
+  modalViewOk: {
+    width: "95%",
+    backgroundColor: "#EEEEEE",
+    borderRadius: 10,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   
 });

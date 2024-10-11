@@ -271,6 +271,7 @@ const styles = StyleSheet.create({
 // view with Store Icons  
   viewMiddle: {
     flex: 0.8,
+    paddingBottom: 10
   },
   storeContainer:{
     flex:1,
@@ -291,7 +292,7 @@ const styles = StyleSheet.create({
     borderColor: "#7A7D88",
   },
   
-// view with PhotoIcon - AllItens - CartIcon  
+// view with PhotoGallery and Add Item icon 
   viewBottom: {
     flex: 0.9,
     flexDirection: "row",

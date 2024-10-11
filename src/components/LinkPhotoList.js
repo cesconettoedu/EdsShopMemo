@@ -11,6 +11,9 @@ import {
 } from "react-native";
 
 import Fontisto from '@expo/vector-icons/Fontisto';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+
 
 import Photos from "../services/sqlite/Photos";
 
@@ -140,27 +143,34 @@ export default function LinkPhotoList({choise}) {
               )}
             />
 
-            <View style={{flexDirection: 'row',justifyContent:'space-around', paddingTop: 10, bottom: -60}}>
+            <View style={{flexDirection: 'row',justifyContent: "center", gap: 60, bottom: -60}}>
 
               <View style={{ justifyContent: 'flex-end'}}>
-                <Btn 
-                  title={'Close'}
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={choise.closeLinkPhotoList}
-                />
+                >
+                  <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Close</Text>
+                </TouchableOpacity>
               </View>
                 
               <View style={{ justifyContent: 'flex-end' }}>
-                <Btn 
-                  title={'Add +'}
-                  onPress={() => setModalAddVisible(true)}
-                />
+              <TouchableOpacity
+                style={{alignItems: 'center', minWidth: 120, }}
+                onPress={() => setModalAddVisible(true)}
+              >
+                <FontAwesome  name="plus" size={26} color="#6B6E78" />
+                <Text  style={{fontSize: 12}}>New photo</Text>
+              </TouchableOpacity>
               </View>
+              
 
             </View>
             
       {/*---------------------------- Modal to open a Camera or Gallery Choice ----------------------- */}
               <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={modalAddVisible}
                 onRequestClose={() => {
@@ -257,8 +267,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
-    height: 400,
     width: '100%',
     alignSelf: 'center',
     backgroundColor: 'rgba(58, 55, 49, 0.95)' //transparent

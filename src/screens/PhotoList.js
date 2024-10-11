@@ -11,6 +11,9 @@ import {
 } from "react-native";
 import * as Sharing from 'expo-sharing';
 import Fontisto from '@expo/vector-icons/Fontisto';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
+import AntDesign from '@expo/vector-icons/AntDesign';
 import Photos from "../services/sqlite/Photos";
 
 import Cam from "../../assets/icons/camW.png";
@@ -127,17 +130,23 @@ export default function PhotoList({navigation}) {
             <View style={{flexDirection: 'row', justifyContent:'space-around', paddingTop:10, bottom: -10}}>
 
               <View >
-                <Btn 
-                  title={'Close'}
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => navigation.navigate('Home')}
-                />
+                >
+                  <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Close</Text>
+                </TouchableOpacity>
               </View>
                 
               <View >
-                <Btn 
-                  title={'Add +'}
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => setModalAddVisible(true)}
-                />
+                >
+                  <FontAwesome  name="plus" size={26} color="#6B6E78" />
+                  <Text  style={{fontSize: 12}}>Add item</Text>
+                </TouchableOpacity>
               </View>
 
             </View>
@@ -227,11 +236,22 @@ export default function PhotoList({navigation}) {
                   >{singleDescript}</Text>
 
                   <View style={{flexDirection: 'row', gap:40, marginTop: 10, top: 10}}>
-                    <Btn 
-                      title={'Delete'}
+                    <TouchableOpacity
+                      style={{alignItems: 'center', minWidth: 120, }}
                       onPress={() => {setModalDelConf(!modalDelConf)}}
-                    />
-                      <Modal
+                    >
+                      <AntDesign name="delete" size={24} color="red" />
+                      <Text style={{fontSize: 12}}>Delete</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={{alignItems: 'center', minWidth: 120, }}
+                      onPress={() => setModalSingleVisible(!modalSingleVisible)}
+                    >
+                      <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                      <Text style={{fontSize: 12}}>Close</Text>
+                    </TouchableOpacity>
+ 
+                    <Modal
                         animationType="fade"
                         transparent={true}
                         visible={modalDelConf}
@@ -242,25 +262,26 @@ export default function PhotoList({navigation}) {
                           <View style={styles.modalView}>   
                             <Text style={{fontWeight: 'bold', fontSize: 20, marginBottom: 10}}>Confirm delete?</Text>
                             <View style={{flexDirection: 'row', gap:40, marginTop: 10, top: 10}}>
-                          
-                            <Btn 
-                              title={'Yes'}
-                              onPress={() => {deletePhoto(singleId); setModalDelConf(!modalDelConf)}}
-                            />
-                            <Btn 
-                              title={'Cancel'}
-                              onPress={() => setModalDelConf(!modalDelConf)}
-                            />
+                            <TouchableOpacity
+                              style={{alignItems: 'center', minWidth: 120, }}
+                               onPress={() => {deletePhoto(singleId); setModalDelConf(!modalDelConf)}}
+                            >
+                               <AntDesign name="check" size={24} color="#6B6E78" />
+                              <Text style={{fontSize: 12}}>Confirm</Text>
+                            </TouchableOpacity>
 
-                          </View>
+                            <TouchableOpacity
+                              style={{alignItems: 'center', minWidth: 120, }}
+                              onPress={() => setModalDelConf(!modalDelConf)}
+                            >
+                              <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                              <Text style={{fontSize: 12}}>Cancel</Text>
+                            </TouchableOpacity>
+                           </View>
                           </View> 
                         </View>
                       </Modal>
 
-                    <Btn 
-                      title={'Close'}
-                      onPress={() => setModalSingleVisible(!modalSingleVisible)}
-                    />
                   </View>
                   </View>
                 </View>
@@ -306,8 +327,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 22,
-    height: 400,
     width: '100%',
     alignSelf: 'center',
     backgroundColor: 'rgba(58, 55, 49, 0.95)' //transparent

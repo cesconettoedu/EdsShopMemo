@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Modal, Image } from "react-native";
 import ItemAddUpdate from "./ItemAddUpdate";
 import Ionicons from '@expo/vector-icons/Ionicons';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import Btn from "./Btn";
 
 import NoImage from "../../assets/noimage.png";
@@ -88,11 +89,14 @@ const ProductField = ({data, delet, onRefresh}) => {
                   style={{width: '50%', height: '37%', borderRadius:3, marginBottom: 25}} 
                 />
               }
-              <View style={{flex: 1 ,justifyContent: 'flex-end'}}>
-                <Btn 
-                  title={'Update'}
+              <View style={{flex: 1 ,justifyContent: 'flex-end', }}>
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => setModalUpdateProd(true)}
-                />
+                >
+                  <FontAwesome5 name="file-signature" size={24} color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Update</Text>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

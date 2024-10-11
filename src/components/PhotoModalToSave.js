@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Image, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { StyleSheet, View, Image, TextInput, TouchableOpacity, ImageBackground, Text } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
 import Photos from "../services/sqlite/Photos";
 import Btn from "./Btn";
 import CameraOpen from "./CameraOpen";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 import Click from "../../assets/clicktoimage.png";
 
@@ -107,19 +109,30 @@ function PhotoModalToSave({options}) {
               <View 
                 style={{ justifyContent: 'flex-end'  }}
                 >
-                <Btn 
-                  title={'Close'}
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={options.backToList}
-                  />
+                >
+                  <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Close</Text>
+                </TouchableOpacity>
               </View>
 
               <View 
                 style={{ justifyContent: 'flex-end', left: -5 }}
                 >
-                <Btn 
-                  title={'Save'}
+                <TouchableOpacity
+                  style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => handleAddProduct()}
-                  />
+                >
+                  <AntDesign name="check" size={24} color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Save</Text>
+                </TouchableOpacity>
+
+
+
+
+
               </View>
             </View>
         </View>
