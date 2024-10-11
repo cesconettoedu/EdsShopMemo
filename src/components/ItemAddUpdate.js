@@ -5,7 +5,10 @@ import { StyleSheet, View, TouchableOpacity, Image, Text, TextInput, Modal, Scro
 import Items from "../services/sqlite/Items";
 import Btn from "../components/Btn";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 import LinkPhotoList from "../components/LinkPhotoList";
+
+
 
 import AnyIcon from "../../assets/icons/any3.png";
 import CostcoIcon from "../../assets/icons/costco3.png";
@@ -216,15 +219,8 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
             </Modal> 
           </View>
 
-          <View
-            style={{
-              flexDirection: "row",
-              width: "100%",
-              justifyContent: "space-around",
-              gap: 40,
-              marginTop: 50,
-            }}
-          >
+        </View>
+          <View style={styles.viewBottom}>
                       
             {prodData && 
             <>
@@ -243,21 +239,29 @@ function ItemAddUpdate({ modalVisibleAdd, modalUpdateProd, prodData, modalSingle
             }
             {!prodData && 
             <>
-              <Btn 
-                title={"Close"} 
+              <TouchableOpacity
+                style={{alignItems: 'center', minWidth: 120, }}
                 onPress={() => { 
                    modalVisibleAdd(false)                           
                 }}
-              />
-              <Btn
-                title={"Add"}
-                onPress={() => { handleAddProd() }}
-                />
+              >
+                <MaterialCommunityIcons name="progress-close" size={24} color="#6B6E78" />
+                <Text style={{fontSize: 12}}>Close</Text>
+              </TouchableOpacity>
+
+ 
+              <TouchableOpacity
+                style={{alignItems: 'center', minWidth: 120, }}
+                 onPress={() => { handleAddProd() }}
+              >
+                <FontAwesome  name="plus" size={26} color="#6B6E78" />
+                <Text  style={{fontSize: 12}}>Add item</Text>
+              </TouchableOpacity>
+
             </>
             }
 
           </View>
-        </View>
       </View>
 
       {/*--------- Modal ----------------- to show OK after save a item */}
@@ -291,7 +295,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     width: "95%",
-    backgroundColor: "white",
+    backgroundColor: "#EEEEEE",
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
     padding: 35,
@@ -323,4 +327,16 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
   },
+
+  viewBottom: {
+    flexDirection: "row",
+    width: "95%",
+    justifyContent: "center",
+    gap: 60,
+    paddingBottom: 20,
+    paddingTop: 20,
+    alignItems: "center",
+    backgroundColor:'#ffff'
+  },
+  
 });

@@ -209,28 +209,16 @@ export default function Home({navigation}) {
                   style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => navigation.navigate('PhotoList')}
                 >
-                  {/* <Image
-                    source={PhotoIcon}
-                    alt="photoicon"
-                    resizeMode="contain"
-                    style={{ width: 120, height: 45 }}
-                  /> */}
-                  <FontAwesome size={26} name="photo" color="#6B6E78" />
-                  <Text>Photo Gallery</Text>
+                  <FontAwesome size={20} name="photo" color="#6B6E78" />
+                  <Text style={{fontSize: 12}}>Photo Gallery</Text>
                 </TouchableOpacity>
               
                 <TouchableOpacity
                   style={{alignItems: 'center', minWidth: 120, }}
                   onPress={() => setModalVisibleAdd(true) }
                 >
-                  {/* <Image
-                    source={CartIcon}
-                    alt="carticon"
-                    resizeMode="contain"
-                    style={{ width: 120, height: 45 }}
-                  /> */}
-                  <FontAwesome size={36} name="plus" color="#6B6E78" />
-                   <Text>Add item</Text>
+                  <FontAwesome size={26} name="plus" color="#6B6E78" />
+                   <Text  style={{fontSize: 12}}>Add item</Text>
                 </TouchableOpacity>
 
               {/*--------- Modal ----------------- to open a Component to insert info */}
